@@ -22,8 +22,9 @@ module UserAccounts
     return unless name.present?
     return accounts.first if accounts.any?
 
-    account = accounts.new(owner: self, name: name, personal: Jumpstart.config.personal_accounts)
+    account = accounts.new(owner: self, name: name, personal: true)
     account.account_users.new(user: self, admin: true)
+    debugger
     account.save!
     account
   end
