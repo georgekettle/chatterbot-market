@@ -15,9 +15,9 @@ module.exports = {
       sans: ['Rubik', ...defaultTheme.fontFamily.sans],
     },
     colors: {
-      primary: colors.orange,
-      secondary: colors.sky,
-      tertiary: colors.slate,
+      primary: colors.amber,
+      secondary: colors.violet,
+      tertiary: colors.stone,
       success: colors.green,
       danger: colors.red,
     }
