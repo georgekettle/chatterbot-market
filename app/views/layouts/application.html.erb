@@ -10,7 +10,9 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="bg-primary-50">
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
     <%= yield %>
   </body>
 </html>
