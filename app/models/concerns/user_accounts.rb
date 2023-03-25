@@ -24,7 +24,6 @@ module UserAccounts
 
     account = accounts.new(owner: self, name: name, personal: true)
     account.account_users.new(user: self, admin: true)
-    debugger
     account.save!
     account
   end
