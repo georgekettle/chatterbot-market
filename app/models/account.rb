@@ -2,6 +2,7 @@ class Account < ApplicationRecord
   belongs_to :owner, class_name: "User"
   has_many :account_users, dependent: :destroy
   has_many :users, through: :account_users
+  has_many :time_lines, dependent: :destroy
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }
