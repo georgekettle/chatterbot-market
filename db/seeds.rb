@@ -1,0 +1,1 @@
+User.create!(email: 'test@test.com', password: 'secret', first_name: 'George', last_name: 'Kettle', time_zone: 'Sydney')
