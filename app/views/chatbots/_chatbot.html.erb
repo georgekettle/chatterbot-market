@@ -1,0 +1,6 @@
+<div id="<%= dom_id chatbot %>" class="card p-6">
+  <p class="font-medium text-md tracking-tight"><%= chatbot.name %></p>
+  <div class="flex items-center justify-end">
+    <%= link_to 'See more', chatbot_path(chatbot), class: 'btn' %>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+body {
+  @apply selection:bg-secondary-200 selection:text-secondary-900;
+}

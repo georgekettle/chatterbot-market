@@ -1,5 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+@import 'config/typography.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @import 'config/defaults.css';
+@import 'components/buttons.css';
+@import 'components/card.css'; */
+
+.btn {
+  @apply rounded text-gray-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-gray-900 hover:bg-black hover:bg-opacity-5;
+}
+
+.btn-primary {
+  @apply bg-gray-800 text-white hover:bg-gray-900 hover:text-white;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-900 hover:bg-gray-900 hover:text-white;
+}
+
+form {
+  @apply space-y-6;
+}
+
+label {
+  @apply block text-sm font-medium leading-6 text-gray-900 mb-2;
+}
+
+[type='text'],
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+  @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6
+}
+
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  @apply btn btn-primary w-full;
+}
+
+.card {
+  @apply border border-gray-300 bg-white shadow-sm rounded overflow-hidden;
+}

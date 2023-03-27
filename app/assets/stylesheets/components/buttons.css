@@ -1,0 +1,7 @@
+.btn {
+  @apply rounded-sm text-tertiary-700 px-4 py-2 text-sm hover:bg-black hover:bg-opacity-5 flex items-center justify-center;
+}
+
+.btn-primary {
+  @apply bg-gray-800 text-white hover:bg-gray-900 hover:text-white;
+}

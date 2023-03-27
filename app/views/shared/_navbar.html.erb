@@ -2,17 +2,17 @@
   <%= render 'shared/container' do %>
     <div class="flex items-center justify-between">
       <%= link_to root_path, class: 'flex items-center' do %>
-        <%= image_tag 'logo.svg', alt: 'Timeline logo', class: 'h-5 w-5' %>
-        <span class="ml-2 font-black tracking-wide text-lg">TEMPLATE</span>
+        <%= image_tag 'logo.svg', alt: 'Timeline logo', class: 'h-4 w-auto' %>
+        <span class="sr-only">Chatterbot Market</span>
       <% end %>
 
       <div class="flex items-center space-x-2">
         <% if user_signed_in? %>
-          <%= link_to "Dashboard", "#", class: "rounded-sm text-tertiary-700 block px-4 py-2 text-sm hover:bg-black hover:bg-opacity-10 dark:hover:bg-tertiary-100 dark:hover:text-tertiary-900 dark:text-tertiary-100" %>
+          <%= link_to "Dashboard", chatbots_path, class: "rounded-sm text-tertiary-700 block px-4 py-2 text-sm hover:bg-black hover:bg-opacity-10 dark:hover:bg-tertiary-100 dark:hover:text-tertiary-900 dark:text-tertiary-100" %>
           <%= render 'shared/navbar/user_dropdown' %>
         <% else %>
-          <%= link_to "Sign in", new_user_session_path, class: "rounded-sm text-tertiary-700 block px-4 py-2 text-sm hover:bg-black hover:bg-opacity-10 dark:hover:bg-tertiary-100 dark:hover:text-tertiary-900 dark:text-tertiary-100" %>
-          <%= link_to "Create account", new_user_registration_path, class: "rounded-sm bg-primary-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-primary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600" %>
+          <%= link_to "Sign in", new_user_session_path, class: "btn" %>
+          <%= link_to "Create account", new_user_registration_path, class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
