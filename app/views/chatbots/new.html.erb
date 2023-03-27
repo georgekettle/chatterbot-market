@@ -1,0 +1,14 @@
+<%= render 'shared/container' do %>
+  <div class="pt-16 pb-10">
+    <%= link_to chatbots_path, class: 'btn mb-2 -ml-4' do %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-1">
+        <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
+      </svg>
+      Back
+    <% end %>
+
+    <%= render 'components/headers/page_header', title: "New Chatbot" %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <%= render "form", chatbot: @chatbot %>
+    </div>
+<% end %>
