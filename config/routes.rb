@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :chatbots
+  resources :chatbots do
+    resources :conversations, only: [:index]
+  end
+  resources :conversations, only: [:show]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

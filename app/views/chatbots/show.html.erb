@@ -8,17 +8,19 @@
     <% end %>
 
     <%= render 'components/headers/page_header', title: @chatbot.name do %>
-      <div class="-ml-4 sm:ml-0 sm:-mr-4 flex items-center">
-        <%= link_to "Edit chatbot", edit_chatbot_path(@chatbot), class: "btn" %>
-        <%= link_to "Delete", @chatbot, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn" %>
-      </div>
+      <% if policy(@chatbot).update? || policy(@chatbot).destroy? %>
+        <span class="isolate inline-flex rounded-md shadow-sm">
+          <%= link_to("Edit chatbot", edit_chatbot_path(@chatbot), class: "relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm text-tertiary-800 hover:text-tertiary-900 ring-1 ring-inset ring-tertiary-300 hover:bg-tertiary-50 focus:z-10") if policy(@chatbot).update? %>
+          <%= link_to("Delete", @chatbot, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm text-tertiary-800 hover:text-tertiary-900 ring-1 ring-inset ring-tertiary-300 hover:bg-tertiary-50 focus:z-10") if policy(@chatbot).destroy? %>
+        </span>
+      <% end %>
     <% end %>
 
     <%# Main stats %>
     <div>
       <%= render 'components/headers/section_header', title: "Stats" %>
 
-      <dl class="card text-gray-900 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-dashed divide-tertiary-200">
+      <dl class="card text-tertiary-900 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-dashed divide-tertiary-200">
         <div class="overflow-hidden px-4 py-5 sm:p-6">
           <dt class="truncate text-sm text-primary-500 flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-1 text-primary-400">
@@ -58,34 +60,27 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
       <%# Recent Conversations %>
       <div>
-        <%= render 'components/headers/section_header', title: "Recent conversations" %>
+        <%= render 'components/headers/section_header', title: "Recent conversations (#{@conversations.count})" %>
         <div class="overflow-hidden card">
-          <ul role="list" class="divide-y divide-gray-200">
-            <li class="px-6 py-4 text-sm text-gray-500">
-              <!-- Your content -->
-              Recent conversations
-            </li>
-
-            <li class="px-6 py-4 text-sm text-gray-500">
-              <!-- Your content -->
-              Recent conversations
-            </li>
+          <ul role="list" class="divide-y divide-tertiary-200">
+            <% @conversations.each do |conversation| %>
+              <%= render 'conversations/conversation', conversation: conversation %>
+            <% end %>
           </ul>
         </div>
-
       </div>
 
       <%# Training data %>
       <div>
         <%= render 'components/headers/section_header', title: "Training Data" %>
         <div class="overflow-hidden card">
-          <ul role="list" class="divide-y divide-gray-200">
-            <li class="px-6 py-4 text-sm text-gray-500">
+          <ul role="list" class="divide-y divide-tertiary-200">
+            <li class="px-6 py-4 text-sm text-tertiary-500">
               <!-- Your content -->
               Training Data
             </li>
 
-            <li class="px-6 py-4 text-sm text-gray-500">
+            <li class="px-6 py-4 text-sm text-tertiary-500">
               <!-- Your content -->
               Training Data
             </li>
