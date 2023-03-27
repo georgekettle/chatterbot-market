@@ -3,7 +3,7 @@ class ChatbotsController < ApplicationController
 
   # GET /chatbots or /chatbots.json
   def index
-    @chatbots = Chatbot.where(account: Current.account)
+    @chatbots = policy_scope(Chatbot).where(account: current_account)
   end
 
   # GET /chatbots/1 or /chatbots/1.json
@@ -13,6 +13,7 @@ class ChatbotsController < ApplicationController
   # GET /chatbots/new
   def new
     @chatbot = Chatbot.new
+    authorize @chatbot
   end
 
   # GET /chatbots/1/edit
@@ -23,6 +24,7 @@ class ChatbotsController < ApplicationController
   def create
     @chatbot = Chatbot.new(chatbot_params)
     @chatbot.account = Current.account
+    authorize @chatbot
 
     respond_to do |format|
       if @chatbot.save
@@ -62,6 +64,7 @@ class ChatbotsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_chatbot
       @chatbot = Chatbot.find(params[:id])
+      authorize @chatbot
     end
 
     # Only allow a list of trusted parameters through.

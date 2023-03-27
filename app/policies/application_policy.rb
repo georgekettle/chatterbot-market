@@ -50,4 +50,14 @@ class ApplicationPolicy
 
     attr_reader :user, :scope
   end
+
+  private
+
+  def is_admin?
+    user.admin?
+  end
+
+  def account
+    user.account
+  end
 end

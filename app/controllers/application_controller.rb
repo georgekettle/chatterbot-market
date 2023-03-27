@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include SetCurrentRequestDetails
   include Users::TimeZone
+  include CurrentHelper
   include Authorization
 
   before_action :configure_permitted_parameters, if: :devise_controller?
