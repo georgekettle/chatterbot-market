@@ -1,0 +1,23 @@
+<%= render 'shared/container' do %>
+  <div class="pt-16 pb-10">
+    <%= link_to @chatbot, class: 'btn mb-2 -ml-4' do %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-1">
+        <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
+      </svg>
+      Back
+    <% end %>
+
+    <%= render 'components/headers/page_header', title: "All conversations" %>
+
+    <div>
+      <div class="overflow-hidden card">
+        <ul role="list" class="divide-y divide-tertiary-200">
+          <% @conversations.each do |conversation| %>
+            <%= render 'conversations/conversation', conversation: conversation %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
+ 
