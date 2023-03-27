@@ -4,11 +4,6 @@ module Authorization
   extend ActiveSupport::Concern
   include Pundit::Authorization
 
-  included do
-    after_action :verify_authorized, except: :index
-    after_action :verify_policy_scoped, only: :index
-  end
-
   # Use AccountUser since it determines the roles for the current Account
   def pundit_user
     current_account_user
