@@ -55,11 +55,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_085156) do
     t.text "content"
     t.bigint "conversation_id", null: false
     t.bigint "account_id", null: false
+    t.bigint "sender_id"
     t.boolean "ai_generated", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_messages_on_account_id"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,4 +87,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_085156) do
   add_foreign_key "conversations", "chatbots"
   add_foreign_key "messages", "accounts"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users", column: "sender_id"
 end

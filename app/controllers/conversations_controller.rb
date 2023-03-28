@@ -6,6 +6,8 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   def show
     @chatbot = @conversation.chatbot
+    @messages = @conversation.messages.order(created_at: :desc)
+    @message = Message.new
   end
 
   # GET /chatbots/:chatbot_id/conversations

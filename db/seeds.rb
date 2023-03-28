@@ -27,7 +27,7 @@ end
 puts "Creating messages... (this may take a while)"
 Conversation.all.each do |conv|
   20.times do
-    conv.messages.create!(content: Faker::Quote.yoda, account: conv.account, ai_generated: false)
-    conv.messages.create!(content: Faker::Quote.yoda, account: conv.chatbot.account)
+    conv.messages.create!(content: Faker::Quote.yoda, account: conv.account, sender: conv.account.owner, ai_generated: false)
+    conv.messages.create!(content: Faker::Quote.yoda, account: conv.chatbot.account, sender: conv.chatbot.account.owner)
   end
 end
