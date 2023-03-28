@@ -8,7 +8,9 @@
     <% end %>
 
     <%= render 'components/headers/page_header', title: "All conversations" do %>
-      <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
+      <div class="hidden sm:inline-block">
+        <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
+      </div>
     <% end %>
 
     <div>
