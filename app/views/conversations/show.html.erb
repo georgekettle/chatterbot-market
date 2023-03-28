@@ -4,7 +4,9 @@
   </div>
   <div class="grow-1 h-full overflow-y-scroll">
     <%= render 'shared/container', classes: 'max-w-3xl' do %>
-      <%= render 'messages/messages', conversation: @conversation, messages: @conversation.messages %>
+      <%= content_tag :div, id: dom_id(@conversation, :messages), class: "divide-y divide-tertiary-300" do %>
+        <%= render partial: 'messages/message', collection: @conversation.messages %>
+      <% end %>
     <% end %>
   </div>
   <div class="shrink-0 py-4 sm:py-6">

@@ -7,10 +7,14 @@ class MessagesController < ApplicationController
     @message.account = current_account
     authorize @message
 
-    if @message.save
-      redirect_to conversation_path(@conversation)
-    else
-      render 'conversations/show', status: :unprocessable_entity
+    respond_to do |format|
+      if @message.save
+        format.turbo_stream
+        format.html { redirect_to conversation_path(@conversation) }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@conversation, :message_form), partial: "messages/form", locals: { conversation: @conversation, message: @message }) }
+        format.html { render "conversations/show" }
+      end
     end
   end
 
