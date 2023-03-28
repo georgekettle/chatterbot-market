@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   include Users::TimeZone
   include CurrentHelper
   include Authorization
+  include Pagy::Backend
+  Pagy::DEFAULT[:items] = 20 # default items per page
+  Pagy::DEFAULT[:size] = [1, 2, 2, 1] # default page size array
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!

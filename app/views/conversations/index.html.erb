@@ -7,7 +7,9 @@
       Back
     <% end %>
 
-    <%= render 'components/headers/page_header', title: "All conversations" %>
+    <%= render 'components/headers/page_header', title: "All conversations" do %>
+      <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
+    <% end %>
 
     <div>
       <div class="overflow-hidden card">
@@ -17,6 +19,9 @@
           <% end %>
         </ul>
       </div>
+    </div>
+    <div class="mt-10 flex justify-end">
+      <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
     </div>
   </div>
 <% end %>

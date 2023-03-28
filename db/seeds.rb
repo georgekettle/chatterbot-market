@@ -13,7 +13,7 @@ Chatbot.create!(name: 'Write lyrics like George', account: george_h.personal_acc
 
 # Create conversations
 Chatbot.all.each do |cb|
-  4.times do
+  100.times do
     Conversation.create!(chatbot: cb, account: john_smith.personal_account)
     Conversation.create!(chatbot: cb, account: mary_jane.personal_account)
     Conversation.create!(chatbot: cb, account: george_h.personal_account, test: true)
