@@ -60,7 +60,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
       <%# Recent Conversations %>
       <div>
-        <%= render 'components/headers/section_header', title: "Recent conversations (#{@conversations.count})" do %>
+        <%= render 'components/headers/section_header', title: "Recent conversations" do %>
           <%= link_to "View all", chatbot_conversations_path(@chatbot), class: "text-sm text-tertiary-500 hover:text-tertiary-900 hover:underline underline-offset-4" %>
         <% end %>
         <div class="overflow-hidden card">
