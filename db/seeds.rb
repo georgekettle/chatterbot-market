@@ -18,16 +18,16 @@ Chatbot.create!(name: 'Write lyrics like George', account: george_h.personal_acc
 puts "Creating conversations..."
 Chatbot.all.each do |cb|
   100.times do
-    Conversation.create!(chatbot: cb, account: john_smith.personal_account)
-    Conversation.create!(chatbot: cb, account: mary_jane.personal_account)
-    Conversation.create!(chatbot: cb, account: george_h.personal_account, test: true)
+    Conversation.create!(chatbot: cb, creator: john_smith)
+    Conversation.create!(chatbot: cb, creator: mary_jane)
+    Conversation.create!(chatbot: cb, creator: george_h)
   end
 end
 
 puts "Creating messages... (this may take a while)"
 Conversation.all.each do |conv|
   20.times do
-    conv.messages.create!(content: Faker::Quote.yoda, account: conv.account, sender: conv.account.owner, ai_generated: false)
-    conv.messages.create!(content: Faker::Quote.yoda, account: conv.chatbot.account, sender: conv.chatbot.account.owner)
+    conv.messages.create!(content: Faker::Quote.yoda, sender: conv.creator, ai_generated: false)
+    conv.messages.create!(content: Faker::Quote.yoda, sender: conv.chatbot.account.owner)
   end
 end

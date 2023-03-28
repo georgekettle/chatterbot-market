@@ -43,23 +43,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_085156) do
 
   create_table "conversations", force: :cascade do |t|
     t.bigint "chatbot_id", null: false
-    t.bigint "account_id"
-    t.boolean "test", default: false
+    t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_conversations_on_account_id"
     t.index ["chatbot_id"], name: "index_conversations_on_chatbot_id"
+    t.index ["creator_id"], name: "index_conversations_on_creator_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "conversation_id", null: false
-    t.bigint "account_id", null: false
     t.bigint "sender_id"
     t.boolean "ai_generated", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_messages_on_account_id"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
@@ -83,9 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_085156) do
   add_foreign_key "account_users", "users"
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "chatbots", "accounts"
-  add_foreign_key "conversations", "accounts"
   add_foreign_key "conversations", "chatbots"
-  add_foreign_key "messages", "accounts"
+  add_foreign_key "conversations", "users", column: "creator_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users", column: "sender_id"
 end

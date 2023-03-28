@@ -2,8 +2,7 @@ class CreateConversations < ActiveRecord::Migration[7.0]
   def change
     create_table :conversations do |t|
       t.references :chatbot, null: false, foreign_key: true
-      t.references :account, foreign_key: true
-      t.boolean :test, default: false
+      t.belongs_to :creator, foreign_key: {to_table: :users}
 
       t.timestamps
     end

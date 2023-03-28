@@ -1,0 +1,27 @@
+<%= turbo_frame_tag dom_id(chatbot, :conversation_form), target: "_top" do %>
+  <%= form_with model: conversation, url: chatbot_conversations_path(chatbot) do |form| %>
+    <% if conversation.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being sent:</h2>
+
+        <ul>
+          <% conversation.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%# Nested attributes for conversation messages %>
+      <%= form.fields_for :messages do |message_form| %>
+        <%= message_form.label :content, class: 'sr-only' %>
+        <%= message_form.text_field :content, placeholder: "Write a message for #{chatbot.name}..." %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>

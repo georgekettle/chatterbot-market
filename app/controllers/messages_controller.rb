@@ -4,7 +4,6 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.new(message_params)
     @message.sender = current_user
-    @message.account = current_account
     authorize @message
 
     respond_to do |format|

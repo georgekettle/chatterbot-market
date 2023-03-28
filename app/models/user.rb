@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_person_name
 
   has_many :connected_accounts, as: :owner, dependent: :destroy
+  has_many :conversations, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   validates :name, presence: true
 end
