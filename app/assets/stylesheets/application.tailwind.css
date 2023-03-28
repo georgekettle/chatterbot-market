@@ -9,7 +9,7 @@
 @import 'components/card.css'; */
 
 .btn {
-  @apply rounded text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5;
+  @apply rounded-md text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer;
 }
 
 .btn-primary {

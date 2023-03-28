@@ -8,7 +8,7 @@ class ChatbotsController < ApplicationController
 
   # GET /chatbots/1 or /chatbots/1.json
   def show
-    @conversations = @chatbot.conversations.where("created_at > ?", 7.days.ago).first(5)
+    @conversations = @chatbot.conversations.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
   end
 
   # GET /chatbots/new

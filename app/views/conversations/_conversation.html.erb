@@ -9,15 +9,10 @@
         <%= link_to conversation, class: 'focus:outline-none' do %>
           <!-- Extend touch target to entire panel -->
           <span class="absolute inset-0" aria-hidden="true"></span>
-          <%= conversation.account.name %>
+          <%= conversation.creator.name %>
         <% end %>
       </h3>
-      <% if conversation.test? %>
-        <div class="shrink-0 ml-2">
-          <%= render 'components/badges/badge_sm', text: 'test' %>
-        </div>
-      <% end %>
     </div>
-    <p class="mt-1 text-sm text-tertiary-500 line-clamp-2">Cum qui rem deleniti. Suscipit in dolor veritatis sequi aut. Vero ut earum quis deleniti. Ut a sunt eum cum ut repudiandae possimus. Nihil ex tempora neque cum consectetur dolores.</p>
+    <p class="mt-1 text-sm text-tertiary-500 line-clamp-2"><%= conversation.messages.last.content %></p>
   </div>
 </li>

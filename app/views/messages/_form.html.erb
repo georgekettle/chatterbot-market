@@ -1,0 +1,23 @@
+<%= turbo_frame_tag dom_id(conversation, :message_form) do %>
+  <%= form_with(model: message, url: conversation_messages_path(conversation), data: { turbo_target: '_top' }) do |form| %>
+    <% if message.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being sent:</h2>
+
+        <ul>
+          <% message.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.text_field :content, placeholder: "Write a message for #{conversation.chatbot.name}..." %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>
