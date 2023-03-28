@@ -3,5 +3,5 @@
 }
 
 .btn-primary {
-  @apply bg-gray-800 text-white hover:bg-gray-900 hover:text-white;
+  @apply bg-tertiary-800 text-white hover:bg-tertiary-900 hover:text-white;
 }

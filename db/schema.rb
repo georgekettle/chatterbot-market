@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_005806) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_095313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_005806) do
     t.index ["account_id"], name: "index_chatbots_on_account_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "chatbot_id", null: false
+    t.bigint "account_id"
+    t.boolean "test", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_conversations_on_account_id"
+    t.index ["chatbot_id"], name: "index_conversations_on_chatbot_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,4 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_005806) do
   add_foreign_key "account_users", "users"
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "chatbots", "accounts"
+  add_foreign_key "conversations", "accounts"
+  add_foreign_key "conversations", "chatbots"
 end
