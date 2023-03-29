@@ -8,7 +8,7 @@
 
       <div class="flex items-center space-x-2">
         <% if user_signed_in? %>
-          <%= link_to "Dashboard", chatbots_path, class: "rounded-sm text-tertiary-700 block px-4 py-2 text-sm hover:bg-black hover:bg-opacity-10 dark:hover:bg-tertiary-100 dark:hover:text-tertiary-900 dark:text-tertiary-100" %>
+          <%= link_to "Dashboard", chatbots_path, class: "btn" %>
           <%= render 'shared/navbar/user_dropdown' %>
         <% else %>
           <%= link_to "Sign in", new_user_session_path, class: "btn" %>
