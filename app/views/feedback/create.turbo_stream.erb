@@ -1,0 +1,6 @@
+<%# replace feedback turbo_frame_tag with new _feedback partial %>
+<%= turbo_stream.replace dom_id(@message, :feedback), partial: "feedback", locals: { message: @message } %>
+<%# update contents of modal turbo frame tag with message_modal partial %>
+<% if @feedback.persisted? %>
+  <%= turbo_stream.update :turbo_modal, partial: "message_modal", locals: { feedback: @feedback } %>
+<% end %>
