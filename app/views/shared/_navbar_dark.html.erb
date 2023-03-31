@@ -1,0 +1,20 @@
+<div class="py-4 bg-tertiary-900 text-white">
+  <%= render 'shared/container' do %>
+    <div class="flex items-center justify-between">
+      <%= link_to root_path, class: 'flex items-center' do %>
+        <%= image_tag 'logo_dark.svg', alt: 'Chatterbot logo', class: 'h-4 w-auto' %>
+        <span class="sr-only">Chatterbot Market</span>
+      <% end %>
+
+      <div class="flex items-center space-x-2">
+        <% if user_signed_in? %>
+          <%= link_to "Dashboard", dashboard_chatbots_path, class: "btn btn-dark" %>
+          <%= render 'shared/navbar/user_dropdown', is_dark: true %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path, class: "btn btn-dark" %>
+          <%= link_to "Create account", new_user_registration_path, class: "btn btn-primary btn-dark" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

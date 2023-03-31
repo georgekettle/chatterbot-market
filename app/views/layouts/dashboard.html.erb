@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <%= render 'shared/head' %>
+
+  <body class="bg-white">
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar_dark' %>
+    <%= yield %>
+    <%= render('shared/turbo_modal_tag') {} %>
+  </body>
+</html>

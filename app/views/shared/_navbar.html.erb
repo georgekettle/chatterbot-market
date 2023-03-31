@@ -2,13 +2,13 @@
   <%= render 'shared/container' do %>
     <div class="flex items-center justify-between">
       <%= link_to root_path, class: 'flex items-center' do %>
-        <%= image_tag 'logo.svg', alt: 'Timeline logo', class: 'h-4 w-auto' %>
+        <%= image_tag 'logo.svg', alt: 'Chatterbot logo', class: 'h-4 w-auto' %>
         <span class="sr-only">Chatterbot Market</span>
       <% end %>
 
       <div class="flex items-center space-x-2">
         <% if user_signed_in? %>
-          <%= link_to "Dashboard", chatbots_path, class: "btn" %>
+          <%= link_to "Dashboard", dashboard_chatbots_path, class: "btn" %>
           <%= render 'shared/navbar/user_dropdown' %>
         <% else %>
           <%= link_to "Sign in", new_user_session_path, class: "btn" %>

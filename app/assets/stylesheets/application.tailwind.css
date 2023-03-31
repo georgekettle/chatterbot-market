@@ -12,12 +12,24 @@
   @apply rounded-md text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer;
 }
 
+.btn.btn-dark {
+  @apply rounded-md text-tertiary-400 inline-flex items-center justify-center px-4 py-2 text-sm hover:bg-tertiary-700 hover:text-white cursor-pointer;
+}
+
 .btn-primary {
   @apply bg-tertiary-800 text-white hover:bg-tertiary-900 hover:text-white;
 }
 
+.btn-primary.btn-dark {
+  @apply text-tertiary-800 bg-white hover:text-tertiary-900 hover:bg-white;
+}
+
 .btn-secondary {
   @apply bg-tertiary-200 text-tertiary-900 hover:bg-tertiary-900 hover:text-white;
+}
+
+.btn-secondary.btn-dark {
+  @apply text-tertiary-200 bg-tertiary-900 hover:text-tertiary-900 hover:bg-white;
 }
 
 form {
