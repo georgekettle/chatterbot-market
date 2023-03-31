@@ -16,18 +16,6 @@ module.exports = {
       mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
     },
     colors: {
-      // primary: {
-      //     '50': '#f1f2fe',
-      //     '100': '#e1e6fe',
-      //     '200': '#cad0fc',
-      //     '300': '#a9b0f9',
-      //     '400': '#8688f4',
-      //     '500': '#766eed',
-      //     '600': '#604ce1',
-      //     '700': '#533fc6',
-      //     '800': '#41339e',
-      //     '900': '#38317d',
-      // },
       primary: {
         '50': '#fff9eb',
         '100': '#ffeec7',
@@ -44,6 +32,7 @@ module.exports = {
       tertiary: colors.neutral,
       success: colors.green,
       danger: colors.red,
+      info: colors.amber,
     }
   },
 
