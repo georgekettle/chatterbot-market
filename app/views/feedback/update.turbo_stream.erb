@@ -1,0 +1,8 @@
+<%# Update turbo_modal turbo frame to be empty %>
+<%= turbo_stream.replace :turbo_modal do %>
+  <%= render 'shared/turbo_modal_tag' do %>
+    <% if @feedback.errors.any? %>
+      <%= turbo_stream.update :turbo_modal, partial: "message_modal", locals: { feedback: @feedback } %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -10,6 +10,9 @@ george_h = User.create!(email: 'george@test.com', password: 'secret', first_name
 john_smith = User.create!(email: 'john@test.com', password: 'secret', first_name: 'John', last_name: 'Smith', time_zone: 'Sydney')
 mary_jane = User.create!(email: 'mary@test.com', password: 'secret', first_name: 'Mary', last_name: 'Jane', time_zone: 'New York')
 
+Account.all.each do |account|
+  account.update!(api_key_openai: ENV['OPENAI_API_KEY'])
+end
 
 puts "Creating chatbots..."
 Chatbot.create!(name: 'Bohemian wisdom', account: george_h.personal_account)

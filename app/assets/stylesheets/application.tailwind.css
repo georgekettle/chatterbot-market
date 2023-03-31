@@ -49,7 +49,7 @@ select {
 input[type=button],
 input[type=submit],
 input[type=reset] {
-  @apply btn btn-primary w-full;
+  @apply btn btn-primary;
 }
 
 .card {
