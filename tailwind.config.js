@@ -30,7 +30,7 @@ module.exports = {
       },
       secondary: colors.violet,
       tertiary: colors.neutral,
-      success: colors.green,
+      success: colors.lime,
       danger: colors.red,
       info: colors.amber,
     }

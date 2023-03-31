@@ -1,4 +1,8 @@
-<%= render 'dashboard/headers/page_header' %>
+<% tabs = [
+  { name: 'Chatbots', path: dashboard_chatbots_path }
+] %>
+
+<%= render 'dashboard/headers/page_header', title: 'Dashboard', tabs: tabs %>
 <%= render 'shared/container' do %>
   <div class="pt-16 pb-6">
     <%= render 'components/headers/page_header', title: "Chatbots", subtitle: "You have #{@chatbots.count} chatbots" do %>
@@ -14,8 +18,8 @@
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <table class="min-w-full rounded-lg overflow-hidden">
-          <thead>
-            <tr class="bg-tertiary-800 text-white">
+          <thead class="border-b border-tertiary-900">
+            <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium">Name</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium">Status</th>
               <th scope="col" class="relative py-3.5 pl-3 pr-4">

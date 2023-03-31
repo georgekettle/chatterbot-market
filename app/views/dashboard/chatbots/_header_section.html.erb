@@ -1,0 +1,36 @@
+<% tabs = [
+  { name: 'Overview', path: dashboard_chatbot_path(chatbot) },
+  { name: 'Conversations', path: "#" },
+  { name: 'Feedback', path: "#" },
+  { name: 'Training Data', path: "#" },
+  { name: 'Settings', path: "#" },
+] %>
+
+<div class="bg-tertiary-900 text-white">
+  <%= render 'shared/container' do %>
+    <div class="pt-16 pb-4">
+      <div class="block sm:flex items-center justify-between mb-10 bg-tertiary-900 text-white">
+        <div class="flex items-center space-x-4">
+          <div class="rounded-full h-12 w-12 bg-tertiary-700"></div>
+          <h1 class="text-3xl font-medium tracking-tight"><%= chatbot.name %></h1>
+          <%= render 'components/badges/badge_sm', text: 'Live', color: 'success' %>
+        </div>
+        <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+          <%= link_to new_chatbot_conversation_path(chatbot), class: "btn btn-primary btn-dark btn-sm" do %>
+            Chat now
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-1">
+              <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+            </svg>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+  <% end %>
+</div>
+
+<div class="bg-tertiary-900 text-white sticky top-0 pt-3">
+  <%= render 'shared/container' do %>
+    <%= render 'dashboard/headers/tabs', tabs: tabs %>
+  <% end %>
+</div>
