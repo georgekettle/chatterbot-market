@@ -1,0 +1,14 @@
+<ol class="flex text-sm leading-6 whitespace-nowrap min-w-0 font-normal">  
+  <% breadcrumb_trail do |crumb| %>
+    <% if crumb.path == request.path %>
+      <li class="text-white truncate"><%= crumb.name %></li>
+    <% else %>
+      <li class="flex items-center">
+          <%= link_to crumb.name, crumb.path, class: "hover:underline underline-offset-4 text-tertiary-500 hover:text-white" %>
+          <svg width="3" height="6" aria-hidden="true" class="mx-3 overflow-visible text-tertiary-500">
+            <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+          </svg>
+      </li>
+    <% end %>
+  <% end %>
+</ol>

@@ -10,10 +10,15 @@
   <%= render 'shared/container' do %>
     <div class="pt-16 pb-4">
       <div class="block sm:flex items-center justify-between mb-10 bg-tertiary-900 text-white">
-        <div class="flex items-center space-x-4">
-          <div class="rounded-full h-12 w-12 bg-tertiary-700"></div>
-          <h1 class="text-3xl font-medium tracking-tight"><%= chatbot.name %></h1>
-          <%= render 'components/badges/badge_sm', text: 'Live', color: 'success' %>
+        <div>
+          <div class="mb-4">
+            <%= render 'components/navigation/breadcrumbs' %>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="rounded-full h-12 w-12 bg-tertiary-700"></div>
+            <h1 class="text-3xl font-medium tracking-tight"><%= chatbot.name %></h1>
+            <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
+          </div>
         </div>
         <div class="flex items-center space-x-2 mt-4 sm:mt-0">
           <%= link_to new_chatbot_conversation_path(chatbot), class: "btn btn-primary btn-dark btn-sm" do %>
@@ -29,7 +34,7 @@
   <% end %>
 </div>
 
-<div class="bg-tertiary-900 text-white sticky top-0 pt-3">
+<div class="bg-tertiary-900 text-white sticky top-0">
   <%= render 'shared/container' do %>
     <%= render 'dashboard/headers/tabs', tabs: tabs %>
   <% end %>

@@ -11,5 +11,8 @@ class Dashboard::ChatbotsController < ApplicationController
     @chatbot = Chatbot.find(params[:id])
     @conversations = @chatbot.conversations.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
     authorize @chatbot
+
+    breadcrumb "Dashboard", dashboard_chatbots_path
+    breadcrumb @chatbot.name.capitalize, request.path
   end
 end
