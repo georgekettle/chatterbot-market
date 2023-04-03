@@ -6,7 +6,7 @@
   <div>
     <div class="flex items-center justify-between">
       <h3 class="text-sm font-semibold text-tertiary-900 line-clamp-1">
-        <%= link_to conversation, class: 'focus:outline-none' do %>
+        <%= link_to conversation, class: 'focus:outline-none', data: { turbo_frame: "_top" } do %>
           <!-- Extend touch target to entire panel -->
           <span class="absolute inset-0" aria-hidden="true"></span>
           <%= conversation.creator.name %>

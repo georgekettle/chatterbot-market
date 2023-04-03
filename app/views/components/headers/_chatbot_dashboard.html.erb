@@ -1,6 +1,6 @@
 <% tabs = [
   { name: 'Overview', path: dashboard_chatbot_path(chatbot) },
-  { name: 'Conversations', path: "#" },
+  { name: 'Conversations', path: dashboard_chatbot_conversations_path(chatbot) },
   { name: 'Feedback', path: "#" },
   { name: 'Training Data', path: "#" },
   { name: 'Settings', path: "#" },
@@ -34,7 +34,7 @@
   <% end %>
 </div>
 
-<div class="bg-tertiary-900 text-white sticky top-0">
+<div class="bg-tertiary-900 text-white sticky top-0 z-10">
   <%= render 'shared/container' do %>
     <%= render 'dashboard/headers/tabs', tabs: tabs %>
   <% end %>

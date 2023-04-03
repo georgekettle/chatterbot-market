@@ -1,0 +1,32 @@
+<%= render 'components/headers/chatbot_dashboard', chatbot: @chatbot %>
+
+<%= render 'shared/container' do %>
+  <div class="pt-16 pb-6">
+    <%= render 'components/headers/page_header', title: "Conversations", subtitle: "All conversations with '#{@chatbot.name}'" do %>
+      <%= link_to new_chatbot_conversation_path(@chatbot), class: "btn btn-primary" do %>
+        Chat now
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-1">
+          <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+        </svg>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <%= turbo_frame_tag dom_id(@chatbot, :conversations) do %>
+    <div>
+      <div class="mb-4">
+        <%= render 'pagy/pagination_w_text', pagy: @pagy %>
+      </div>
+      <div class="overflow-hidden card">
+        <ul role="list" class="divide-y divide-tertiary-200">
+          <% @conversations.each do |conversation| %>
+            <%= render 'conversation', conversation: conversation %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="py-10 flex justify-center">
+      <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
+    </div>
+  <% end %>
+<% end %>
