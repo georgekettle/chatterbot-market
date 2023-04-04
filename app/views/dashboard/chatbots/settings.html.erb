@@ -15,6 +15,7 @@
               <%= f.label :name %>
               <%= f.text_field :name %>
             </div>
+            
             <div>
               <%= f.label :status, class: "relative inline-flex items-center cursor-pointer" do %>
                 <%= f.check_box :status, { checked: f.object.status == 'live', class: 'sr-only peer' }, '1', '0' %>

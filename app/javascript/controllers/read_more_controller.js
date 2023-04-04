@@ -20,7 +20,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('Connected to read-more controller')
     this.contentTarget.classList.add(this.toggleClassValue)
     const maxLines = this.toggleClassValue.match(/\d+/)[0]
     if (this.getNumberOfLines() > maxLines) {
@@ -34,7 +33,7 @@ export default class extends Controller {
   }
 
  getNumberOfLines() {
-    var temp = document.createElement(this.contentTarget.nodeName), ret;
+    const temp = document.createElement(this.contentTarget.nodeName), ret;
     temp.setAttribute("style", "margin:0; padding:0; "
         + "font-family:" + (this.contentTarget.style.fontFamily || "inherit") + "; "
         + "font-size:" + (this.contentTarget.style.fontSize || "inherit"));
@@ -43,7 +42,6 @@ export default class extends Controller {
     const singleLineHeight = temp.clientHeight;
     temp.innerHTML = this.contentTarget.innerHTML;
     const lineCount = temp.clientHeight / singleLineHeight;
-    console.log(lineCount)
     temp.remove();
     return lineCount;
   }

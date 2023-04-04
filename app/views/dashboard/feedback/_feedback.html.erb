@@ -23,6 +23,6 @@
     </div>
   </td>
   <td class="relative whitespace-nowrap py-6 pl-3 pr-4 text-right font-medium sm:pr-4">
-    <%= link_to 'See conversation', feedback.conversation, class: 'btn btn-secondary btn-xs' %>
+    <%= link_to 'See conversation', feedback.conversation, class: 'btn btn-secondary btn-xs', data: { turbo_frame: :_top } %>
   </td>
 </tr>

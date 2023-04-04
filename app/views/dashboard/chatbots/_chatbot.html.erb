@@ -10,7 +10,11 @@
     <% end %>
   </td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-tertiary-500">
-    <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
+    <% if chatbot.live? %>
+      <%= render 'components/badges/badge_sm', text: 'Live', color: 'success' %>
+    <% else %>
+      <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
+    <% end %>
   </td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-4">
     <%= link_to 'See more', dashboard_chatbot_path(chatbot), class: 'btn btn-secondary btn-xs' %>

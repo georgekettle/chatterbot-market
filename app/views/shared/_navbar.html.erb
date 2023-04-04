@@ -1,10 +1,13 @@
 <div class="py-4">
   <%= render 'shared/container' do %>
     <div class="flex items-center justify-between">
-      <%= link_to root_path, class: 'flex items-center' do %>
-        <%= image_tag 'logo.svg', alt: 'Chatterbot logo', class: 'h-4 w-auto' %>
-        <span class="sr-only">Chatterbot Market</span>
-      <% end %>
+     <div class="flex items-center space-x-2">
+        <%= link_to root_path, class: 'flex items-center' do %>
+          <%= image_tag 'logo.svg', alt: 'Chatterbot logo', class: 'h-4 w-auto' %>
+          <span class="sr-only">Chatterbot Market</span>
+        <% end %>
+        <%= link_to 'Marketplace', chatbots_path, class: 'btn' %>
+      </div>
 
       <div class="flex items-center space-x-2">
         <% if user_signed_in? %>
