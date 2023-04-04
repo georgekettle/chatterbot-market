@@ -1,6 +1,5 @@
 class Dashboard::ChatbotsController < ApplicationController
   layout 'dashboard'
-  after_action :set_breadcrumbs, only: [:show, :settings]
   
   # GET /dashboard/chatbots
   def index
@@ -12,12 +11,14 @@ class Dashboard::ChatbotsController < ApplicationController
     @chatbot = Chatbot.find(params[:id])
     @conversations = @chatbot.conversations.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
     authorize @chatbot
+    set_breadcrumbs
   end
 
   # GET /dashboard/chatbots/1/settings
   def settings
     @chatbot = Chatbot.find(params[:id])
     authorize @chatbot, :update?
+    set_breadcrumbs
   end
 
   private

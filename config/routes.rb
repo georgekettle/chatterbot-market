@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chatbots do
+  resources :chatbots, except: [:edit] do
     resources :conversations, only: [:new, :create]
   end
   resources :conversations, only: [:show] do

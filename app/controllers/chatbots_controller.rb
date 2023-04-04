@@ -1,14 +1,17 @@
 class ChatbotsController < ApplicationController
   before_action :set_chatbot, only: %i[ show edit update destroy ]
 
-  # GET /chatbots or /chatbots.json
+  # GET /chatbots
   def index
     @chatbots = policy_scope(Chatbot).where(account: current_account)
   end
 
-  # GET /chatbots/1 or /chatbots/1.json
+  # GET /chatbots/1
   def show
     @conversations = @chatbot.conversations.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
+
+    breadcrumb "Marketplace", chatbots_path
+    breadcrumb @chatbot.name, request.path
   end
 
   # GET /chatbots/new
@@ -17,7 +20,7 @@ class ChatbotsController < ApplicationController
     authorize @chatbot
   end
 
-  # POST /chatbots or /chatbots.json
+  # POST /chatbots
   def create
     @chatbot = Chatbot.new(chatbot_params)
     @chatbot.account = Current.account
@@ -43,7 +46,7 @@ class ChatbotsController < ApplicationController
     end
   end
 
-  # DELETE /chatbots/1 or /chatbots/1.json
+  # DELETE /chatbots/1
   def destroy
     @chatbot.destroy
 
