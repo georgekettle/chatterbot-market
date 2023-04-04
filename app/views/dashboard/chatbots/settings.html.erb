@@ -1,0 +1,26 @@
+<%= render 'components/headers/chatbot_dashboard', chatbot: @chatbot %>
+
+<%= render 'shared/container' do %>
+  <div class="pt-16 pb-10">
+    <%= render 'components/headers/page_header', title: 'Account Settings' %>
+    <div class="mt-10 max-w-2xl">
+      <%# CHATBOT DETAILS %>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-10">
+        <div>
+          <h2 class="text-lg font-medium tracking-tight">Details</h2>
+        </div>
+        <div class="-mt-6">
+          <%= form_with model: @chatbot do |f| %>
+            <div>
+              <%= f.label :name %>
+              <%= f.text_field :name %>
+            </div>
+            <div class="flex justify-end">
+              <%= f.submit 'Save' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

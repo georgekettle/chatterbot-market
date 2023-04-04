@@ -17,10 +17,6 @@ class ChatbotsController < ApplicationController
     authorize @chatbot
   end
 
-  # GET /chatbots/1/edit
-  def edit
-  end
-
   # POST /chatbots or /chatbots.json
   def create
     @chatbot = Chatbot.new(chatbot_params)
@@ -29,24 +25,20 @@ class ChatbotsController < ApplicationController
 
     respond_to do |format|
       if @chatbot.save
-        format.html { redirect_to chatbot_url(@chatbot), notice: "Chatbot was successfully created." }
-        format.json { render :show, status: :created, location: @chatbot }
+        format.html { redirect_to dashboard_chatbot_url(@chatbot), notice: "Chatbot was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @chatbot.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /chatbots/1 or /chatbots/1.json
+  # PATCH/PUT /chatbots/1
   def update
     respond_to do |format|
       if @chatbot.update(chatbot_params)
-        format.html { redirect_to chatbot_url(@chatbot), notice: "Chatbot was successfully updated." }
-        format.json { render :show, status: :ok, location: @chatbot }
+        format.html { redirect_back fallback_location: dashboard_chatbot_url(@chatbot), notice: "Chatbot was successfully updated." }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @chatbot.errors, status: :unprocessable_entity }
+        format.html { render :settings, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +49,6 @@ class ChatbotsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to chatbots_url, notice: "Chatbot was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

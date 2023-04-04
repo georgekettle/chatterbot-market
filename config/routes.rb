@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     resources :chatbots, only: [:index, :show] do
       resources :conversations, only: [:index]
       resources :feedback, only: [:index]
+      member do
+        get :settings
+      end
     end
   end
 
