@@ -5,4 +5,6 @@ class Chatbot < ApplicationRecord
   has_many :feedback, through: :messages
 
   validates :name, presence: true, length: { minimum: 3 }
+
+  enum status: { draft: 0, live: 1 }
 end
