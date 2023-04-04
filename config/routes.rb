@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :chatbots, only: [:index, :show] do
       resources :conversations, only: [:index]
+      resources :feedback, only: [:index]
     end
   end
 
