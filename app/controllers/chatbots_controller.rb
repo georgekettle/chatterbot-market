@@ -3,7 +3,7 @@ class ChatbotsController < ApplicationController
 
   # GET /chatbots
   def index
-    @chatbots = policy_scope(Chatbot).where(account: current_account)
+    @chatbots = policy_scope(Chatbot).where(status: :live)
   end
 
   # GET /chatbots/1
@@ -37,7 +37,9 @@ class ChatbotsController < ApplicationController
 
   # PATCH/PUT /chatbots/1
   def update
+    params[:chatbot][:status] = params[:chatbot][:status].to_i
     respond_to do |format|
+      p chatbot_params
       if @chatbot.update(chatbot_params)
         format.html { redirect_back fallback_location: dashboard_chatbot_url(@chatbot), notice: "Chatbot was successfully updated." }
       else
@@ -64,6 +66,6 @@ class ChatbotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chatbot_params
-      params.require(:chatbot).permit(:name)
+      params.require(:chatbot).permit(:name, :status)
     end
 end

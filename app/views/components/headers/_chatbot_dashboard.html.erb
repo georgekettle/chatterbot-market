@@ -17,7 +17,11 @@
           <div class="flex items-center space-x-4">
             <div class="rounded-full h-12 w-12 bg-tertiary-700"></div>
             <h1 class="text-3xl font-medium tracking-tight"><%= chatbot.name %></h1>
-            <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
+            <% if chatbot.live? %>
+              <%= render 'components/badges/badge_sm', text: 'Live', color: 'success' %>
+            <% else %>
+              <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
+            <% end %>
           </div>
         </div>
         <div class="flex items-center space-x-2 mt-4 sm:mt-0">
