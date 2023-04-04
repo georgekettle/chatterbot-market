@@ -1,10 +1,10 @@
-<tr class="odd:bg-white even:bg-tertiary-50 align-top">
+<tr class="align-top">
   <td class="py-6 pl-4 pr-3 sm:pl-4 max-w-sm text-tertiary-500" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
     <p data-read-more-target="content" class="overflow-hidden">
       <%= feedback.message.content %>
     </p>
 
-    <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 font-medium hidden">Read more</button>
+    <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 text-sm hidden">Read more</button>
   </td>
   <td class="py-6 pl-4 pr-3 sm:pl-4 space-y-2 text-tertiary-500 max-w-sm">
     <% if feedback.positive? %>
@@ -19,7 +19,7 @@
         <%= feedback.content %>
       </p>
 
-      <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 font-medium hidden">Read more</button>
+      <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 text-sm hidden">Read more</button>
     </div>
   </td>
   <td class="relative whitespace-nowrap py-6 pl-3 pr-4 text-right font-medium sm:pr-4">
