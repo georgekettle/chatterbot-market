@@ -33,7 +33,7 @@ export default class extends Controller {
   }
 
  getNumberOfLines() {
-    const temp = document.createElement(this.contentTarget.nodeName), ret;
+    const temp = document.createElement(this.contentTarget.tagName)
     temp.setAttribute("style", "margin:0; padding:0; "
         + "font-family:" + (this.contentTarget.style.fontFamily || "inherit") + "; "
         + "font-size:" + (this.contentTarget.style.fontSize || "inherit"));
