@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_025315) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
+  create_table "training_materials", force: :cascade do |t|
+    t.string "material_type", null: false
+    t.bigint "material_id", null: false
+    t.bigint "chatbot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatbot_id"], name: "index_training_materials_on_chatbot_id"
+    t.index ["material_type", "material_id"], name: "index_training_materials_on_material"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -99,4 +109,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
   add_foreign_key "feedbacks", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "training_materials", "chatbots"
 end
