@@ -1,8 +1,6 @@
 <%= render 'shared/container' do %>
   <div class="pt-16 pb-10">
-    <%= render 'components/headers/page_header', title: "My Chatbots", subtitle: "#{@chatbots.count} chatbots" do %>
-      <%= link_to "New chatbot", new_chatbot_path, class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'components/headers/page_header', title: "All Chatbots" %>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <% @chatbots.each do |chatbot| %>

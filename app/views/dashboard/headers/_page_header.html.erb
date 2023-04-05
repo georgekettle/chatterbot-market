@@ -1,0 +1,10 @@
+<div class="bg-tertiary-900 text-white">
+  <%= render 'shared/container' do %>
+    <div class="pt-16 pb-6">
+      <%= render 'components/headers/page_header', title: title do %>
+        <%= yield %>
+      <% end %>
+    </div>
+    <%= render 'dashboard/headers/tabs', tabs: tabs %>
+  <% end %>
+</div>

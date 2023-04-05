@@ -1,6 +1,8 @@
 class Feedback < ApplicationRecord
   belongs_to :message
   belongs_to :user
+  has_one :conversation, through: :message
+  has_one :chatbot, through: :conversation
 
   enum rating: { negative: 0, positive: 1 }
 

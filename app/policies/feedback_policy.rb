@@ -1,9 +1,9 @@
 class FeedbackPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def resolve
+      scope.joins(:chatbot).where(chatbots: account.chatbots)
+    end
   end
 
   def create?

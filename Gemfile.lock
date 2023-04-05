@@ -118,6 +118,8 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
+    loaf (0.10.0)
+      railties (>= 3.2)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -250,6 +252,7 @@ DEPENDENCIES
   faker
   jbuilder
   jsbundling-rails
+  loaf
   name_of_person (~> 1.0)
   pagy
   pg (~> 1.1)

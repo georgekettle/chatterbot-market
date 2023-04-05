@@ -1,0 +1,22 @@
+<tr class="odd:bg-white even:bg-tertiary-50">
+  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-4">
+    <%= link_to dashboard_chatbot_path(chatbot), class: 'flex items-center hover-within:underline' do %>
+      <div class="h-8 w-8 flex-shrink-0">
+        <div class="rounded-full bg-tertiary-300 h-8 w-8"></div>
+      </div>
+      <div class="ml-4">
+        <div class="font-medium text-tertiary-900"><%= chatbot.name %></div>
+      </div>
+    <% end %>
+  </td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-tertiary-500">
+    <% if chatbot.live? %>
+      <%= render 'components/badges/badge_sm', text: 'Live', color: 'success' %>
+    <% else %>
+      <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
+    <% end %>
+  </td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-4">
+    <%= link_to 'See more', dashboard_chatbot_path(chatbot), class: 'btn btn-secondary btn-xs' %>
+  </td>
+</tr>

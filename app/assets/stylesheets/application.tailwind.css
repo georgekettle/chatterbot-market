@@ -9,17 +9,39 @@
 @import 'components/card.css'; */
 
 .btn {
-  @apply rounded-md text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer;
+  @apply font-medium rounded text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer;
+}
+
+.btn.btn-dark {
+  @apply rounded text-tertiary-400 inline-flex items-center justify-center px-4 py-2 text-sm hover:bg-tertiary-700 hover:text-white cursor-pointer;
 }
 
 .btn-primary {
   @apply bg-tertiary-800 text-white hover:bg-tertiary-900 hover:text-white;
 }
 
-.btn-secondary {
-  @apply bg-tertiary-200 text-tertiary-900 hover:bg-tertiary-900 hover:text-white;
+.btn-primary.btn-dark {
+  @apply text-tertiary-800 bg-white hover:text-tertiary-900 hover:bg-white;
 }
 
+.btn-secondary {
+  @apply bg-tertiary-100 text-tertiary-900 hover:bg-tertiary-900 hover:text-white border border-tertiary-900;
+}
+
+.btn-secondary.btn-dark {
+  @apply text-tertiary-200 bg-tertiary-900 hover:text-tertiary-900 hover:bg-white border border-white;
+}
+
+/* BTN SIZES */
+.btn-xs {
+  @apply text-xs px-3 py-1 font-normal rounded;
+}
+
+.btn-sm {
+  @apply text-sm px-3 py-1 font-normal rounded;
+}
+
+/* FORMS */
 form {
   @apply space-y-6;
 }
@@ -43,7 +65,7 @@ label {
 [multiple],
 textarea,
 select {
-  @apply block w-full rounded-md border-0 py-1.5 text-tertiary-900 shadow-sm ring-1 ring-inset ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6
+  @apply block w-full rounded border-0 py-1.5 text-tertiary-900 shadow-sm ring-1 ring-inset ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6
 }
 
 input[type=button],
@@ -53,5 +75,5 @@ input[type=reset] {
 }
 
 .card {
-  @apply border border-tertiary-300 bg-white shadow-sm rounded-md overflow-hidden;
+  @apply border border-tertiary-300 bg-white shadow-sm rounded overflow-hidden;
 }

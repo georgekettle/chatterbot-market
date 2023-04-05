@@ -1,1 +1,18 @@
-<span class="inline-flex items-center rounded-full bg-secondary-100 px-2.5 py-0.5 text-xs text-secondary-800 font-medium capitalize"><%= text %></span>
+<% color ||= 'primary' %>
+<% case color %>
+<% when 'primary' %>
+  <% color_classes = 'bg-primary-200' %>
+<% when 'secondary' %>
+  <% color_classes = 'bg-secondary-200' %>
+<% when 'tertiary' %>
+  <% color_classes = 'bg-tertiary-200' %>
+<% when 'success' %>
+  <% color_classes = 'bg-success-200' %>
+<% when 'danger' %>
+  <% color_classes = 'bg-danger-200' %>
+<% when 'info' %>
+  <% color_classes = 'bg-info-200' %>
+<% end %>
+
+
+<span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-normal capitalize border border-tertiary-900 text-tertiary-900 <%= color_classes %>"><%= text %></span>

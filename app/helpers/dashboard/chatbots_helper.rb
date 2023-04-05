@@ -1,0 +1,2 @@
+module Dashboard::ChatbotsHelper
+end
