@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_025315) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_033526) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_025315) do
     t.datetime "updated_at", null: false
     t.index ["chatbot_id"], name: "index_conversations_on_chatbot_id"
     t.index ["creator_id"], name: "index_conversations_on_creator_id"
+  end
+
+  create_table "example_responses", force: :cascade do |t|
+    t.text "prompt"
+    t.text "response"
+    t.bigint "message_id"
+    t.jsonb "fine_tune_object", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_example_responses_on_message_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -105,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_025315) do
   add_foreign_key "chatbots", "accounts"
   add_foreign_key "conversations", "chatbots"
   add_foreign_key "conversations", "users", column: "creator_id"
+  add_foreign_key "example_responses", "messages"
   add_foreign_key "feedbacks", "messages"
   add_foreign_key "feedbacks", "users"
   add_foreign_key "messages", "conversations"

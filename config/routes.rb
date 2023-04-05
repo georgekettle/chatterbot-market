@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # namespace routes for chatbot to dashboard
   namespace :dashboard do
     resources :chatbots, only: [:index, :show] do
+      resources :training_materials, only: [:index]
       resources :conversations, only: [:index]
       resources :feedback, only: [:index]
       member do

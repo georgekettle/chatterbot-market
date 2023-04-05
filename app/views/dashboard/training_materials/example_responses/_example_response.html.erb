@@ -1,0 +1,29 @@
+<div class="space-y-2">
+  <table>
+    <tbody>
+      <tr class="align-top">
+        <td>
+          <%= render 'components/badges/badge_sm', text: "Prompt", color: 'info' %>
+        </td>
+        <td class="pl-4 text-tertiary-500" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+          <p data-read-more-target="content" class="overflow-hidden">
+            <%= example_response.prompt %>
+          </p>
+
+          <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 text-sm hidden">Read more</button>
+        </td>
+      </tr>
+      <tr class="align-top">
+        <td class="pt-2">
+          <%= render 'components/badges/badge_sm', text: "Response", color: "success" %>
+        </td>
+        <td class="pt-2 pl-4 text-tertiary-500" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+          <p data-read-more-target="content" class="overflow-hidden">
+            <%= example_response.response %>
+          </p>
+
+          <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 text-sm hidden">Read more</button>
+        </td>
+    </tbody>
+  </table>
+</div>

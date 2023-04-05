@@ -1,0 +1,14 @@
+<tr class="align-top">
+  <td class="py-6 pl-4 pr-3 sm:pl-4 space-y-2 text-tertiary-500">
+    <%= training_material.material_type.underscore.humanize %>
+  </td>
+  <td class="py-6 pl-4 pr-3 sm:pl-4 text-tertiary-500">
+    <% case training_material.material_type %>
+    <% when 'ExampleResponse' %>
+      <%= render 'dashboard/training_materials/example_responses/example_response', example_response: training_material.material %>
+    <% end %>
+  </td>
+  <td class="relative whitespace-nowrap py-6 pl-3 pr-4 text-right font-medium sm:pr-4">
+    <%= link_to 'See details', "#", class: 'btn btn-secondary btn-xs', data: { turbo_frame: :_top } %>
+  </td>
+</tr>
