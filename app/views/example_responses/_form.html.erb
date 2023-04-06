@@ -1,5 +1,7 @@
-<%# form_with to create a new example response for chatbot %>
-<%= form_with model: example_response, url: chatbot_example_responses_path(chatbot) do |f| %>
+<% chatbot ||= nil %>
+<% action = chatbot.present? ? chatbot_example_responses_path(chatbot) : example_response_path(example_response) %>
+
+<%= form_with model: example_response, url: action do |f| %>
   <%= render 'components/forms/errors', form: f %>
   <div class="grid grid-cols-2 gap-8">
     <div>

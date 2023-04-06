@@ -1,6 +1,7 @@
 class ExampleResponse < ApplicationRecord
   belongs_to :message, optional: true
   has_one :training_material, as: :material, dependent: :destroy
+  has_one :chatbot, through: :training_material
 
   validates :prompt, presence: true
   validates :response, presence: true

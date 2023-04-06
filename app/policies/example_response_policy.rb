@@ -10,4 +10,9 @@ class ExampleResponsePolicy < ApplicationPolicy
     # Chatbot is the record
     record.account.account_users.include?(user)
   end
+
+  def update?
+    # Chatbot is the record
+    record.account.account_users.include?(user)
+  end
 end

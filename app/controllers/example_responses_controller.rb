@@ -23,6 +23,27 @@ class ExampleResponsesController < ApplicationController
     end
   end
 
+  # GET /example_responses/:id/edit
+  def edit
+    @example_response = ExampleResponse.find(params[:id])
+    @chatbot = @example_response.chatbot
+    authorize @chatbot, policy_class: ExampleResponsePolicy
+    set_breadcrumbs
+  end
+
+  # PATCH/PUT /example_responses/:id
+  def update
+    @example_response = ExampleResponse.find(params[:id])
+    @chatbot = @example_response.chatbot
+    authorize @example_response.chatbot, policy_class: ExampleResponsePolicy
+    if @example_response.update(example_response_params)
+      redirect_to dashboard_chatbot_training_materials_path(@chatbot), notice: 'Example response was successfully updated'
+    else
+      set_breadcrumbs
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
