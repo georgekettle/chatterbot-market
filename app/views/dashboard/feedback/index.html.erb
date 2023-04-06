@@ -5,7 +5,7 @@
     <%= render 'components/headers/page_header', title: "Feedback", subtitle: "All feedback from users for '#{@chatbot.name}'" %>
   </div>
   
-  <%= turbo_frame_tag dom_id(@chatbot, :feedback) do %>
+  <%= turbo_frame_tag dom_id(@chatbot, :feedback), data: { turbo_action:"advance" } do %>
     <div>
       <div class="mb-4">
         <%= render 'pagy/pagination_w_text', pagy: @pagy %>

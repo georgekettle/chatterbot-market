@@ -12,7 +12,7 @@
     <% end %>
   </div>
   
-  <%= turbo_frame_tag dom_id(@chatbot, :training_material) do %>
+  <%= turbo_frame_tag dom_id(@chatbot, :training_material), data: { turbo_action:"advance" } do %>
     <div>
       <div class="mb-4">
         <%= render 'pagy/pagination_w_text', pagy: @pagy %>
