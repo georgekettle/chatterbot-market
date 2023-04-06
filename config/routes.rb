@@ -10,9 +10,9 @@ Rails.application.routes.draw do
       end
     end
   end
-
   resources :chatbots, except: [:edit] do
     resources :conversations, only: [:new, :create]
+    resources :example_responses, only: [:new, :create]
   end
   resources :conversations, only: [:show] do
     resources :messages, only: [:create]

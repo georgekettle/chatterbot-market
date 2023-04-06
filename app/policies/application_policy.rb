@@ -59,8 +59,6 @@ class ApplicationPolicy
     end
   end
 
-  private
-
   def is_admin?
     user.admin?
   end

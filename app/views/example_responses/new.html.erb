@@ -1,0 +1,13 @@
+<div class="py-16">
+  <%= render 'shared/container' do %>
+    <div class="py-10 space-y-6">
+      <%= render 'components/navigation/breadcrumbs' %>
+      <div class="space-y-2">
+        <h1 class="text-3xl font-medium tracking-tight">New Example Response</h1>
+        <p class="text-tertiary-500">These will be used to inform your chatbot's responses</p>
+      </div>
+    </div>
+
+    <%= render 'form', chatbot: @chatbot, example_response: @example_response %>
+  <% end %>
+</div>
