@@ -78,3 +78,7 @@ input[type=reset] {
 .card {
   @apply border border-tertiary-300 bg-white shadow-sm rounded overflow-hidden;
 }
+
+.header {
+  @apply text-2xl font-normal tracking-tight;
+}
