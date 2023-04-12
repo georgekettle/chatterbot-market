@@ -66,6 +66,6 @@ class ChatbotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chatbot_params
-      params.require(:chatbot).permit(:name, :status)
+      params.require(:chatbot).permit(:name, :status, :description)
     end
 end

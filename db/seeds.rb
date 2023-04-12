@@ -25,8 +25,8 @@ Account.all.each do |account|
 end
 
 puts "Creating chatbots..."
-Chatbot.create!(name: 'Bohemian wisdom', account: george_h.personal_account, status: :live)
-Chatbot.create!(name: 'Write lyrics like George', account: george_h.personal_account)
+Chatbot.create!(name: 'Bohemian wisdom', description: 'A chatbot for users to find the bohemian wisdom of George Harrison', account: george_h.personal_account, status: :live)
+Chatbot.create!(name: 'Write lyrics like George', description: 'Generate song lyrics like George Harrison', account: george_h.personal_account)
 
 puts "Creating conversations..."
 Chatbot.all.each do |cb|

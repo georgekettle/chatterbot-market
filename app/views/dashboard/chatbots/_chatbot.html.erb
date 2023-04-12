@@ -20,3 +20,23 @@
     <%= link_to 'See more', dashboard_chatbot_path(chatbot), class: 'btn btn-secondary btn-xs' %>
   </td>
 </tr>
+
+<li>
+  <%= link_to dashboard_chatbot_path(chatbot), class: "block hover:bg-gray-50" do %>
+    <div class="flex px-4 py-4 sm:px-6">
+      <%= render 'components/avatar', size: :sm %>
+      <div class="ml-4">
+        <div class="flex justify-between">
+          <div class="flex space-x-4">
+            <div class="font-medium text-tertiary-900"><%= chatbot.name %></div>
+            <% if chatbot.live? %>
+              <%= render 'components/badges/badge_sm', text: 'Live', color: 'success' %>
+            <% else %>
+              <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</li>
