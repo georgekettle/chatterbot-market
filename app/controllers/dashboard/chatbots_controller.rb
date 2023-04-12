@@ -1,4 +1,6 @@
 class Dashboard::ChatbotsController < ApplicationController
+  layout 'dashboard_chatbot', only: [:show, :settings]
+
   # GET /dashboard/chatbots
   def index
     @chatbots = policy_scope(Chatbot).where(account: current_account)
@@ -22,7 +24,7 @@ class Dashboard::ChatbotsController < ApplicationController
   private
 
   def set_breadcrumbs
-    breadcrumb "Dashboard", dashboard_chatbots_path
+    breadcrumb "My Chatbots", dashboard_chatbots_path
     breadcrumb @chatbot.name.capitalize, request.path
   end
 end

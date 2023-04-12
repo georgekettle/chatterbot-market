@@ -1,0 +1,9 @@
+<% if path == request.path %>
+  <%= link_to path, class: "w-full font-base rounded text-tertiary-500 inline-flex items-center px-4 py-3 hover:text-tertiary-900 cursor-pointer bg-tertiary-800 text-white hover:bg-tertiary-900 hover:text-white" do %>
+    <%= yield %>
+  <% end %>
+<% else %>
+  <%= link_to path, class: "w-full font-base rounded text-tertiary-500 inline-flex items-center px-4 py-3 hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer" do %>
+    <%= yield %>
+  <% end %>
+<% end %>

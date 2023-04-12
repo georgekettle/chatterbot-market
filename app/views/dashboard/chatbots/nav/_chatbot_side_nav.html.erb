@@ -1,0 +1,22 @@
+<div class="space-y-1">
+  <%# Messages %>
+  <%= render 'dashboard/chatbots/nav/side_nav_link', path: dashboard_chatbot_path(chatbot) do %>
+    Overview
+  <% end %>
+  <%# Messages %>
+  <%= render 'dashboard/chatbots/nav/side_nav_link', path: dashboard_chatbot_conversations_path(chatbot) do %>
+    Messages
+  <% end %>
+  <%# Feedback %>
+  <%= render 'dashboard/chatbots/nav/side_nav_link', path: dashboard_chatbot_feedback_index_path(chatbot) do %>
+    Feedback
+  <% end %>
+  <%# Training Data %>
+  <%= render 'dashboard/chatbots/nav/side_nav_link', path: dashboard_chatbot_training_materials_path(chatbot) do %>
+    Training Data
+  <% end %>
+  <%# Settings %>
+  <%= render 'dashboard/chatbots/nav/side_nav_link', path: settings_dashboard_chatbot_path(chatbot) do %>
+    Settings
+  <% end %>
+</div>
