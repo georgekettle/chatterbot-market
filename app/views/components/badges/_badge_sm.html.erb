@@ -1,18 +1,18 @@
 <% color ||= 'primary' %>
 <% case color %>
 <% when 'primary' %>
-  <% color_classes = 'bg-primary-200' %>
+  <% color_classes = 'bg-primary-100 border border-primary-300 text-primary-900' %>
 <% when 'secondary' %>
-  <% color_classes = 'bg-secondary-200' %>
+  <% color_classes = 'bg-secondary-100 border border-secondary-300 text-secondary-900' %>
 <% when 'tertiary' %>
-  <% color_classes = 'bg-tertiary-200' %>
+  <% color_classes = 'bg-tertiary-100 border border-tertiary-300 text-tertiary-900' %>
 <% when 'success' %>
-  <% color_classes = 'bg-success-200' %>
+  <% color_classes = 'bg-success-100 border border-success-300 text-success-900' %>
 <% when 'danger' %>
-  <% color_classes = 'bg-danger-200' %>
+  <% color_classes = 'bg-danger-100 border border-danger-300 text-danger-900' %>
 <% when 'info' %>
-  <% color_classes = 'bg-info-200' %>
+  <% color_classes = 'bg-info-100 border border-info-300 text-info-900' %>
 <% end %>
 
 
-<span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-normal capitalize border border-tertiary-900 text-tertiary-900 <%= color_classes %>"><%= text %></span>
+<span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold <%= color_classes %>"><%= text %></span>
