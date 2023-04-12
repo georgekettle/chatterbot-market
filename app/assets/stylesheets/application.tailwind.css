@@ -25,7 +25,7 @@
 }
 
 .btn-secondary {
-  @apply bg-tertiary-100 text-tertiary-900 hover:bg-tertiary-900 hover:text-white border border-tertiary-900;
+  @apply bg-tertiary-50 text-tertiary-900 hover:bg-tertiary-900 hover:text-white border border-tertiary-900;
 }
 
 .btn-secondary.btn-dark {
@@ -46,7 +46,8 @@ form {
   @apply space-y-6;
 }
 
-label {
+label,
+.label {
   @apply block text-sm font-medium leading-6 text-tertiary-900 mb-2;
 }
 

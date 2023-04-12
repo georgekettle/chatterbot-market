@@ -1,6 +1,4 @@
 class Dashboard::TrainingMaterialsController < ApplicationController
-  layout 'dashboard'
-
   # GET /dashboard/chatbots/:chatbot_id/training_materials
   def index
     @chatbot = Chatbot.find(params[:chatbot_id])

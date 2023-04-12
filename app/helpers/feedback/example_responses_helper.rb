@@ -1,0 +1,2 @@
+module Feedback::ExampleResponsesHelper
+end

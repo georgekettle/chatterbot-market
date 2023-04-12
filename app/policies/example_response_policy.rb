@@ -7,12 +7,21 @@ class ExampleResponsePolicy < ApplicationPolicy
   end
 
   def create?
-    # Chatbot is the record
-    record.account.account_users.include?(user)
+    member_of_chatbot_account?
   end
 
   def update?
-    # Chatbot is the record
+    member_of_chatbot_account?
+  end
+
+  def destroy?
+    member_of_chatbot_account?
+  end
+
+  private
+
+  def member_of_chatbot_account?
+    # Chatbot is the record **
     record.account.account_users.include?(user)
   end
 end

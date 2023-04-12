@@ -1,8 +1,3 @@
-<% tabs = [
-  { name: 'Chatbots', path: dashboard_chatbots_path }
-] %>
-
-<%= render 'dashboard/headers/page_header', title: 'Dashboard', tabs: tabs %>
 <%= render 'shared/container' do %>
   <div class="pt-16 pb-6">
     <%= render 'components/headers/page_header', title: "Chatbots", subtitle: "You have #{@chatbots.count} chatbots" do %>

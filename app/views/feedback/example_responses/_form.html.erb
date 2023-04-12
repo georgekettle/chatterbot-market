@@ -1,0 +1,16 @@
+<%= form_with model: example_response, url: feedback_example_responses_path(feedback) do |f| %>
+  <div class="space-y-5">
+    <%= render 'components/forms/errors', form: f %>
+    <div>
+      <%= f.label :response, class: 'flex items-center' do %>
+        Correction
+      <% end %>
+      <%= f.text_area :response,
+                      rows: 8,
+                      placeholder: feedback.message.content %>
+    </div>
+    <div class="flex justify-end">
+      <%= f.submit 'Create Correction' %>
+    </div>
+  </div>
+<% end %>

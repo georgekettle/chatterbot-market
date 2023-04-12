@@ -44,9 +44,13 @@
     <div id="dropdown" class="z-10 hidden absolute right-0 bg-white border border-tertiary-300 divide-y divide-tertiary-100 rounded shadow w-44">
         <ul class="py-2 text-sm text-tertiary-700 dark:text-tertiary-200" aria-labelledby=<%= dom_id(example_response, :options) %>">
           <li>
-            <%# Link to update example response %>
             <%= link_to edit_example_response_path(example_response), data: { turbo_frame: :_top }, class: "block px-4 py-2 hover:bg-tertiary-100 dark:hover:bg-tertiary-600 dark:hover:text-white" do %>
               Edit
+            <% end %>
+          </li>
+          <li>
+            <%= link_to example_response_path(example_response), data: { turbo_method: :delete, turbo_confirm: "Are you sure? You can't undo this.", turbo_frame: :_top }, class: "block px-4 py-2 hover:bg-tertiary-100 dark:hover:bg-tertiary-600 dark:hover:text-white" do %>
+              Delete
             <% end %>
           </li>
         </ul>

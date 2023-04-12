@@ -14,14 +14,16 @@ Rails.application.routes.draw do
     resources :conversations, only: [:new, :create]
     resources :example_responses, only: [:new, :create]
   end
-  resources :example_responses, only: [:edit, :update]
+  resources :example_responses, only: [:edit, :update, :destroy]
   resources :conversations, only: [:show] do
     resources :messages, only: [:create]
   end
   resources :messages, only: [] do
     resources :feedback, only: [:create]
   end
-  resources :feedback, only: [:update]
+  resources :feedback, only: [:update] do
+    resources :example_responses, only: [:new, :create], controller: 'feedback/example_responses'
+  end
   get '/account_settings', to: 'accounts#account_settings', as: :account_settings
   resources :accounts, only: [:update]
   devise_for :users

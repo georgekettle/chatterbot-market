@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :set_back_path
 
   after_action :verify_authorized, except: :index, unless: :devise_controller?
   after_action :verify_policy_scoped, only: :index, unless: :devise_controller?
@@ -23,5 +24,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: signup_keys)
     devise_parameter_sanitizer.permit(:account_update, keys: extra_keys)
     devise_parameter_sanitizer.permit(:accept_invitation, keys: extra_keys)
+  end
+
+  def set_back_path
+    # set session[:back_path] to request.path if its a GET request and not new/edit
+    session[:back_path] = request.path if request.get? && [:new, :edit].exclude?(action_name.to_sym)
   end
 end

@@ -2,7 +2,7 @@
 
 <%= render 'shared/container' do %>
   <div class="pt-16 pb-6">
-    <%= render 'components/headers/page_header', title: "Conversations", subtitle: "All conversations with '#{@chatbot.name}'" do %>
+    <%= render 'components/headers/page_header', title: "User Conversations", subtitle: "All conversations with '#{@chatbot.name}'" do %>
       <%= link_to new_chatbot_conversation_path(@chatbot), class: "btn btn-primary" do %>
         Chat now
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-1">
