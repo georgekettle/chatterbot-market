@@ -1,0 +1,3 @@
+<%= content_tag :div, id: dom_id(conversation, :messages), class: 'relative h-full grow-1 overflow-y-scroll' do %>
+  <%= render partial: 'messages/message', collection: conversation.messages %>
+<% end %>

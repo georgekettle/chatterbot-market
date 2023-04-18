@@ -7,8 +7,7 @@
     <%= render 'shared/navbar' %>
     <div class="h-[calc(100vh-theme(space.20))] overflow-hidden flex">
       <%# Side nav %>
-      <div class="bg-tertiary-50 border-r border-tertiary-300 w-full max-w-sm shrink-0 p-4 sm:p-10 space-y-4 sm:space-y-6">
-        <%= render 'components/navigation/breadcrumbs' %>
+      <div class="bg-tertiary-50 border-r border-tertiary-300 w-full max-w-sm shrink-0">
         <%= yield(:side_nav) %>
       </div>
       <%# Main content %>

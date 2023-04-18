@@ -1,7 +1,7 @@
 <div class="relative">
   <button class="card p-4 flex items-center justify-between hover:bg-tertiary-50 w-full" id="chatbotSelectButton" data-dropdown-toggle="chatbotSelect" data-dropdown-placement="bottom-start" type="button">
     <div class="flex items-center space-x-4">
-      <%= render 'components/avatar', size: :md %>
+      <%= render 'components/avatar', size: :sm %>
       <div>
         <p class="header-sm text-left line-clamp-1"><%= chatbot.name %></p>
         <%= render 'dashboard/chatbots/chatbot_select/status', chatbot: chatbot %>
