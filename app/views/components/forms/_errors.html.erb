@@ -7,7 +7,7 @@
         </svg>
       </div>
       <div class="ml-3">
-        <h3 class="text-sm font-medium text-danger-800">There were <%= pluralize(form.object.errors.count, "error") %> errors with your submission</h3>
+        <h3 class="text-sm font-medium text-danger-800">There was <%= pluralize(form.object.errors.count, "error") %> with your submission</h3>
         <div class="mt-2 text-sm text-danger-700">
           <ul role="list" class="list-disc space-y-1 pl-5">
             <% form.object.errors.full_messages.each do |message| %>

@@ -1,8 +1,8 @@
 class Dashboard::ConversationsController < ApplicationController
-  layout 'dashboard_chatbot', only: [:index, :new]
+  layout 'dashboard_chatbot', only: [:index, :new, :create]
 
   before_action :set_chatbot, only: [:index, :new, :create]
-  before_action :set_conversations, only: [:index, :new]
+  before_action :set_conversations, only: [:index, :new, :create]
 
   # GET /dashboard/chatbots/:chatbot_id/conversations
   def index
