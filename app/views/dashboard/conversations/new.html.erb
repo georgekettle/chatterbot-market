@@ -20,9 +20,7 @@
       <% end %>
     </div>
   </div>
-  <div class="p-6 pt-0 w-full">
-    <% if @selected_conversation %>
-      <%= render 'conversations/chat', conversation: @selected_conversation, message: Message.new %>
-    <% end %>
+  <div class="p-6 pt-0 w-full flex flex-col justify-end">
+    <%= render 'form', conversation: @conversation, chatbot: @chatbot %>
   </div>
 </div>
