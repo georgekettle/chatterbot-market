@@ -18,6 +18,9 @@ class ChatbotsController < ApplicationController
   def new
     @chatbot = Chatbot.new
     authorize @chatbot
+
+    breadcrumb "My Chatbots", dashboard_chatbots_path
+    breadcrumb "New Chatbot", request.path
   end
 
   # POST /chatbots
