@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   end
   resources :feedback, only: [:update] do
     resources :example_responses, only: [:new, :create], controller: 'feedback/example_responses'
+    member do
+      patch :toggle_marked_read_at
+    end
   end
   get '/account_settings', to: 'accounts#account_settings', as: :account_settings
   resources :accounts, only: [:update]
