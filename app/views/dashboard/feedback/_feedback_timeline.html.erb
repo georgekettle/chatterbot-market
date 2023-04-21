@@ -1,0 +1,7 @@
+<div class="flow-root">
+  <ul role="list" class="-mb-8">
+    <% feedback_list.each do |feedback| %>
+      <%= render 'feedback', feedback: feedback, last_feedback: feedback.equal?(feedback_list.last) %>
+    <% end %>
+  </ul>
+</div>

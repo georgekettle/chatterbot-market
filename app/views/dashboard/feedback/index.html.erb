@@ -1,23 +1,16 @@
-<%= render 'components/headers/chatbot_dashboard', chatbot: @chatbot %>
-
-<%= render 'shared/container' do %>
-  <div class="pt-16 pb-6">
-    <%= render 'components/headers/page_header', title: "Feedback", subtitle: "See feedback from users and make corrections for how your chatbot responds" %>
-  </div>
-  
-  <%= turbo_frame_tag dom_id(@chatbot, :feedback), data: { turbo_action:"advance" } do %>
-    <div>
-      <div class="mb-4">
-        <%= render 'pagy/pagination_w_text', pagy: @pagy %>
-      </div>
-      <ul class="space-y-2">
-        <% @feedback_list.each do |feedback| %>
-          <%= render 'feedback', feedback: feedback %>
-        <% end %>
-      </ul>
-    </div>
-    <div class="py-10 flex justify-center">
-      <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
-    </div>
-  <% end %>
+<%= content_for(:side_nav) do %>
+  <%= render 'dashboard/chatbots/nav/chatbot_side_nav', chatbot: @chatbot %>
 <% end %>
+
+<div class="p-16 space-y-4">
+  <h1 class="header">Feedback</h1>
+  <div>
+    <% if @feedback_list.any? %>
+      <%# Feedback timeline %>
+      <%= render 'feedback_timeline', feedback_list: @feedback_list %>
+    <% else %>
+      <%# Empty state %>
+      <%= render 'feedback_empty_state' %>
+    <% end %>
+  </div>
+</div>
