@@ -24,7 +24,7 @@
     <div class="py-16 h-screen flex items-center">
       <%= render 'shared/container', classes: 'max-w-lg' do %>
         <%= render 'components/headers/page_header', title: 'New Correction', subtitle: 'This response will help train your chatbot to do better' %>
-        <%= render 'form', feedback: @feedback, example_response: @example_response %>
+        <%= render 'form', feedback: @feedback, correction: @correction %>
       <% end %>
     </div>
   </div>

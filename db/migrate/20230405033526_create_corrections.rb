@@ -1,6 +1,6 @@
-class CreateExampleResponses < ActiveRecord::Migration[7.0]
+class CreateCorrections < ActiveRecord::Migration[7.0]
   def change
-    create_table :example_responses do |t|
+    create_table :corrections do |t|
       t.text :prompt
       t.text :response
       t.belongs_to :message, foreign_key: true

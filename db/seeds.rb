@@ -12,7 +12,7 @@ if Rails.env == 'development'
   puts "Destroying all Feedback..."
   Feedback.destroy_all
   puts "Destroying all Example Responses..."
-  ExampleResponse.destroy_all
+  Correction.destroy_all
 end
 
 puts "Creating users..."
@@ -62,7 +62,7 @@ Message.all.each do |message|
     if rand(1..10) > 2
       # Transaction to ensure that if one fails, they all fail
       ActiveRecord::Base.transaction do
-        eg_res = ExampleResponse.create!(message: message, prompt: message.previous_message.content, response: Faker::GreekPhilosophers.quote)
+        eg_res = Correction.create!(message: message, prompt: message.previous_message.content, response: Faker::GreekPhilosophers.quote)
         TrainingMaterial.create!(chatbot: message.chatbot, material: eg_res)
       end      
     end

@@ -1,4 +1,4 @@
-class ExampleResponse < ApplicationRecord
+class Correction < ApplicationRecord
   belongs_to :message, optional: true
   has_one :training_material, as: :material, dependent: :destroy
   has_one :chatbot, through: :training_material

@@ -53,14 +53,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_194728) do
     t.index ["creator_id"], name: "index_conversations_on_creator_id"
   end
 
-  create_table "example_responses", force: :cascade do |t|
+  create_table "corrections", force: :cascade do |t|
     t.text "prompt"
     t.text "response"
     t.bigint "message_id"
     t.jsonb "fine_tune_object", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["message_id"], name: "index_example_responses_on_message_id"
+    t.index ["message_id"], name: "index_corrections_on_message_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -117,7 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_194728) do
   add_foreign_key "chatbots", "accounts"
   add_foreign_key "conversations", "chatbots"
   add_foreign_key "conversations", "users", column: "creator_id"
-  add_foreign_key "example_responses", "messages"
+  add_foreign_key "corrections", "messages"
   add_foreign_key "feedbacks", "messages"
   add_foreign_key "feedbacks", "users"
   add_foreign_key "messages", "conversations"
