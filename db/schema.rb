@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_194728) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "read_at"
+    t.datetime "marked_read_at"
     t.index ["message_id"], name: "index_feedbacks_on_message_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end

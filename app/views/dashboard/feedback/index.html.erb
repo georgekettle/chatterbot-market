@@ -2,8 +2,13 @@
   <%= render 'dashboard/chatbots/nav/chatbot_side_nav', chatbot: @chatbot %>
 <% end %>
 
-<div class="p-16 space-y-4">
-  <h1 class="header">Feedback</h1>
+<div class="p-16">
+  <%= render 'components/headers/page_header', title: 'Feedback', hide_breadcrumbs: true do %>
+    <span class="isolate inline-flex rounded-md shadow-sm">
+      <%= link_to 'Unread', dashboard_chatbot_feedback_index_path(@chatbot), class: "relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-medium ring-1 ring-inset ring-tertiary-300 hover:bg-tertiary-50 focus:z-10 text-tertiary-900 #{params[:marked_read] ? "bg-white" : "bg-tertiary-100"}" %>
+      <%= link_to 'Read', dashboard_chatbot_feedback_index_path(@chatbot, marked_read: true), class: "relative -ml-px inline-flex items-center rounded-r-md px-3 py-2 text-sm font-medium text-tertiary-900 ring-1 ring-inset ring-tertiary-300 hover:bg-tertiary-50 focus:z-10 #{params[:marked_read].present? ? "bg-tertiary-100" : "bg-white"}" %>
+    </span>
+  <% end %>
   <div>
     <% if @feedback_list.any? %>
       <%# Feedback timeline %>
