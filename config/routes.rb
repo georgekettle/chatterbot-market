@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   end
   resources :chatbots, except: [:edit] do
     resources :conversations, only: [:new, :create]
-    resources :corrections, only: [:new, :create]
   end
   resources :corrections, only: [:edit, :update, :destroy]
   resources :conversations, only: [:show] do
@@ -20,9 +19,9 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [] do
     resources :feedback, only: [:create]
+    resources :corrections, only: [:new, :create], controller: 'messages/corrections'
   end
   resources :feedback, only: [:update] do
-    resources :corrections, only: [:new, :create], controller: 'feedback/corrections'
     member do
       patch :toggle_marked_read_at
     end

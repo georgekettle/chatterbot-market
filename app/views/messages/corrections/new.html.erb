@@ -5,7 +5,7 @@
     </div>
 
     <%= render 'shared/container', classes: 'max-w-3xl' do %>
-      <% @conversation.messages.each do |message| %>
+      <% @message.conversation.messages.each do |message| %>
         <% if message == @message %>
           <%= render 'messages/message', message: message, correction: @correction %>
         <% else %>

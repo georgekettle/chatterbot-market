@@ -71,7 +71,7 @@
                   <div class="font-medium text-sm text-tertiary-900">
                     <%= feedback.user.name %>
                   </div>
-                  <div class="text-tertiary-600 leading-relaxed font-normal">
+                  <div class="leading-relaxed font-normal <%= feedback.positive? ? "text-success-900" : "text-danger-900" %>">
                     <%= feedback.content %>
                   </div>
                 </div>
@@ -80,6 +80,7 @@
           </div>
           <%# ACTIONS %>
           <div class="border-t border-tertiary-300 flex divide-x divide-tertiary-300">
+            <%# MARK AS READ/UNREAD %>
             <%= link_to toggle_marked_read_at_feedback_path(feedback), data: { turbo_method: :patch }, class: 'btn rounded-none w-1/2 py-4' do %>
               <% if feedback.marked_read_at %>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 shrink-0 mr-2">
@@ -93,7 +94,8 @@
                 Mark as read
               <% end %>
             <% end %>
-            <%= link_to toggle_marked_read_at_feedback_path(feedback), data: { turbo_method: :patch }, class: 'btn bg-tertiary-50 text-tertiary-900 rounded-none w-1/2 py-4' do %>
+            <%# MAKE CORRECTION %>
+            <%= link_to new_message_correction_path(feedback.message), class: 'btn bg-tertiary-50 text-tertiary-900 rounded-none w-1/2 py-4' do %>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0 mr-2">
                 <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
               </svg>

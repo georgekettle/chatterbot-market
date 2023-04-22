@@ -6,7 +6,7 @@
 
 @layer base {
   /* FORMS */
-  form {
+  form .input-spacer {
     @apply space-y-6;
   }
 
@@ -35,6 +35,7 @@
 
   input[type=button],
   input[type=submit],
+  button[type=submit],
   input[type=reset] {
     @apply btn btn-primary;
   }

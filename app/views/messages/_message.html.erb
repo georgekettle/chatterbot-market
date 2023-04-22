@@ -1,3 +1,5 @@
+<% correction ||= false %>
+
 <%= content_tag :div, id: dom_id(message), class: 'group py-4' do %>
   <div class="flex">
     <div class="mr-4 shrink-0">
@@ -8,9 +10,19 @@
         <%= message_sender(message) %>
         <span class="text-xs text-tertiary-500 font-normal ml-1"><%= message_timestamp(message, current_user.time_zone) %></span>
       </div>
-      <div class="text-tertiary-600 leading-relaxed font-normal">
-        <%= message.content %>
-      </div>
+      <% if correction %>
+        <div class="rounded p-2 bg-info-50 border border-info-200">
+          <% if correction.persisted? %>
+            <%= render 'corrections/form', correction: correction %>
+          <% else %>
+            <%= render 'messages/corrections/form', correction: correction, message: message %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="text-tertiary-600 leading-relaxed font-normal">
+          <%= message.content %>
+        </div>
+      <% end %>
     </div>
     <% if (message.sent_by_account?(current_account) || message.ai_generated?) && message.feedback.nil? %>
       <div class="ml-2 shrink-0 invisible group-hover:visible">
