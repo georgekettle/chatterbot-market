@@ -1,10 +1,11 @@
 <%= form_with model: correction, url: message_corrections_path(message) do |f| %>
-  <div class="input-spacer">
+  <div class="space-y-2">
     <%= render 'components/forms/errors', form: f %>
     <%= f.text_area :response,
                     value: message.correction&.response || message.content,
                     placeholder: message.content,
-                    class: 'mt-0' %>
+                    class: 'mt-0',
+                    data: { controller: "textarea-autogrow" } %>
     <div class="flex justify-end">
       <%= f.button type: :submit do %>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 shrink-0 mr-2">

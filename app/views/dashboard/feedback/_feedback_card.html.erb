@@ -1,5 +1,5 @@
-<%= turbo_frame_tag dom_id(feedback, :card) do %>
-  <div class="card">
+<%= turbo_frame_tag dom_id(feedback, :card), class: 'block' do %>
+  <div class="card relative group">
     <%# MESSAGE & FEEDBACK %>
     <div class="px-6 py-2">
       <%= render 'messages/message', message: feedback.message %>
