@@ -1,0 +1,42 @@
+<%= turbo_frame_tag dom_id(feedback, :card) do %>
+  <div class="card">
+    <%# MESSAGE & FEEDBACK %>
+    <div class="px-6 py-2">
+      <%= render 'messages/message', message: feedback.message %>
+    </div>
+    <%# ACTIONS %>
+    <div class="border-t border-tertiary-300 flex divide-x divide-tertiary-300">
+      <%# MARK AS READ/UNREAD %>
+      <%= link_to toggle_marked_read_at_feedback_path(feedback), data: { turbo_method: :patch, turbo_frame: :_top }, class: 'btn rounded-none w-1/2 py-4' do %>
+        <% if feedback.marked_read_at %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 shrink-0 mr-2">
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+          </svg>
+          Mark as unread
+        <% else %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 shrink-0 mr-2">
+            <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+          </svg>
+          Mark as read
+        <% end %>
+      <% end %>
+
+      <%# MAKE CORRECTION %>
+      <% if feedback.message.correction %>
+        <%= link_to edit_correction_path(feedback.message.correction), data: { turbo_frame: :turbo_modal }, class: 'btn bg-tertiary-50 text-tertiary-900 rounded-none w-1/2 py-4' do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0 mr-2">
+            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+          </svg>
+          Edit correction
+        <% end %>
+      <% else %>
+        <%= link_to new_message_correction_path(feedback.message), data: { turbo_frame: :turbo_modal }, class: 'btn bg-tertiary-50 text-tertiary-900 rounded-none w-1/2 py-4' do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0 mr-2">
+            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+          </svg>
+          Make correction
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

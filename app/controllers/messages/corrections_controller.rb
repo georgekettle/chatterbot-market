@@ -17,10 +17,14 @@ class Messages::CorrectionsController < ApplicationController
     @correction.message = @message
     @correction.prompt = @message.content
     authorize @chatbot, policy_class: CorrectionPolicy
-    if @correction.save_and_connect_to_chatbot(@chatbot)
-      redirect_to edit_correction_path(@correction), notice: "Correction was successfully created."
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @correction.save_and_connect_to_chatbot(@chatbot)
+        flash[:notice] = 'Correction was successfully created'
+        format.html { redirect_to edit_correction_path(@correction) }
+        format.turbo_stream
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 

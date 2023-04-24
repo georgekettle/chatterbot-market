@@ -12,7 +12,7 @@
       <!-- Modal body -->
       <div class="overflow-y-auto">
         <div class="py-6">
-          <%= render 'conversations/messages', conversation: @conversation, highlighted_message: @message %>
+          <%= render 'conversations/messages', conversation: @conversation, message_options: { @message.id => { highlighted: true, correction: @correction } } %>
         </div>
       </div>
     </div>
