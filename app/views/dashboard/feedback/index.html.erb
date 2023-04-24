@@ -13,6 +13,10 @@
     <% if @feedback_list.any? %>
       <%# Feedback timeline %>
       <%= render 'feedback_timeline', feedback_list: @feedback_list %>
+      <%# PAgination %>
+      <div class="py-10 flex justify-center">
+        <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
+      </div>
     <% else %>
       <%# Empty state %>
       <%= render 'feedback_empty_state' %>
