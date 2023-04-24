@@ -17,10 +17,14 @@ class CorrectionsController < ApplicationController
     @conversation = @message.conversation
     @chatbot = @message.chatbot
     authorize @chatbot, policy_class: CorrectionPolicy
-    if @correction.update(correction_params)
-      redirect_to edit_correction_path(@correction), notice: "Correction was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @correction.update(correction_params)
+        flash[:notice] = 'Correction was successfully updated.'
+        format.html { redirect_to edit_correction_path(@correction) }
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 

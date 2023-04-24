@@ -1,3 +1,19 @@
+<% message_options ||= {} %>
+
 <%= content_tag :div, id: dom_id(conversation, :messages), class: 'relative h-full grow-1 overflow-y-scroll' do %>
-  <%= render partial: 'messages/message', collection: conversation.messages %>
+  <% conversation.messages.each do |message| %>
+    <% highlighted = message_options[message.id] && message_options[message.id][:highlighted] %>
+    <% correction = message_options[message.id] && message_options[message.id][:correction] %>
+    <% if highlighted %>
+      <div class="bg-info-50 py-6 border-t border-b border-info-200" data-controller="scroll-to-element">
+        <div class="max-w-3xl mx-auto">
+          <%= render 'messages/message', message: message, correction: correction %>
+        </div>
+      </div>
+    <% else %>
+      <div class="max-w-3xl mx-auto">
+        <%= render 'messages/message', message: message, correction: correction %>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>

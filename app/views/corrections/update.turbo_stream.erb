@@ -1,0 +1,6 @@
+<%# Replace all dom_id(@message) with messages/message partial %>
+<%= turbo_stream.replace dom_id(@message), partial: 'messages/message', locals: { message: @message } %>
+<%# Empty contents of :turbo_modal frame %>
+<%= turbo_stream.replace :turbo_modal, partial: 'shared/turbo_modal_tag' %>
+<%# Replace :flashes frame with flashes partial %>
+<%= turbo_stream.replace :flashes, partial: 'shared/flashes' %>

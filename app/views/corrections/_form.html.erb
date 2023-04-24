@@ -1,5 +1,5 @@
 <%= form_with model: correction, url: correction_path(correction), method: :patch do |f| %>
-  <div class="input-spacer">
+  <div class="space-y-2">
     <%= render 'components/forms/errors', form: f %>
     <%= f.text_area :response,
                     value: correction.response,

@@ -6,7 +6,7 @@ class Dashboard::FeedbackController < ApplicationController
     @chatbot = Chatbot.find(params[:chatbot_id])
     if params[:marked_read] == "true"
       @pagy, @feedback_list = pagy(
-        policy_scope(Feedback).where(chatbots: @chatbot).where.not(marked_read_at: nil).order(created_at: :desc)
+        policy_scope(Feedback).where(chatbots: @chatbot).where.not(marked_read_at: nil).order(marked_read_at: :desc)
       )
     else
       @pagy, @feedback_list = pagy(

@@ -6,7 +6,7 @@ class Message < ApplicationRecord
   has_one :training_material, as: :material, dependent: :destroy
   has_one :correction, dependent: :destroy
 
-  validates :content, presence: true, length: { maximum: 1000 }
+  validates :content, presence: true
 
   # Method to check if message from owner
   def sent_by_account?(account)

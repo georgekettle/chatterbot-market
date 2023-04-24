@@ -10,5 +10,11 @@ application.register("alert", AlertController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import ReadMoreController from "./read_more_controller"
 application.register("read-more", ReadMoreController)
+
+import ScrollToElementController from "./scroll_to_element_controller"
+application.register("scroll-to-element", ScrollToElementController)
