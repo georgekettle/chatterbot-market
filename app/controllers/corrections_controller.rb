@@ -28,6 +28,19 @@ class CorrectionsController < ApplicationController
     end
   end
 
+  # DELETE /corrections/:id
+  def destroy
+    @correction = Correction.find(params[:id])
+    @chatbot = @correction.chatbot
+    authorize @chatbot, policy_class: CorrectionPolicy
+    @correction.destroy
+    respond_to do |format|
+      flash[:notice] = 'Correction was successfully destroyed.'
+      format.html { redirect_to dashboard_chatbot_corrections_path(@chatbot) }
+      format.turbo_stream
+    end
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
