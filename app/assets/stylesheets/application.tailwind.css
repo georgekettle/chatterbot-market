@@ -43,7 +43,7 @@
 
 @layer components {
   .btn {
-    @apply font-medium rounded text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer;
+    @apply font-normal rounded text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer transition-all ease-in-out duration-200;
   }
   
   .btn-primary {
@@ -51,7 +51,7 @@
   }
   
   .btn-secondary {
-    @apply bg-tertiary-50 text-tertiary-900 hover:bg-tertiary-900 hover:text-white border border-tertiary-900;
+    @apply bg-white text-tertiary-900 hover:bg-tertiary-50 border border-tertiary-300 hover:border-tertiary-500;
   }
   
   /* BTN SIZES */
