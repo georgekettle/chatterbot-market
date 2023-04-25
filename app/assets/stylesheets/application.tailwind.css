@@ -82,8 +82,12 @@
   }
   
   /* HEADERS */
-  .header {
+  .h1 {
     @apply text-2xl font-normal tracking-tight;
+  }
+
+  .h2 {
+    @apply text-xl font-normal tracking-tight;
   }
   
   .header-sm {
