@@ -1,8 +1,18 @@
 if Rails.env == 'development'
+  puts "Destroying all Chatbots..."
   Chatbot.destroy_all
+  puts "Destroying all Users..."
   User.destroy_all
+  puts "Destroying all Conversations..."
+  puts "Destroying all Accounts..."
+  Account.destroy_all
   Conversation.destroy_all
+  puts "Destroying all Messages..."
   Message.destroy_all
+  puts "Destroying all Feedback..."
+  Feedback.destroy_all
+  puts "Destroying all Example Responses..."
+  Correction.destroy_all
 end
 
 puts "Creating users..."
@@ -15,12 +25,12 @@ Account.all.each do |account|
 end
 
 puts "Creating chatbots..."
-Chatbot.create!(name: 'Bohemian wisdom', account: george_h.personal_account)
-Chatbot.create!(name: 'Write lyrics like George', account: george_h.personal_account)
+Chatbot.create!(name: 'Bohemian wisdom', description: 'A chatbot for users to find the bohemian wisdom of George Harrison', account: george_h.personal_account, status: :live)
+Chatbot.create!(name: 'Write lyrics like George', description: 'Generate song lyrics like George Harrison', account: george_h.personal_account)
 
 puts "Creating conversations..."
 Chatbot.all.each do |cb|
-  100.times do
+  25.times do
     Conversation.create!(chatbot: cb, creator: john_smith)
     Conversation.create!(chatbot: cb, creator: mary_jane)
     Conversation.create!(chatbot: cb, creator: george_h)
@@ -30,7 +40,33 @@ end
 puts "Creating messages... (this may take a while)"
 Conversation.all.each do |conv|
   20.times do
-    conv.messages.create!(content: Faker::Quote.yoda, sender: conv.creator, ai_generated: false)
-    conv.messages.create!(content: Faker::Quote.yoda, sender: conv.chatbot.account.owner)
+    conv.messages.create!(content: Faker::GreekPhilosophers.quote, sender: conv.creator, ai_generated: false)
+    conv.messages.create!(content: Faker::GreekPhilosophers.quote, sender: conv.chatbot.account.owner)
   end
 end
+
+puts "Creating Feedback for messages... (created by chatbot or chatbot account users)"
+Message.all.each do |message|
+  if message.sender != message.conversation.creator
+    if rand(1..10) > 2
+      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.conversation.creator, message: message, rating: :negative)
+    else
+      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.conversation.creator, message: message, rating: :positive)
+    end
+  end
+end
+
+puts "Creating Example Responses..."
+Message.all.each do |message|
+  if message.sender != message.conversation.creator
+    if rand(1..10) > 2
+      # Transaction to ensure that if one fails, they all fail
+      ActiveRecord::Base.transaction do
+        eg_res = Correction.create!(message: message, prompt: message.previous_message.content, response: Faker::GreekPhilosophers.quote)
+        TrainingMaterial.create!(chatbot: message.chatbot, material: eg_res)
+      end      
+    end
+  end
+end
+
+puts "Done!"

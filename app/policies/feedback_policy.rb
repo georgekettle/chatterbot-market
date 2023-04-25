@@ -13,4 +13,8 @@ class FeedbackPolicy < ApplicationPolicy
   def update?
     record.message.conversation.creator == user.user
   end
+
+  def toggle_marked_read_at?
+    record.chatbot.account == account
+  end
 end

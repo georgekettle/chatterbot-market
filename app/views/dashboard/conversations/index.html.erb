@@ -1,32 +1,28 @@
-<%= render 'components/headers/chatbot_dashboard', chatbot: @chatbot %>
+<%= content_for(:side_nav) do %>
+  <%= render 'dashboard/chatbots/nav/chatbot_side_nav', chatbot: @chatbot %>
+<% end %>
 
-<%= render 'shared/container' do %>
-  <div class="pt-16 pb-6">
-    <%= render 'components/headers/page_header', title: "Conversations", subtitle: "All conversations with '#{@chatbot.name}'" do %>
-      <%= link_to new_chatbot_conversation_path(@chatbot), class: "btn btn-primary" do %>
-        Chat now
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-1">
-          <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+<div class="h-full flex overflow-hidden">
+  <div class="space-y-4 w-full max-w-xs flex-shrink-0 h-full flex flex-col pl-16 pt-6">
+    <div class="flex items-center justify-between w-full shrink-0">
+      <h1 class="header">Messages</h1>
+      <%= link_to new_dashboard_chatbot_conversation_path(@chatbot), class: 'rounded-full p-2 -mr-2 text-tertiary-900 hover:bg-tertiary-50' do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
         </svg>
       <% end %>
+    </div>
+    <div class="w-full h-full grow-1 overflow-y-scroll pb-16">
+      <% if @conversations.any? %>
+        <%= render 'conversations', conversations: @conversations, selected_conversation: @selected_conversation %>
+      <% else %>
+        <%= render 'conversations_empty_state', chatbot: @chatbot %>
+      <% end %>
+    </div>
+  </div>
+  <div class="p-16 pb-6 pt-0 w-full">
+    <% if @selected_conversation %>
+      <%= render 'conversations/chat', conversation: @selected_conversation, message: Message.new %>
     <% end %>
   </div>
-  
-  <%= turbo_frame_tag dom_id(@chatbot, :conversations) do %>
-    <div>
-      <div class="mb-4">
-        <%= render 'pagy/pagination_w_text', pagy: @pagy %>
-      </div>
-      <div class="overflow-hidden card">
-        <ul role="list" class="divide-y divide-tertiary-200">
-          <% @conversations.each do |conversation| %>
-            <%= render 'conversation', conversation: conversation %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-    <div class="py-10 flex justify-center">
-      <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
-    </div>
-  <% end %>
-<% end %>
+</div>

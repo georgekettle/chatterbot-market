@@ -4,76 +4,88 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import 'config/defaults.css';
-@import 'components/buttons.css';
-@import 'components/card.css'; */
+@layer base {
+  /* FORMS */
+  form .input-spacer {
+    @apply space-y-6;
+  }
 
-.btn {
-  @apply font-medium rounded text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer;
+  label,
+  .label {
+    @apply block text-sm font-medium leading-6 text-tertiary-900 mb-2;
+  }
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply block w-full rounded border-0 py-1.5 text-tertiary-900 shadow-sm ring-1 ring-inset ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6
+  }
+
+  input[type=button],
+  input[type=submit],
+  button[type=submit],
+  input[type=reset] {
+    @apply btn btn-primary;
+  }
 }
 
-.btn.btn-dark {
-  @apply rounded text-tertiary-400 inline-flex items-center justify-center px-4 py-2 text-sm hover:bg-tertiary-700 hover:text-white cursor-pointer;
-}
-
-.btn-primary {
-  @apply bg-tertiary-800 text-white hover:bg-tertiary-900 hover:text-white;
-}
-
-.btn-primary.btn-dark {
-  @apply text-tertiary-800 bg-white hover:text-tertiary-900 hover:bg-white;
-}
-
-.btn-secondary {
-  @apply bg-tertiary-100 text-tertiary-900 hover:bg-tertiary-900 hover:text-white border border-tertiary-900;
-}
-
-.btn-secondary.btn-dark {
-  @apply text-tertiary-200 bg-tertiary-900 hover:text-tertiary-900 hover:bg-white border border-white;
-}
-
-/* BTN SIZES */
-.btn-xs {
-  @apply text-xs px-3 py-1 font-normal rounded;
-}
-
-.btn-sm {
-  @apply text-sm px-3 py-1 font-normal rounded;
-}
-
-/* FORMS */
-form {
-  @apply space-y-6;
-}
-
-label {
-  @apply block text-sm font-medium leading-6 text-tertiary-900 mb-2;
-}
-
-[type='text'],
-[type='email'],
-[type='url'],
-[type='password'],
-[type='number'],
-[type='date'],
-[type='datetime-local'],
-[type='month'],
-[type='search'],
-[type='tel'],
-[type='time'],
-[type='week'],
-[multiple],
-textarea,
-select {
-  @apply block w-full rounded border-0 py-1.5 text-tertiary-900 shadow-sm ring-1 ring-inset ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6
-}
-
-input[type=button],
-input[type=submit],
-input[type=reset] {
-  @apply btn btn-primary;
-}
-
-.card {
-  @apply border border-tertiary-300 bg-white shadow-sm rounded overflow-hidden;
+@layer components {
+  .btn {
+    @apply font-medium rounded text-tertiary-500 inline-flex items-center justify-center px-4 py-2 text-sm hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer;
+  }
+  
+  .btn-primary {
+    @apply bg-tertiary-800 text-white hover:bg-tertiary-900 hover:text-white;
+  }
+  
+  .btn-secondary {
+    @apply bg-tertiary-50 text-tertiary-900 hover:bg-tertiary-900 hover:text-white border border-tertiary-900;
+  }
+  
+  /* BTN SIZES */
+  .btn-xs {
+    @apply text-xs px-3 py-1 font-normal rounded;
+  }
+  
+  .btn-sm {
+    @apply text-sm px-3 py-1 font-normal rounded;
+  }
+  
+  .btn-lg {
+    @apply text-sm px-4 py-3 font-normal rounded;
+  }
+  
+  /* CARDS */
+  .card {
+    @apply border border-tertiary-300 bg-white rounded overflow-hidden;
+  }
+  
+  .elevated-card {
+    @apply card z-10 shadow;
+  }
+  
+  /* HEADERS */
+  .header {
+    @apply text-2xl font-normal tracking-tight;
+  }
+  
+  .header-sm {
+    @apply text-base font-medium tracking-tight;
+  }
+  
+  .header-xs {
+    @apply text-sm font-medium tracking-tight;
+  }
 }

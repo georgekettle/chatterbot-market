@@ -1,9 +1,0 @@
-<div class="flex space-x-4 sm:space-x-6">
-  <% tabs.each do |tab| %>
-    <% if tab[:path] == request.path %>
-      <%= link_to tab[:name], tab[:path], class: "px-1 py-3 text-sm font-normal border-b-2 text-white border-white" %>
-    <% else %>
-      <%= link_to tab[:name], tab[:path], class: "px-1 py-3 text-sm font-normal border-b-2 border-transparent text-tertiary-500 hover:border-white hover:text-white" %>
-    <% end %>
-  <% end %>
-</div>

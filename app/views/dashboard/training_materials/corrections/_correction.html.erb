@@ -1,0 +1,59 @@
+<tr class="align-top">
+  <td class="py-6 pl-4 pr-3 sm:pl-4 space-y-2 text-tertiary-500">
+    Example Response
+  </td>
+  <td class="py-6 pl-4 pr-3 sm:pl-4 text-tertiary-500">
+    <div class="space-y-2">
+      <table>
+        <tbody>
+          <tr class="align-top">
+            <td>
+              <%= render 'components/badges/badge_sm', text: "Prompt", color: 'info' %>
+            </td>
+            <td class="pl-4 text-tertiary-500" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+              <p data-read-more-target="content" class="overflow-hidden">
+                <%= correction.prompt %>
+              </p>
+
+              <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 text-sm hidden">Read more</button>
+            </td>
+          </tr>
+          <tr class="align-top">
+            <td class="pt-2">
+              <%= render 'components/badges/badge_sm', text: "Response", color: "success" %>
+            </td>
+            <td class="pt-2 pl-4 text-tertiary-500" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+              <p data-read-more-target="content" class="overflow-hidden">
+                <%= correction.response %>
+              </p>
+
+              <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 text-sm hidden">Read more</button>
+            </td>
+        </tbody>
+      </table>
+    </div>
+  </td>
+  <td class="relative whitespace-nowrap py-6 pl-3 pr-4 font-medium sm:pr-4">
+    <button id="<%= dom_id(correction, :options) %>" data-dropdown-toggle="dropdown" data-dropdown-placement="bottom-end" class="inline-flex w-full justify-center gap-x-1.5 rounded bg-white px-3 py-2 text-sm font-normal text-tertiary-900 hover:shadow-sm ring-1 ring-inset ring-tertiary-300 hover:bg-tertiary-50" type="button">
+      Options
+      <svg class="-mr-1 h-5 w-5 text-tertiary-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+      </svg>
+    </button>
+    <!-- Dropdown menu -->
+    <div id="dropdown" class="z-10 hidden absolute right-0 bg-white border border-tertiary-300 divide-y divide-tertiary-100 rounded shadow w-44">
+        <ul class="py-2 text-sm text-tertiary-700 dark:text-tertiary-200" aria-labelledby=<%= dom_id(correction, :options) %>">
+          <li>
+            <%= link_to edit_correction_path(correction), data: { turbo_frame: :_top }, class: "block px-4 py-2 hover:bg-tertiary-100 dark:hover:bg-tertiary-600 dark:hover:text-white" do %>
+              Edit
+            <% end %>
+          </li>
+          <li>
+            <%= link_to correction_path(correction), data: { turbo_method: :delete, turbo_confirm: "Are you sure? You can't undo this.", turbo_frame: :_top }, class: "block px-4 py-2 hover:bg-tertiary-100 dark:hover:bg-tertiary-600 dark:hover:text-white" do %>
+              Delete
+            <% end %>
+          </li>
+        </ul>
+    </div>
+  </td>
+</tr>

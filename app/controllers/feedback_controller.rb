@@ -34,6 +34,24 @@ class FeedbackController < ApplicationController
     end
   end
 
+  # PATCH/PUT /feedback/1/toggle_marked_read_at
+  def toggle_marked_read_at
+    @feedback = Feedback.find(params[:id])
+    authorize @feedback
+    @chatbot = @feedback.chatbot
+    @feedback.marked_read_at = @feedback.marked_read_at.present? ? nil : DateTime.now
+    respond_to do |format|
+      if @feedback.save
+        if @feedback.marked_read_at.present?
+          format.html { redirect_to dashboard_chatbot_feedback_index_path(@chatbot), notice: "Feedback marked as read" }
+        else
+          format.html { redirect_to dashboard_chatbot_feedback_index_path(@chatbot, marked_read: true), notice: "Feedback marked as unread" }
+        end
+      else
+        format.html { redirect_to dashboard_chatbot_feedback_index_path(@chatbot), alert: "Something went wrong updating feedback" }
+      end
+    end
+  end
 
   private
 

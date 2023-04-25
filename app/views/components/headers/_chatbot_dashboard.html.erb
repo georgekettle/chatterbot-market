@@ -1,7 +1,8 @@
 <% tabs = [
   { name: 'Overview', path: dashboard_chatbot_path(chatbot) },
-  { name: 'Conversations', path: dashboard_chatbot_conversations_path(chatbot) },
+  { name: 'User Conversations', path: dashboard_chatbot_conversations_path(chatbot) },
   { name: 'Feedback', path: dashboard_chatbot_feedback_index_path(chatbot) },
+  { name: 'Training Material', path: dashboard_chatbot_training_materials_path(chatbot) },
   { name: 'Settings', path: settings_dashboard_chatbot_path(chatbot) },
 ] %>
 
@@ -33,7 +34,6 @@
         </div>
       </div>
     </div>
-    
   <% end %>
 </div>
 

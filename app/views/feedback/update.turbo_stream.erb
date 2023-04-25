@@ -1,3 +1,6 @@
+<%# replace message partial with dom_id(@message) %>
+<%= turbo_stream.replace dom_id(@feedback.message), partial: "messages/message", locals: { message: @feedback.message } %>
+
 <%# Update turbo_modal turbo frame to be empty %>
 <%= turbo_stream.replace :turbo_modal do %>
   <%= render 'shared/turbo_modal_tag' do %>

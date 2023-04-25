@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <%= render 'shared/head' %>
+
+  <body class="bg-white">
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
+    <div class="h-[calc(100vh-theme(space.20))] overflow-hidden flex">
+      <%# Side nav %>
+      <div class="bg-tertiary-50 border-r border-tertiary-300 w-full max-w-sm shrink-0">
+        <%= yield(:side_nav) %>
+      </div>
+      <%# Main content %>
+      <main class="w-full grow-1 overflow-y-scroll">
+        <%= yield %>
+      </main>
+    </div>
+    <%= render('shared/turbo_modal_tag') {} %>
+  </body>
+</html>

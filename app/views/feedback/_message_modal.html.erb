@@ -29,14 +29,16 @@
               </div>
             <% end %>
           </div>
-          <%= form_with model: feedback, class: 'w-full grow-1 mt-5 sm:-mt-5' do |f| %>
-            <div>
-              <% placeholder = feedback.negative? ? 'What do you dislike about the response?' : 'What do you like about the response?' %>
-              <%= f.label :content, 'Provide additional feedback' %>
-              <%= f.text_area :content, placeholder: placeholder, rows: 3, class: 'w-full' %>
-            </div>
-            <div class="flex justify-end">
-              <%= f.submit 'Submit feedback', class: 'btn btn-primary w-full sm:w-auto' %>
+          <%= form_with model: feedback, class: 'w-full grow-1' do |f| %>
+            <div class="space-y-6">
+              <div>
+                <% placeholder = feedback.negative? ? 'What do you dislike about the response?' : 'What do you like about the response?' %>
+                <%= f.label :content, 'Provide additional feedback' %>
+                <%= f.text_area :content, placeholder: placeholder, rows: 3, class: 'w-full' %>
+              </div>
+              <div class="flex justify-end">
+                <%= f.submit 'Submit feedback', class: 'btn btn-primary w-full sm:w-auto' %>
+              </div>
             </div>
           <% end %>
         </div>

@@ -18,6 +18,9 @@ class ChatbotsController < ApplicationController
   def new
     @chatbot = Chatbot.new
     authorize @chatbot
+
+    breadcrumb "My Chatbots", dashboard_chatbots_path
+    breadcrumb "New Chatbot", request.path
   end
 
   # POST /chatbots
@@ -66,6 +69,6 @@ class ChatbotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chatbot_params
-      params.require(:chatbot).permit(:name, :status)
+      params.require(:chatbot).permit(:name, :status, :description)
     end
 end

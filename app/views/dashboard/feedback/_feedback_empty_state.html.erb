@@ -1,0 +1,17 @@
+<%= render 'components/empty_state/card' do %>
+  <div class="text-center space-y-6">
+    <div class="space-y-2">
+      <% if params[:marked_read] %>
+        <h3 class="header">No feedback marked as read yet</h3>
+        <p class="text-tertiary-500">
+          You have no feedback marked as read yet for your chatbot
+        </p>
+      <% else %>
+        <h3 class="header">You're up to date</h3>
+        <p class="text-tertiary-500">
+          You've read all feedback for your chatbot
+        </p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

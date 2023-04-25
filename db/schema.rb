@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_194728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
+    t.text "description"
     t.index ["account_id"], name: "index_chatbots_on_account_id"
   end
 
@@ -52,6 +53,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
     t.index ["creator_id"], name: "index_conversations_on_creator_id"
   end
 
+  create_table "corrections", force: :cascade do |t|
+    t.text "prompt"
+    t.text "response"
+    t.bigint "message_id"
+    t.jsonb "fine_tune_object", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_corrections_on_message_id"
+  end
+
   create_table "feedbacks", force: :cascade do |t|
     t.integer "rating", null: false
     t.bigint "message_id", null: false
@@ -59,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "marked_read_at"
     t.index ["message_id"], name: "index_feedbacks_on_message_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
@@ -72,6 +84,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
+  create_table "training_materials", force: :cascade do |t|
+    t.string "material_type", null: false
+    t.bigint "material_id", null: false
+    t.bigint "chatbot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatbot_id"], name: "index_training_materials_on_chatbot_id"
+    t.index ["material_type", "material_id"], name: "index_training_materials_on_material"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,8 +117,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_074200) do
   add_foreign_key "chatbots", "accounts"
   add_foreign_key "conversations", "chatbots"
   add_foreign_key "conversations", "users", column: "creator_id"
+  add_foreign_key "corrections", "messages"
   add_foreign_key "feedbacks", "messages"
   add_foreign_key "feedbacks", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "training_materials", "chatbots"
 end

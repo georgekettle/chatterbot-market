@@ -10,5 +10,8 @@ window.Stimulus   = application
 import PasswordVisibility from 'stimulus-password-visibility'
 application.register('password-visibility', PasswordVisibility)
 
+import TextareaAutogrow from 'stimulus-textarea-autogrow'
+application.register('textarea-autogrow', TextareaAutogrow)
+
 export { application }
 

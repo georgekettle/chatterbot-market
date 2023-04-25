@@ -1,0 +1,4 @@
+<% case training_material.material_type %>
+<% when 'Correction' %>
+  <%= render 'dashboard/training_materials/corrections/correction', correction: training_material.material %>
+<% end %>

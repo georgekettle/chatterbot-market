@@ -1,14 +1,16 @@
 <% subtitle ||= nil %>
-<% is_dark ||= false %>
+<% hide_breadcrumbs ||= false %>
 
-<div class="block sm:flex items-center justify-between mb-10 <%= "bg-tertiary-900 text-white" if is_dark %>">
+<div class="block sm:flex items-center justify-between mb-10">
   <div>
-    <div class="mb-4">
-      <%= render 'components/navigation/breadcrumbs' %>
-    </div>
-    <h1 class="text-3xl font-medium tracking-tight"><%= title %></h1>
+    <% unless hide_breadcrumbs %>
+      <div class="mb-4">
+        <%= render 'components/navigation/breadcrumbs' %>
+      </div>
+    <% end %>
+    <h1 class="header"><%= title %></h1>
     <% if subtitle %>
-      <p class="text-sm text-tertiary-500 mt-2"><%= subtitle %></p>
+      <p class="text-tertiary-500 mt-2"><%= subtitle %></p>
     <% end %>
   </div>
   <div class="flex items-center space-x-2 mt-4 sm:mt-0">
