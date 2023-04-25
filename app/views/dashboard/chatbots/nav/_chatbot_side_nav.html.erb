@@ -43,13 +43,13 @@
       </button>
       <ul id="training-data-accordian-body" class="hidden" aria-labelledby="training-data-accordian-body" class="hidden pb-2 space-y-1">
         <li>
-          <%= render 'dashboard/chatbots/nav/side_nav_link', path: dashboard_chatbot_corrections_path(chatbot) do %>
-            <span class="pl-7">Corrections</span>
+          <%= render 'dashboard/chatbots/nav/side_nav_link', path: "#" do %>
+            <span class="pl-7">CSV Uploads</span>
           <% end %>
         </li>
         <li>
-          <%= render 'dashboard/chatbots/nav/side_nav_link', path: "#" do %>
-            <span class="pl-7">CSV Uploads</span>
+          <%= render 'dashboard/chatbots/nav/side_nav_link', path: dashboard_chatbot_corrections_path(chatbot) do %>
+            <span class="pl-7">Corrections</span>
           <% end %>
         </li>
       </ul>

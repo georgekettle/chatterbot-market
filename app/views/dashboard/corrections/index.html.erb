@@ -5,33 +5,37 @@
 <div class="p-16">
   <%= render 'components/headers/page_header', title: "Corrections", hide_breadcrumbs: true %>
   
-  <%= turbo_frame_tag dom_id(@chatbot, :training_material), data: { turbo_action:"advance" } do %>
-    <div class="flow-root">
-      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <div class="bg-white border border-tertiary-300 rounded-lg overflow-hidden shadow-sm">
-            <table class="min-w-full overflow-hidden">
-              <thead class="border-b border-tertiary-300 bg-tertiary-100">
-                <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium">Data</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium">Description</th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4">
-                    <span class="sr-only">Action</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-tertiary-300">
-                <% @corrections.each do |correction| %>
-                  <%= render 'correction', correction: correction %>
-                <% end %>
-              </tbody>
-            </table>
+  <% if @corrections.any? %>
+    <%= turbo_frame_tag dom_id(@chatbot, :training_material), data: { turbo_action:"advance" } do %>
+      <div class="flow-root">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <div class="bg-white border border-tertiary-300 rounded-lg overflow-hidden shadow-sm">
+              <table class="min-w-full overflow-hidden">
+                <thead class="border-b border-tertiary-300 bg-tertiary-100">
+                  <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium">Data</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium">Description</th>
+                    <th scope="col" class="relative py-3.5 pl-3 pr-4">
+                      <span class="sr-only">Action</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-tertiary-300">
+                  <% @corrections.each do |correction| %>
+                    <%= render 'correction', correction: correction %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="py-10 flex justify-center">
-      <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
-    </div>
+      <div class="py-10 flex justify-center">
+        <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= render 'correction_empty_state' %>
   <% end %>
 </div>
