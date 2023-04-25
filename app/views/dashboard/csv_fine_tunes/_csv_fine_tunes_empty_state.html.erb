@@ -1,6 +1,6 @@
 <%= render 'components/empty_state/card' do %>
-  <div class="text-center space-y-6">
-    <div class="space-y-2">
+  <div class="space-y-8">
+    <div class="space-y-2 text-center">
       <h3 class="h2">Currently you have no CSV Uploads</h3>
       <p class="text-tertiary-500 max-w-xl mx-auto leading-relaxed">
         Get started by adding a CSV of prompt/responses to train your chatbot.
@@ -15,6 +15,51 @@
         </svg>
         Upload CSV
       <% end %>
+    </div>
+    <div class="space-y-4">
+      <div class="flex items-baseline justify-between text-sm">
+        <p class="text-tertiary-500">Format CSV like this</p>
+        <%= link_to 'See more examples', "#", class: 'link-underline' %>
+      </div>
+      <%# Table for prompt/response %>
+      <div class="flow-root">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <div class="bg-white border border-tertiary-300 rounded-lg overflow-hidden shadow-sm">
+              <table class="min-w-full overflow-hidden">
+                <thead class="border-b border-tertiary-300 bg-tertiary-100">
+                  <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium">
+                      Prompt
+                    </th>
+                    <th scope="col" class="py-3.5 pl-3 pr-4 text-left text-sm font-medium">
+                      Response
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="">
+                  <tr class="align-top">
+                    <td class="py-6 pl-4 pr-3 text-tertiary-500">
+                      What is the last planet in the solar system?
+                    </td>
+                    <td class="py-6 pl-3 pr-4 text-tertiary-500">
+                      The last planet in the solar system, according to the traditional definition of a planet, is Neptune. It is the eighth planet from the Sun and is located at an average distance of about 2.8 billion miles (4.5 billion kilometers) from the Sun.
+                    </td>
+                  </tr>
+                  <tr class="align-top">
+                    <td class="py-6 pl-4 pr-3 text-tertiary-500">
+                      How many planets are in the Solar System?
+                    </td>
+                    <td class="py-6 pl-3 pr-4 text-tertiary-500">
+                      As of my knowledge cutoff in 2021, there are eight planets in the solar system. In order from the Sun, they are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. However, it is worth noting that in recent years there has been debate about the classification of Pluto as a planet, due to its small size and unique characteristics. Some astronomers consider Pluto to be a "dwarf planet" rather than a full-fledged planet, and there may be other similarly sized objects in the outer solar system that could also be classified as dwarf planets.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
