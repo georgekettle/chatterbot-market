@@ -27,7 +27,7 @@
       Feedback
     <% end %>
     <%# Training Data %>
-    <% training_data_paths = [ dashboard_chatbot_corrections_path(chatbot) ] %>
+    <% training_data_paths = [ dashboard_chatbot_corrections_path(chatbot), dashboard_chatbot_csv_fine_tunes_path(chatbot) ] %>
     <div id="training-data-accordian" data-accordion="collapse" data-active-classes="bg-black bg-opacity-5 text-tertiary-900">
       <button type="button" class="w-full font-base rounded text-tertiary-500 inline-flex items-center justify-between px-4 py-3 hover:text-tertiary-900 hover:bg-black hover:bg-opacity-5 cursor-pointer" data-accordion-target="#training-data-accordian-body" aria-expanded="<%= training_data_paths.include? request.path %>" aria-controls="training-data-accordian-body">
         <div class="flex items-center">
@@ -43,7 +43,7 @@
       </button>
       <ul id="training-data-accordian-body" class="hidden" aria-labelledby="training-data-accordian-body" class="hidden pb-2 space-y-1">
         <li>
-          <%= render 'dashboard/chatbots/nav/side_nav_link', path: "#" do %>
+          <%= render 'dashboard/chatbots/nav/side_nav_link', path: dashboard_chatbot_csv_fine_tunes_path(chatbot) do %>
             <span class="pl-7">CSV Uploads</span>
           <% end %>
         </li>
