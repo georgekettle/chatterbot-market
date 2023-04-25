@@ -1,43 +1,40 @@
-<%= render 'components/headers/chatbot_dashboard', chatbot: @chatbot %>
+<%= content_for(:side_nav) do %>
+  <%= render 'dashboard/chatbots/nav/chatbot_side_nav', chatbot: @chatbot %>
+<% end %>
 
-<%= render 'shared/container' do %>
-  <div class="pt-16 pb-6">
-    <%= render 'components/headers/page_header', title: "Training Material", subtitle: "This training material will inform your chatbot responses" do %>
-      <%= link_to new_chatbot_correction_path(@chatbot), class: "btn btn-primary" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-1">
-          <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-        </svg>
-        Add Example Response
-      <% end %>
+<div class="p-16">
+  <%= render 'components/headers/page_header', title: "Training Material", hide_breadcrumbs: true do %>
+    <%= link_to '#', class: "btn btn-primary" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-1">
+        <path fill-rule="evenodd" d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H16.5a3.75 3.75 0 013.75 3.75v7.875c0 1.035-.84 1.875-1.875 1.875H5.625a1.875 1.875 0 01-1.875-1.875V3.375c0-1.036.84-1.875 1.875-1.875zM9.75 17.25a.75.75 0 00-1.5 0V18a.75.75 0 001.5 0v-.75zm2.25-3a.75.75 0 01.75.75v3a.75.75 0 01-1.5 0v-3a.75.75 0 01.75-.75zm3.75-1.5a.75.75 0 00-1.5 0V18a.75.75 0 001.5 0v-5.25z" clip-rule="evenodd" />
+        <path d="M14.25 5.25a5.23 5.23 0 00-1.279-3.434 9.768 9.768 0 016.963 6.963A5.23 5.23 0 0016.5 7.5h-1.875a.375.375 0 01-.375-.375V5.25z" />
+      </svg>
+
+      Upload CSV
     <% end %>
-  </div>
+  <% end %>
   
   <%= turbo_frame_tag dom_id(@chatbot, :training_material), data: { turbo_action:"advance" } do %>
-    <div>
-      <div class="mb-4">
-        <%= render 'pagy/pagination_w_text', pagy: @pagy %>
-      </div>
-      <div class="flow-root">
-        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <div class="bg-white border border-tertiary-300 rounded-lg overflow-hidden shadow-sm">
-              <table class="min-w-full overflow-hidden">
-                <thead class="border-b border-tertiary-300 bg-tertiary-100">
-                  <tr>
-                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium">Type</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium">Details</th>
-                    <th scope="col" class="relative py-3.5 pl-3 pr-4">
-                      <span class="sr-only">Action</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-tertiary-300">
-                  <% @training_materials.each do |training_material| %>
-                    <%= render 'training_material', training_material: training_material %>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
+    <div class="flow-root">
+      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div class="bg-white border border-tertiary-300 rounded-lg overflow-hidden shadow-sm">
+            <table class="min-w-full overflow-hidden">
+              <thead class="border-b border-tertiary-300 bg-tertiary-100">
+                <tr>
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium">Data</th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium">Description</th>
+                  <th scope="col" class="relative py-3.5 pl-3 pr-4">
+                    <span class="sr-only">Action</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-tertiary-300">
+                <% @training_materials.each do |training_material| %>
+                  <%= render 'training_material', training_material: training_material %>
+                <% end %>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -46,4 +43,4 @@
       <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
     </div>
   <% end %>
-<% end %>
+</div>
