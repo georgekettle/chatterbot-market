@@ -1,12 +1,12 @@
 <%= content_tag :tr, id: dom_id(correction), class: 'align-top' do %>
-  <td class="py-6 pl-4 pr-3 sm:pl-4 space-y-2 text-tertiary-500" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+  <td class="py-6 pl-4 pr-3 sm:pl-4 space-y-2 text-tertiary-500 bg-gradient-to-r from-danger-100 via-white" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
     <p data-read-more-target="content" class="overflow-hidden">
       <%= correction.message.content %>
     </p>
 
     <button data-action="read-more#toggle" data-read-more-target="toggle" class="mt-2 underline underline-offset-4 text-tertiary-900 text-sm hidden">Read more</button>
   </td>
-  <td class="py-6 pl-4 pr-3 sm:pl-4 text-tertiary-500" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+  <td class="py-6 pl-4 pr-3 sm:pl-4 text-tertiary-500 bg-gradient-to-r from-success-50 via-white" data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
     <p data-read-more-target="content" class="overflow-hidden">
       <%= correction.response %>
     </p>
