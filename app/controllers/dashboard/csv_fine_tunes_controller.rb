@@ -1,5 +1,5 @@
 class Dashboard::CsvFineTunesController < ApplicationController
-  layout "dashboard_chatbot", only: [:index, :new, :create]
+  layout "dashboard_chatbot", only: [:index, :new, :create, :edit, :update]
 
   # GET /dashboard/chatbots/:chatbot_id/csv_fine_tunes
   def index
@@ -33,6 +33,25 @@ class Dashboard::CsvFineTunesController < ApplicationController
         notice: "CSV fine tune was successfully created."
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  # GET /csv_fine_tunes/:id/edit
+  def edit
+    @csv_fine_tune = CsvFineTune.find(params[:id])
+    @chatbot = @csv_fine_tune.chatbot
+    authorize @csv_fine_tune
+  end
+
+  # PATCH/PUT /csv_fine_tunes/:id
+  def update
+    @csv_fine_tune = CsvFineTune.find(params[:id])
+    @chatbot = @csv_fine_tune.chatbot
+    authorize @csv_fine_tune
+    if @csv_fine_tune.update(csv_fine_tune_params)
+      redirect_to dashboard_chatbot_csv_fine_tunes_path(@chatbot), notice: "CSV fine tune was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
