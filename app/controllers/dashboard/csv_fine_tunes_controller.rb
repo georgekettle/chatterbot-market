@@ -71,6 +71,6 @@ class Dashboard::CsvFineTunesController < ApplicationController
   private
 
   def csv_fine_tune_params
-    params.require(:csv_fine_tune).permit(:name, :description, :csv_file)
+    params.require(:csv_fine_tune).permit(:description, :csv_file)
   end
 end

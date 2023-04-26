@@ -92,7 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_150649) do
   end
 
   create_table "csv_fine_tunes", force: :cascade do |t|
-    t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
