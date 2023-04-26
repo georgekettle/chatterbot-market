@@ -1,0 +1,4 @@
+<%# turbo_stream Remove the row from the table with dom_id(@csv_fine_tune) %>
+<%= turbo_stream.remove dom_id(@csv_fine_tune) %>
+<%# Replace :flashes frame with flashes partial %>
+<%= turbo_stream.replace :flashes, partial: 'shared/flashes' %>

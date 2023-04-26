@@ -64,7 +64,7 @@ class Dashboard::CsvFineTunesController < ApplicationController
     respond_to do |format|
       flash[:notice] = "CSV Upload was successfully deleted"
       format.html { redirect_to dashboard_chatbot_csv_fine_tunes_path(@chatbot) }
-      # format.turbo_stream
+      format.turbo_stream
     end
   end
 
