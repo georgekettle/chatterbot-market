@@ -16,7 +16,25 @@
   <% end %>
   
   <% if @csv_fine_tunes.any? %>
-    <p>Display Fine tunes</p>
+    <%# Table %>
+    <%= render 'components/tables/table' do %>
+      <%= render 'components/tables/thead' do %>
+        <%= render 'components/tables/th' do %>
+          CSV Upload
+        <% end %>
+        <%= render 'components/tables/th' do %>
+          Description
+        <% end %>
+        <%= render 'components/tables/th' do %>
+          <span class="sr-only">Actions</span>
+        <% end %>
+      <% end %>
+      <tbody>
+        <% @csv_fine_tunes.each do |csv_fine_tune| %>
+          <%= render 'csv_fine_tune', csv_fine_tune: csv_fine_tune %>
+        <% end %>
+      </tbody>
+    <% end %>
   <% else %>
     <%= render 'csv_fine_tunes_empty_state' %>
   <% end %>
