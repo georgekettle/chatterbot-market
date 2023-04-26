@@ -35,6 +35,9 @@
         <% end %>
       </tbody>
     <% end %>
+    <div class="py-10 flex justify-center">
+      <%== render partial: 'pagy/pagination', locals: {pagy: @pagy} %>
+    </div>
   <% else %>
     <%= render 'csv_fine_tunes_empty_state' %>
   <% end %>
