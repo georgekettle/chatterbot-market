@@ -1,3 +1,5 @@
-<tr class="align-top">
+<% options ||= {} %>
+
+<%= content_tag :tr, class: 'align-top', **options do %>
   <%= yield %>
-</tr>
+<% end %>

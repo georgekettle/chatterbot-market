@@ -36,6 +36,19 @@ class Dashboard::CsvFineTunesController < ApplicationController
     end
   end
 
+  # DELETE /csv_fine_tunes/:id
+  def destroy
+    @csv_fine_tune = CsvFineTune.find(params[:id])
+    @chatbot = @csv_fine_tune.chatbot
+    authorize @csv_fine_tune
+    @csv_fine_tune.destroy
+    respond_to do |format|
+      flash[:notice] = "CSV Upload was successfully deleted"
+      format.html { redirect_to dashboard_chatbot_csv_fine_tunes_path(@chatbot) }
+      # format.turbo_stream
+    end
+  end
+
   private
 
   def csv_fine_tune_params

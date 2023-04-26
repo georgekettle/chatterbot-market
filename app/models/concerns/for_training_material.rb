@@ -4,6 +4,7 @@ module ForTrainingMaterial
   included do
     has_one :training_material, as: :material, dependent: :destroy
     has_one :chatbot, through: :training_material
+    has_one :account, through: :chatbot
   end
 
   def save_and_connect_to_chatbot(chatbot)
