@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="p-16">
-  <%= render 'components/headers/page_header', title: "New CSV Upload", hide_breadcrumbs: true, back_path: dashboard_chatbot_csv_fine_tunes_path(@chatbot) %>
+  <%= render 'components/headers/page_header', title: "New CSV Upload", hide_breadcrumbs: true, show_back: true %>
   <div class="max-w-lg">
     <%= render 'dashboard/csv_fine_tunes/form', csv_fine_tune: @csv_fine_tune, chatbot: @chatbot %>
   </div>

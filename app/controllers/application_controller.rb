@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include CurrentHelper
   include Authorization
   include ActionView::RecordIdentifier # for dom_id
+  include HistoryTracker # for tracking nav history and enhanced back button
   include Pagy::Backend
   Pagy::DEFAULT[:items] = 20 # default items per page
   Pagy::DEFAULT[:size] = [1, 2, 2, 1] # default page size array
