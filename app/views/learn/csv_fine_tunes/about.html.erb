@@ -1,0 +1,119 @@
+<%= render 'shared/container' do %>
+  <div class="pt-16 pb-10">
+    <%# Render page header %>
+    <%= render 'components/headers/page_header', title: 'CSV Uploads', show_back: true %>
+
+    <div class="space-y-12">
+      <%# Render page description %>
+      <div class="space-y-4">
+        <h2 class="h2">Overview</h2>
+        <p class="text-tertiary-500">This page serves as a guide to understanding CSV Uploads for custom chatbot creation using Chatterbot. Learn how to easily upload your CSV files with two columns (prompt and response) to fine-tune your chatbot's responses, resulting in a more personalized and engaging user experience.</p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="h2">Preparing Your CSV File</h2>
+        <%# A description on how fine tunes work. Make it simple to understand and compare it to Question and Answer style format %>
+        <p class="text-tertiary-500">Before uploading your CSV file, ensure that it is properly formatted. The file should contain two columns: 'prompt' and 'response'. The 'prompt' column consists of the questions or input that users will provide to the chatbot, while the 'response' column contains the corresponding answers or output from the chatbot. This structure allows your chatbot to learn and understand the relationship between prompts and responses, optimizing its ability to engage in meaningful conversations.</p>
+        <div class="h-0.5"></div>
+        <%# link_to to see examples below %>
+        <div class="flex items-baseline justify-between text-sm">
+          <p class="text-tertiary-500">Format CSV like this</p>
+          <%= link_to 'See more examples', '#examples', class: 'link-underline block' %>
+        </div>
+        <%# Example table %>
+        <%= render 'components/tables/table' do %>
+          <%= render 'components/tables/thead' do %>
+            <%= render 'components/tables/th' do %>
+              Prompt
+            <% end %>
+            <%= render 'components/tables/th' do %>
+              Response
+            <% end %>
+          <% end %>
+          <tbody>
+            <%= render 'components/tables/tr' do %>
+              <%= render 'components/tables/td' do %>
+                What is the last planet in the solar system?
+              <% end %>
+              <%= render 'components/tables/td' do %>
+                The last planet in the solar system, according to the traditional definition of a planet, is Neptune. It is the eighth planet from the Sun and is located at an average distance of about 2.8 billion miles (4.5 billion kilometers) from the Sun.
+              <% end %>
+            <% end %>
+            <%= render 'components/tables/tr' do %>
+              <%= render 'components/tables/td' do %>
+                How many planets are in the Solar System?
+              <% end %>
+              <%= render 'components/tables/td' do %>
+                As of my knowledge cutoff in 2021, there are eight planets in the solar system. In order from the Sun, they are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. However, it is worth noting that in recent years there has been debate about the classification of Pluto as a planet, due to its small size and unique characteristics. Some astronomers consider Pluto to be a "dwarf planet" rather than a full-fledged planet, and there may be other similarly sized objects in the outer solar system that could also be classified as dwarf planets.
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="h2">Uploading Your CSV File</h2>
+        <%# A description on how fine tunes work. Make it simple to understand and compare it to Question and Answer style format %>
+        <p class="text-tertiary-500">To upload your prepared CSV file, navigate to the 'CSV Uploads' section on the chatbot dashboard. Click the 'Upload CSV' button and select your CSV file from your computer or device. After selecting the file, click the 'Upload' button to initiate the fine-tuning process. The platform will then utilize the data from your CSV file to train your chatbot, optimizing its responses based on the provided prompts and responses.</p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="h2">Iterating and Improving Your Chatbot</h2>
+        <%# A description on how fine tunes work. Make it simple to understand and compare it to Question and Answer style format %>
+        <p class="text-tertiary-500">Continuously refining your chatbot's responses is essential for providing an optimal user experience. As you gather user feedback and identify areas for improvement, you can update your CSV file accordingly. To implement these changes, simply upload the revised CSV file, and the platform will automatically retrain your chatbot using the new data. This iterative process allows you to fine-tune your chatbot over time, ensuring that it stays up to date and responsive to the evolving needs of your users.</p>
+      </div>
+
+      <div id="examples" class="space-y-4">
+        <h2 class="h2">Examples</h2>
+        <div data-accordion="collapse" class="divide-y divide-tertiary-300" data-active-classes="bg-white text-tertiary-900" data-inactive-classes="text-tertiary-500">
+          <% @examples.each do |example| %>
+            <div>
+              <div class="flex items-start w-full">
+                <%# Download CSV button %>
+                <%= link_to download_example_learn_csv_fine_tunes_path(file_name: example[:file_name]), class: 'btn rounded-full p-2 mt-4 mr-4' do %>
+                  <span class="sr-only">Download csv</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                    <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
+                    <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
+                  </svg>
+                <% end %>
+                <h3 id="accordion-flush-heading-<%= example[:file_name] %>" class="h3 w-full grow-1">
+                  <button type="button" class="flex items-center justify-between w-full py-5" data-accordion-target="#accordion-flush-body-<%= example[:file_name] %>" aria-expanded="true" aria-controls="accordion-flush-body-<%= example[:file_name] %>">
+                    <span><%= example[:name] %></span>
+                    <svg data-accordion-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" data-accordion-icon class="w-5 h-5 shrink-0">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </h3>
+              </div>
+              <div id="accordion-flush-body-<%= example[:file_name] %>" class="hidden pb-5 pl-12" aria-labelledby="accordion-flush-heading-<%= example[:file_name] %>">
+                <%# Table %>
+                <%= render 'components/tables/table' do %>
+                  <%= render 'components/tables/thead' do %>
+                    <%= render 'components/tables/th' do %>
+                      Prompt
+                    <% end %>
+                    <%= render 'components/tables/th' do %>
+                      Response
+                    <% end %>
+                  <% end %>
+                  <tbody>
+                    <% example[:file_contents].each do |row| %>
+                      <%= render 'components/tables/tr' do %>
+                        <% row.each do |prompt, response| %>
+                          <%= render 'components/tables/td' do %>
+                            <%= response %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

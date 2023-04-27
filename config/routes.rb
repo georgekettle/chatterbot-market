@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   namespace :learn do
     resources :csv_fine_tunes, only: [] do
       collection do
-        get :examples
+        get :about
+        get :download_example
       end
     end
   end
