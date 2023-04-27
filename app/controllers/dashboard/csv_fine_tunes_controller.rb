@@ -7,9 +7,7 @@ class Dashboard::CsvFineTunesController < ApplicationController
     @pagy, @csv_fine_tunes = pagy(
       policy_scope(CsvFineTune).where(chatbots: @chatbot).order(updated_at: :desc)
     )
-
-    breadcrumb "Dashboard", dashboard_chatbots_path
-    breadcrumb @chatbot.name.capitalize, request.path
+    set_breadcrumbs
   end
 
   # GET /dashboard/chatbots/:chatbot_id/csv_fine_tunes/new
@@ -17,9 +15,7 @@ class Dashboard::CsvFineTunesController < ApplicationController
     @chatbot = Chatbot.find(params[:chatbot_id])
     @csv_fine_tune = CsvFineTune.new
     authorize @chatbot, policy_class: CsvFineTunePolicy
-
-    breadcrumb "Dashboard", dashboard_chatbots_path
-    breadcrumb @chatbot.name.capitalize, request.path
+    set_breadcrumbs
   end
 
   # POST /dashboard/chatbots/:chatbot_id/csv_fine_tunes
@@ -27,6 +23,7 @@ class Dashboard::CsvFineTunesController < ApplicationController
     @chatbot = Chatbot.find(params[:chatbot_id])
     @csv_fine_tune = CsvFineTune.new(csv_fine_tune_params)
     authorize @chatbot, policy_class: CsvFineTunePolicy
+    set_breadcrumbs
 
     if @csv_fine_tune.save_and_connect_to_chatbot(@chatbot)
       redirect_to dashboard_chatbot_csv_fine_tunes_path(@chatbot),
@@ -41,6 +38,7 @@ class Dashboard::CsvFineTunesController < ApplicationController
     @csv_fine_tune = CsvFineTune.find(params[:id])
     @chatbot = @csv_fine_tune.chatbot
     authorize @csv_fine_tune
+    set_breadcrumbs
   end
 
   # PATCH/PUT /csv_fine_tunes/:id
@@ -48,6 +46,7 @@ class Dashboard::CsvFineTunesController < ApplicationController
     @csv_fine_tune = CsvFineTune.find(params[:id])
     @chatbot = @csv_fine_tune.chatbot
     authorize @csv_fine_tune
+    set_breadcrumbs
     if @csv_fine_tune.update(csv_fine_tune_params)
       redirect_to dashboard_chatbot_csv_fine_tunes_path(@chatbot), notice: "CSV fine tune was successfully updated."
     else
@@ -72,5 +71,10 @@ class Dashboard::CsvFineTunesController < ApplicationController
 
   def csv_fine_tune_params
     params.require(:csv_fine_tune).permit(:description, :csv_file)
+  end
+
+  def set_breadcrumbs
+    breadcrumb "Dashboard", dashboard_chatbots_path
+    breadcrumb @chatbot.name.capitalize, request.path
   end
 end

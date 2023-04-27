@@ -11,6 +11,13 @@ Rails.application.routes.draw do
       end
     end
   end
+  namespace :learn do
+    resources :csv_fine_tunes, only: [] do
+      collection do
+        get :examples
+      end
+    end
+  end
   resources :chatbots, except: [:edit] do
     resources :conversations, only: [:new, :create]
   end
