@@ -1,5 +1,7 @@
+require 'open-uri'
+
 class Dashboard::CsvFineTunesController < ApplicationController
-  layout "dashboard_chatbot", only: [:index, :new, :create, :edit, :update]
+  layout "dashboard_chatbot", only: [:index, :show, :new, :create, :edit, :update]
 
   # GET /dashboard/chatbots/:chatbot_id/csv_fine_tunes
   def index
@@ -7,6 +9,16 @@ class Dashboard::CsvFineTunesController < ApplicationController
     @pagy, @csv_fine_tunes = pagy(
       policy_scope(CsvFineTune).where(chatbots: @chatbot).order(updated_at: :desc)
     )
+    set_breadcrumbs
+  end
+
+  # GET /csv_fine_tunes/:id
+  def show
+    @csv_fine_tune = CsvFineTune.find(params[:id])
+    @chatbot = @csv_fine_tune.chatbot
+    csv_file = URI.open(@csv_fine_tune.csv_file.url, 'r')
+    @csv_file = SmarterCSV.process(csv_file)
+    authorize @csv_fine_tune
     set_breadcrumbs
   end
 
@@ -48,7 +60,7 @@ class Dashboard::CsvFineTunesController < ApplicationController
     authorize @csv_fine_tune
     set_breadcrumbs
     if @csv_fine_tune.update(csv_fine_tune_params)
-      redirect_to dashboard_chatbot_csv_fine_tunes_path(@chatbot), notice: "CSV fine tune was successfully updated."
+      redirect_to csv_fine_tune_path(@csv_fine_tune), notice: "CSV fine tune was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

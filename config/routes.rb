@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       patch :toggle_marked_read_at
     end
   end
-  resources :csv_fine_tunes, only: [:edit, :update, :destroy], controller: 'dashboard/csv_fine_tunes'
+  resources :csv_fine_tunes, only: [:show, :edit, :update, :destroy], controller: 'dashboard/csv_fine_tunes'
   get '/account_settings', to: 'accounts#account_settings', as: :account_settings
   resources :accounts, only: [:update]
   devise_for :users
