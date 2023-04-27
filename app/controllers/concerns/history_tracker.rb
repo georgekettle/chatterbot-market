@@ -10,8 +10,10 @@ module HistoryTracker
   def update_history
     if request.get? && !['new', 'edit'].include?(params[:action])
       session[:history] ||= []
-      session[:history].unshift(request.fullpath)
-      session[:history].pop if session[:history].length > 10
+      # only add if request.fullpath is not already first in the array
+      session[:history].unshift(request.fullpath) unless session[:history].first == request.fullpath
+      # only keep the last 10 paths
+      session[:history] = session[:history].first(10)
     end
   end
 end
