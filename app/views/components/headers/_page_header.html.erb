@@ -1,14 +1,20 @@
 <% subtitle ||= nil %>
+<% show_back ||= false %>
 <% hide_breadcrumbs ||= false %>
 
 <div class="block sm:flex items-center justify-between mb-10">
   <div>
+    <% if show_back %>
+      <div class="-ml-6 mb-4">
+        <%= render 'components/navigation/back_btn' %>
+      </div>
+    <% end %>
     <% unless hide_breadcrumbs %>
       <div class="mb-4">
         <%= render 'components/navigation/breadcrumbs' %>
       </div>
     <% end %>
-    <h1 class="header"><%= title %></h1>
+    <h1 class="h1"><%= title %></h1>
     <% if subtitle %>
       <p class="text-tertiary-500 mt-2"><%= subtitle %></p>
     <% end %>

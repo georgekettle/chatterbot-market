@@ -1,0 +1,5 @@
+<% options ||= {} %>
+
+<%= content_tag :tr, class: 'align-top', **options do %>
+  <%= yield %>
+<% end %>

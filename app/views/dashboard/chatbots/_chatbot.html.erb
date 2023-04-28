@@ -6,11 +6,7 @@
         <div class="flex justify-between">
           <div class="flex space-x-4">
             <div class="font-medium text-tertiary-900"><%= chatbot.name %></div>
-            <% if chatbot.live? %>
-              <%= render 'components/badges/badge_sm', text: 'Live', color: 'success' %>
-            <% else %>
-              <%= render 'components/badges/badge_sm', text: 'Draft', color: 'info' %>
-            <% end %>
+            <%= render 'dashboard/chatbots/status', chatbot: chatbot %>
           </div>
         </div>
         <div class="text-tertiary-500"><%= chatbot.description || "No description" %></div>

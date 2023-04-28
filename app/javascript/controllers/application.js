@@ -13,5 +13,8 @@ application.register('password-visibility', PasswordVisibility)
 import TextareaAutogrow from 'stimulus-textarea-autogrow'
 application.register('textarea-autogrow', TextareaAutogrow)
 
+import Reveal from 'stimulus-reveal-controller'
+application.register('reveal', Reveal)
+
 export { application }
 
