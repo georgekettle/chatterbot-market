@@ -1,6 +1,5 @@
 class Learn::CsvFineTunesController < ApplicationController
     skip_after_action :verify_authorized, only: [:about, :download_example]
-    skip_before_action :update_history, only: [:download_example]
 
     # GET /learn/csv_fine_tunes/about
     def about
