@@ -1,4 +1,10 @@
 class Chatbot < ApplicationRecord
+  STATUS_DESCRIPTIONS = {
+    draft: "Your chatbot will be accessible only to you",
+    published: "Your chatbot will be accessible to anyone with the link",
+    marketplace: "Your chatbot will be published on the marketplace and accessible to anyone"
+  }
+
   belongs_to :account
   has_many :conversations, dependent: :destroy
   has_many :messages, through: :conversations

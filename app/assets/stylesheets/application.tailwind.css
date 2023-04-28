@@ -43,6 +43,10 @@
   input[type=reset] {
     @apply btn btn-primary;
   }
+
+  input[type="radio"] {
+    @apply rounded text-tertiary-900 border-gray-300 shadow-sm focus:border-tertiary-900 focus:ring-tertiary-900;
+  }
 }
 
 @layer components {
