@@ -41,7 +41,7 @@ class ChatbotsController < ApplicationController
 
   # PATCH/PUT /chatbots/1
   def update
-    params[:chatbot][:status] = params[:chatbot][:status].to_i
+    params[:chatbot][:status] = params[:chatbot][:status].to_i if params[:chatbot][:status]
     respond_to do |format|
       p chatbot_params
       if @chatbot.update(chatbot_params)
