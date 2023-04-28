@@ -9,5 +9,5 @@ class Chatbot < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }
   validates :description, presence: true, length: { minimum: 10 }
 
-  enum status: { draft: 0, live: 1 }
+  enum status: { draft: 0, published: 1, marketplace: 2 }
 end
