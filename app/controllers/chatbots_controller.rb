@@ -1,4 +1,5 @@
 class ChatbotsController < ApplicationController
+  layout 'dashboard_chatbot', only: [:update]
   before_action :set_chatbot, only: %i[ show edit update destroy ]
 
   # GET /chatbots
@@ -40,13 +41,13 @@ class ChatbotsController < ApplicationController
 
   # PATCH/PUT /chatbots/1
   def update
-    params[:chatbot][:status] = params[:chatbot][:status].to_i
+    params[:chatbot][:status] = params[:chatbot][:status].to_i if params[:chatbot][:status]
     respond_to do |format|
       p chatbot_params
       if @chatbot.update(chatbot_params)
         format.html { redirect_back fallback_location: dashboard_chatbot_url(@chatbot), notice: "Chatbot was successfully updated." }
       else
-        format.html { render :settings, status: :unprocessable_entity }
+        format.html { render 'dashboard/chatbots/settings', status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +70,6 @@ class ChatbotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chatbot_params
-      params.require(:chatbot).permit(:name, :status, :description)
+      params.require(:chatbot).permit(:name, :status, :description, :autopilot, :base_model_id)
     end
 end

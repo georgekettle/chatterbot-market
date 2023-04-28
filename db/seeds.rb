@@ -1,12 +1,16 @@
 if Rails.env == 'development'
+  puts "Destroying all Base Models..."
+  BaseModel.destroy_all
+  puts "Destroying all Training Materials..."
+  TrainingMaterial.destroy_all
   puts "Destroying all Chatbots..."
   Chatbot.destroy_all
   puts "Destroying all Users..."
   User.destroy_all
   puts "Destroying all Conversations..."
+  Conversation.destroy_all
   puts "Destroying all Accounts..."
   Account.destroy_all
-  Conversation.destroy_all
   puts "Destroying all Messages..."
   Message.destroy_all
   puts "Destroying all Feedback..."
@@ -24,9 +28,14 @@ Account.all.each do |account|
   account.update!(api_key_openai: ENV['OPENAI_API_KEY'])
 end
 
+puts "Creating base models..."
+CHATTERBOT_OPENAI_CLIENT.models.list["data"].select{|obj| obj["owned_by"] == 'openai'}.each do |model|
+  BaseModel.create!(name: model["id"], company: model["owned_by"])
+end
+
 puts "Creating chatbots..."
-Chatbot.create!(name: 'Bohemian wisdom', description: 'A chatbot for users to find the bohemian wisdom of George Harrison', account: george_h.personal_account, status: :live)
-Chatbot.create!(name: 'Write lyrics like George', description: 'Generate song lyrics like George Harrison', account: george_h.personal_account)
+Chatbot.create!(name: 'Bohemian wisdom', base_model: BaseModel.first, description: 'A chatbot for users to find the bohemian wisdom of George Harrison', account: george_h.personal_account, status: :published)
+Chatbot.create!(name: 'Write lyrics like George', base_model: BaseModel.second, description: 'Generate song lyrics like George Harrison', account: george_h.personal_account)
 
 puts "Creating conversations..."
 Chatbot.all.each do |cb|
@@ -56,7 +65,7 @@ Message.all.each do |message|
   end
 end
 
-puts "Creating Example Responses..."
+puts "Creating Corrections..."
 Message.all.each do |message|
   if message.sender != message.conversation.creator
     if rand(1..10) > 2

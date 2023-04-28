@@ -1,35 +1,90 @@
-<%= render 'components/headers/chatbot_dashboard', chatbot: @chatbot %>
+<%= content_for(:side_nav) do %>
+  <%= render 'dashboard/chatbots/nav/chatbot_side_nav', chatbot: @chatbot %>
+<% end %>
 
-<%= render 'shared/container' do %>
-  <div class="pt-16 pb-10">
-    <%= render 'components/headers/page_header', title: 'Account Settings' %>
-    <div class="mt-10 max-w-2xl">
-      <%# CHATBOT DETAILS %>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-10">
+<%# PAGE HEADER %>
+<div class="p-16 pb-0">
+  <%= render 'shared/container' do %>
+    <%= render 'components/headers/page_header', title: 'Settings', hide_breadcrumbs: true %>
+  <% end %>
+</div>
+
+<%# SECTIONS %>
+<div class="divide-y divide-tertiary-300">
+  <%= render 'dashboard/chatbots/settings/section', title: "General Settings" do %>
+    <%= form_with model: @chatbot do |f| %>
+      <div class="input-spacer">
         <div>
-          <h2 class="text-lg font-medium tracking-tight">Details</h2>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
         </div>
-        <div class="-mt-6">
-          <%= form_with model: @chatbot do |f| %>
-            <div>
-              <%= f.label :name %>
-              <%= f.text_field :name %>
-            </div>
-            
-            <div>
-              <%= f.label :status, class: "relative inline-flex items-center cursor-pointer" do %>
-                <%= f.check_box :status, { checked: f.object.status == 'live', class: 'sr-only peer' }, '1', '0' %>
-                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-success-300 dark:peer-focus:ring-success-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-success-600"></div>
-                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Live on Marketplace</span>
-              <% end %>
-            </div>
+        
+        <div>
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </div>
 
-            <div class="flex justify-end">
-              <%= f.submit 'Save' %>
-            </div>
-          <% end %>
+        <div class="flex justify-end">
+          <%= f.submit 'Save' %>
         </div>
       </div>
-    </div>
-  </div>
-<% end %>
+    <% end %>
+  <% end %>
+
+  <%= render 'dashboard/chatbots/settings/section', title: "Privacy Settings" do %>
+    <%= form_with model: @chatbot do |f| %>
+      <div class="input-spacer">
+        <div>
+          <div class="space-y-4">
+            <% Chatbot.statuses.each do |status_name, status_value| %>
+              <div class="flex">
+                <%= f.radio_button :status, status_value, checked: status_name == @chatbot.status, class: 'peer mr-4 mt-1', id: "chatbot_status_#{status_value}" %>
+                <label for="chatbot_status_<%= status_value %>" class="cursor-pointer peer-checked:text-tertiary-900 hover:text-tertiary-900">
+                  <div class="block space-y-1">
+                    <div class="w-full font-medium text-sm"><%= status_name.capitalize %></div>
+                    <div class="w-full text-sm font-normal text-tertiary-500"><%= Chatbot::STATUS_DESCRIPTIONS[status_name.to_sym] %></div>
+                  </div>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <%= f.submit 'Save' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= render 'dashboard/chatbots/settings/section', title: "Autopilot", subtitle: "Allows your chatbot to answer user queries automatically once you've provided enough CSV Uploads as example responses, freeing you from having to reply manually" do %>
+    <%= form_with model: @chatbot do |f| %>
+      <div class="input-spacer">
+        <div>
+          <%# Toggle to switch autopilot %>
+          <%= render 'components/forms/toggle', f: f, field_name: :autopilot, label_text: "Toggle autopilot" %>
+        </div>
+
+        <div class="flex justify-end">
+          <%= f.submit 'Save' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= render 'dashboard/chatbots/settings/section', title: "Base model", subtitle: "Choose a base model from OpenAI for your chatbot to be built on top of" do %>
+    <%= form_with model: @chatbot do |f| %>
+      <div class="input-spacer">
+        <div>
+          <%# Select the base model for chatbot %>
+          <%= f.label :base_model_id, "OpenAI model", class: 'sr-only' %>
+          <%= f.collection_select :base_model_id, BaseModel.all.order(:name), :id, :name %>
+        </div>
+
+        <div class="flex justify-end">
+          <%= f.submit 'Save' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
