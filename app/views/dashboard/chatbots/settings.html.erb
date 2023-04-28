@@ -71,4 +71,20 @@
       </div>
     <% end %>
   <% end %>
+
+  <%= render 'dashboard/chatbots/settings/section', title: "Base model", subtitle: "Choose a base model from OpenAI for your chatbot to be built on top of" do %>
+    <%= form_with model: @chatbot do |f| %>
+      <div class="input-spacer">
+        <div>
+          <%# Select the base model for chatbot %>
+          <%= f.label :base_model_id, "OpenAI model", class: 'sr-only' %>
+          <%= f.collection_select :base_model_id, BaseModel.all.order(:name), :id, :name %>
+        </div>
+
+        <div class="flex justify-end">
+          <%= f.submit 'Save' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
