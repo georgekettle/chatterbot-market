@@ -4,7 +4,10 @@
       <%= render 'components/avatar', size: :sm %>
       <div>
         <p class="header-sm text-left line-clamp-1"><%= chatbot.name %></p>
-        <%= render 'dashboard/chatbots/status', chatbot: chatbot %>
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <%= render 'dashboard/chatbots/status', chatbot: chatbot %>
+          <%= render 'dashboard/chatbots/autopilot_status', chatbot: chatbot %>
+        </div>
       </div>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-tertiary-500 shrink-0 ml-2">
