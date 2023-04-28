@@ -1,0 +1,14 @@
+<% subtitle ||= nil %>
+
+<div class="p-16">
+  <%= render 'shared/container' do %>
+    <div class="grid grid-cols-3 gap-8">
+      <div>
+        <%= render 'components/headers/page_header_2', title: title, subtitle: subtitle %>
+      </div>
+      <div>
+        <%= yield %>
+      </div>
+    </div>
+  <% end %>
+</div>
