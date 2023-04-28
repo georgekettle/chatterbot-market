@@ -35,19 +35,18 @@
     <%= form_with model: @chatbot do |f| %>
       <div class="input-spacer">
         <div>
-          <%# f.label :status %>
           <div class="space-y-4">
-          <% Chatbot.statuses.each do |status_name, status_value| %>
-            <div class="flex">
-              <%= f.radio_button :status, status_value, checked: status_name == @chatbot.status, class: 'peer mr-4 mt-1', id: "chatbot_status_#{status_value}" %>
-              <label for="chatbot_status_<%= status_value %>" class="cursor-pointer peer-checked:text-tertiary-900 hover:text-tertiary-900">
-                <div class="block space-y-1">
+            <% Chatbot.statuses.each do |status_name, status_value| %>
+              <div class="flex">
+                <%= f.radio_button :status, status_value, checked: status_name == @chatbot.status, class: 'peer mr-4 mt-1', id: "chatbot_status_#{status_value}" %>
+                <label for="chatbot_status_<%= status_value %>" class="cursor-pointer peer-checked:text-tertiary-900 hover:text-tertiary-900">
+                  <div class="block space-y-1">
                     <div class="w-full font-medium text-base"><%= status_name.capitalize %></div>
                     <div class="w-full text-sm font-normal text-tertiary-500"><%= Chatbot::STATUS_DESCRIPTIONS[status_name.to_sym] %></div>
-                </div>
-              </label>
-            </div>
-          <% end %>
+                  </div>
+                </label>
+              </div>
+            <% end %>
           </div>
         </div>
 
