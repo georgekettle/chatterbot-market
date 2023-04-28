@@ -6,6 +6,7 @@ class Chatbot < ApplicationRecord
   }
 
   belongs_to :account
+  belongs_to :base_model
   has_many :conversations, dependent: :destroy
   has_many :messages, through: :conversations
   has_many :feedback, through: :messages

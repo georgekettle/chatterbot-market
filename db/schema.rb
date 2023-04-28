@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_181445) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_28_193226) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_181445) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "base_models", force: :cascade do |t|
+    t.string "name"
+    t.string "company"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "chatbots", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
@@ -70,7 +77,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_181445) do
     t.integer "status", default: 0, null: false
     t.text "description"
     t.boolean "autopilot", default: false
+    t.bigint "base_model_id"
     t.index ["account_id"], name: "index_chatbots_on_account_id"
+    t.index ["base_model_id"], name: "index_chatbots_on_base_model_id"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -152,6 +161,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_181445) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chatbots", "accounts"
+  add_foreign_key "chatbots", "base_models"
   add_foreign_key "conversations", "chatbots"
   add_foreign_key "conversations", "users", column: "creator_id"
   add_foreign_key "corrections", "messages"
