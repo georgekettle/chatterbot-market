@@ -15,8 +15,11 @@
     </div>
     <%# CSV file %>
     <div>
-      <%= f.label :csv_file, 'Upload CSV file' %>
-      <% if csv_fine_tune.csv_file.attached? %>
+      <div class="flex items-baseline justify-between">
+        <%= f.label :csv_file, 'Upload CSV file' %>
+        <%= link_to 'See examples', about_learn_csv_fine_tunes_path, class: 'text-sm link-underline' %>
+      </div>
+      <% if csv_fine_tune.persisted? && csv_fine_tune.csv_file.attached? %>
         <div data-controller="reveal" data-reveal-hidden-class="hidden">
           <div data-reveal-target="item">
             <div class="p-3 border border-tertiary-300 rounded shadow-sm flex items-center justify-between">
