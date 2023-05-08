@@ -3,7 +3,6 @@ class Message < ApplicationRecord
   belongs_to :sender, class_name: "User", optional: true
   has_one :chatbot, through: :conversation
   has_one :feedback, dependent: :destroy
-  has_one :training_material, as: :material, dependent: :destroy
 
   validates :content, presence: true
 

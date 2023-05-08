@@ -1,8 +1,6 @@
 if Rails.env == 'development'
   puts "Destroying all Base Models..."
   BaseModel.destroy_all
-  puts "Destroying all Training Materials..."
-  TrainingMaterial.destroy_all
   puts "Destroying all Chatbots..."
   Chatbot.destroy_all
   puts "Destroying all Users..."
