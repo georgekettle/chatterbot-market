@@ -2,6 +2,7 @@ class Message < ApplicationRecord
   include ActionView::RecordIdentifier
 
   belongs_to :chat
+  has_one :creator, through: :chat, class_name: "User", source: :creator
   has_one :chatbot, through: :chat
   has_one :feedback, dependent: :destroy
 

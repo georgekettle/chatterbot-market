@@ -4,6 +4,6 @@ module MessagesHelper
   end
 
   def message_sender(message)
-    message.sender ? message.sender.name : message.chatbot.name
+    message.user? ? message.creator.name : message.chatbot.name
   end
 end
