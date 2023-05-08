@@ -31,6 +31,21 @@
     <% end %>
   <% end %>
 
+  <%= render 'dashboard/chatbots/settings/section', title: "Prompt Settings" do %>
+    <%= form_with model: @chatbot do |f| %>
+      <div class="input-spacer">
+        <div>
+          <%= f.label :system_prompt %>
+          <%= f.text_area :system_prompt, data: { controller: "textarea-autogrow" } %>
+        </div>
+
+        <div class="flex justify-end">
+          <%= f.submit 'Save' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
   <%= render 'dashboard/chatbots/settings/section', title: "Privacy Settings" do %>
     <%= form_with model: @chatbot do |f| %>
       <div class="input-spacer">
