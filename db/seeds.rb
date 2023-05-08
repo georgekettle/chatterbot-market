@@ -25,7 +25,8 @@ Account.all.each do |account|
 end
 
 puts "Creating base models..."
-CHATTERBOT_OPENAI_CLIENT.models.list["data"].select{|obj| obj["owned_by"] == 'openai'}.each do |model|
+openai_gpt_models = CHATTERBOT_OPENAI_CLIENT.models.list["data"].select{|obj| obj["owned_by"] == 'openai' && obj["id"].match?(/gpt/) }
+openai_gpt_models.each do |model|
   BaseModel.create!(name: model["id"], company: model["owned_by"])
 end
 
