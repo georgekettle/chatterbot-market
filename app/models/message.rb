@@ -1,6 +1,5 @@
 class Message < ApplicationRecord
   belongs_to :chat
-  belongs_to :sender, class_name: "User", optional: true
   has_one :chatbot, through: :chat
   has_one :feedback, dependent: :destroy
 
