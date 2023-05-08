@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   # namespace routes for chatbot to dashboard
   namespace :dashboard do
     resources :chatbots, only: [:index, :show] do
-      resources :corrections, only: [:index]
       resources :csv_fine_tunes, only: [:index, :new, :create]
       resources :conversations, only: [:index, :new, :create]
       resources :feedback, only: [:index]
@@ -22,13 +21,11 @@ Rails.application.routes.draw do
   resources :chatbots, except: [:edit] do
     resources :conversations, only: [:new, :create]
   end
-  resources :corrections, only: [:edit, :update, :destroy]
   resources :conversations, only: [:show] do
     resources :messages, only: [:create]
   end
   resources :messages, only: [] do
     resources :feedback, only: [:create]
-    resources :corrections, only: [:new, :create], controller: 'messages/corrections'
   end
   resources :feedback, only: [:update] do
     member do
