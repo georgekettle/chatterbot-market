@@ -1,12 +1,12 @@
 <%= render 'components/empty_state/card' do %>
   <div class="text-center space-y-6">
     <div class="space-y-2">
-      <h3 class="h2">No conversations yet</h3>
+      <h3 class="h2">No chats yet</h3>
       <p class="text-tertiary-500">
         Invite people to use your chatbot with this link
       </p>
     </div>
-    <%= link_to new_chatbot_conversation_path(chatbot), class: "btn btn-primary" do %>
+    <%= link_to new_chatbot_chat_path(chatbot), class: "btn btn-primary" do %>
       Chat link
     <% end %>
   </div>

@@ -9,7 +9,7 @@ class ChatbotsController < ApplicationController
 
   # GET /chatbots/1
   def show
-    @conversations = @chatbot.conversations.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
+    @chats = @chatbot.chats.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
 
     breadcrumb "Marketplace", chatbots_path
     breadcrumb @chatbot.name, request.path

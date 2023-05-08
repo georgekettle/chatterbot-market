@@ -7,11 +7,11 @@ class FeedbackPolicy < ApplicationPolicy
   end
 
   def create?
-    record.message.conversation.creator == user.user
+    record.message.chat.creator == user.user
   end
 
   def update?
-    record.message.conversation.creator == user.user
+    record.message.chat.creator == user.user
   end
 
   def toggle_marked_read_at?

@@ -9,7 +9,7 @@ class Dashboard::ChatbotsController < ApplicationController
   # GET /dashboard/chatbots/1
   def show
     @chatbot = Chatbot.find(params[:id])
-    @conversations = @chatbot.conversations.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
+    @chats = @chatbot.chats.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
     authorize @chatbot
     set_breadcrumbs
   end

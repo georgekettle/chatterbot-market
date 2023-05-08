@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
-  belongs_to :conversation
+  belongs_to :chat
   belongs_to :sender, class_name: "User", optional: true
-  has_one :chatbot, through: :conversation
+  has_one :chatbot, through: :chat
   has_one :feedback, dependent: :destroy
 
   validates :content, presence: true
@@ -13,8 +13,8 @@ class Message < ApplicationRecord
     account.users.include?(sender)
   end
 
-  # Method to find previous message from conversation
+  # Method to find previous message from chat
   def previous_message
-    conversation.messages.where("id < ?", id).last
+    chat.messages.where("id < ?", id).last
   end
 end

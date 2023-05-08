@@ -1,16 +1,6 @@
-<%= turbo_frame_tag dom_id(chatbot, :conversation_form), target: "_top" do %>
-  <%= form_with model: conversation, url: chatbot_conversations_path(chatbot) do |form| %>
-    <% if conversation.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being sent:</h2>
-
-        <ul>
-          <% conversation.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+<%= turbo_frame_tag dom_id(chatbot, :chat_form), target: "_top" do %>
+  <%= form_with model: chat, url: dashboard_chatbot_chats_path(chatbot) do |form| %>
+    <%= render 'components/forms/errors', form: form %>
 
     <div class="ring-1 ring-tertiary-300 rounded shadow flex items-center focus-within:ring-primary-500 focus-within:ring-2 overflow-hidden">
       <%= form.fields_for :messages do |message_form| %>

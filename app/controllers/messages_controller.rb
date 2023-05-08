@@ -1,18 +1,18 @@
 class MessagesController < ApplicationController
-  # POST /conversations/:conversation_id/messages
+  # POST /chats/:chat_id/messages
   def create
-    @conversation = Conversation.find(params[:conversation_id])
-    @message = @conversation.messages.new(message_params)
+    @chat = Chat.find(params[:chat_id])
+    @message = @chat.messages.new(message_params)
     @message.sender = current_user
     authorize @message
 
     respond_to do |format|
       if @message.save
         format.turbo_stream
-        format.html { redirect_to conversation_path(@conversation) }
+        format.html { redirect_to chat_path(@chat) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@conversation, :message_form), partial: "messages/form", locals: { conversation: @conversation, message: @message }) }
-        format.html { render "conversations/show" }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@chat, :message_form), partial: "messages/form", locals: { chat: @chat, message: @message }) }
+        format.html { render "chats/show" }
       end
     end
   end

@@ -1,7 +1,0 @@
-<% selected_conversation ||= nil %>
-
-<div class="card">
-  <% conversations.each do |convo| %>
-    <%= render 'dashboard/conversations/conversation', conversation: convo, selected: convo == selected_conversation %>
-  <% end %>
-</div>

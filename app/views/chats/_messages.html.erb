@@ -1,0 +1,7 @@
+<%= content_tag :div, id: dom_id(chat, :messages), class: 'relative h-full grow-1 overflow-y-scroll' do %>
+  <% chat.messages.each do |message| %>
+    <div class="max-w-3xl mx-auto">
+      <%= render 'messages/message', message: message %>
+    </div>
+  <% end %>
+<% end %>
