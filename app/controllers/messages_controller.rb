@@ -2,8 +2,7 @@ class MessagesController < ApplicationController
   # POST /chats/:chat_id/messages
   def create
     @chat = Chat.find(params[:chat_id])
-    @message = @chat.messages.new(message_params)
-    @message.sender = current_user
+    @message = Message.new(message_params.merge(chat: @chat, role: "user"))
     authorize @message
 
     respond_to do |format|
