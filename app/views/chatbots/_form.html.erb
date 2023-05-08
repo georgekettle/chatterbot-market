@@ -1,27 +1,29 @@
 <%= form_with(model: chatbot) do |form| %>
-  <% if chatbot.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(chatbot.errors.count, "error") %> prohibited this chatbot from being saved:</h2>
+  <div class="input-spacer">
+    <%= render 'components/forms/errors', form: form %>
 
-      <ul>
-        <% chatbot.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <%= form.label :avatar, class: 'block' do %>
+      <span class="sr-only">Choose profile photo</span>
+      <%= form.file_field :avatar, class: 'block w-full text-sm text-tertiary-500
+        file:mr-4 file:py-2 file:px-4
+        file:rounded rounded file:border-0
+        file:text-sm file:font-semibold
+        file:bg-tertiary-50 file:text-tertiary-700
+        hover:file:bg-tertiary-100' %>
+    <% end %>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div>
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
 
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <div>
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>
