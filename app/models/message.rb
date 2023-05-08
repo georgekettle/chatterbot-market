@@ -4,7 +4,6 @@ class Message < ApplicationRecord
   has_one :chatbot, through: :conversation
   has_one :feedback, dependent: :destroy
   has_one :training_material, as: :material, dependent: :destroy
-  has_one :correction, dependent: :destroy
 
   validates :content, presence: true
 
