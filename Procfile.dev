@@ -1,3 +1,5 @@
 web: unset PORT && bin/rails server
 js: yarn build --watch
 css: yarn build:css --watch
+sidekiq: bundle exec sidekiq -c 2
+queue: redis-server
