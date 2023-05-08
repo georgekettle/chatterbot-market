@@ -1,9 +1,7 @@
 <div class="flex items-center space-x-2">
   <% if chatbot.published? || chatbot.marketplace? %>
-    <div class="rounded-full w-1 h-1 bg-success-500 ring ring-success-100"></div>
-    <p class="text-xs font-medium text-success-600"><%= chatbot.status&.capitalize %></p>
+    <%= render 'components/badges/badge_sm', text: chatbot.status&.capitalize, color: 'success' %>
   <% else %>
-    <div class="rounded-full w-1 h-1 bg-info-500 ring ring-info-100"></div>
-    <p class="text-xs font-medium text-info-600"><%= chatbot.status&.capitalize %></p>
+    <%= render 'components/badges/badge_sm', text: chatbot.status&.capitalize, color: 'info' %>
   <% end %>
 </div>
