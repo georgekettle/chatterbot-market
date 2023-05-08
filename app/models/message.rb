@@ -6,6 +6,8 @@ class Message < ApplicationRecord
 
   validates :content, presence: true
 
+  enum role: { system: 0, assistant: 1, user: 2 }
+
   # Method to check if message from owner
   def sent_by_account?(account)
     account.users.include?(sender)
