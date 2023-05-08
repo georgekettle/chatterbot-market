@@ -1,18 +1,17 @@
 <% color ||= 'primary' %>
 <% case color %>
 <% when 'primary' %>
-  <% color_classes = 'bg-primary-100 border border-primary-300 text-primary-900' %>
+  <% color_classes = 'ring-primary-500/10 text-primary-600 bg-primary-50' %>
 <% when 'secondary' %>
-  <% color_classes = 'bg-secondary-100 border border-secondary-300 text-secondary-900' %>
+  <% color_classes = 'ring-secondary-500/10 text-secondary-600 bg-secondary-50' %>
 <% when 'tertiary' %>
-  <% color_classes = 'bg-tertiary-100 border border-tertiary-300 text-tertiary-900' %>
+  <% color_classes = 'ring-tertiary-500/10 text-tertiary-600 bg-tertiary-50' %>
 <% when 'success' %>
-  <% color_classes = 'bg-success-100 border border-success-300 text-success-900' %>
+  <% color_classes = 'ring-success-500/10 text-success-600 bg-success-50' %>
 <% when 'danger' %>
-  <% color_classes = 'bg-danger-100 border border-danger-300 text-danger-900' %>
+  <% color_classes = 'ring-danger-500/10 text-danger-600 bg-danger-50' %>
 <% when 'info' %>
-  <% color_classes = 'bg-info-100 border border-info-300 text-info-900' %>
+  <% color_classes = 'ring-info-500/10 text-info-600 bg-info-50' %>
 <% end %>
 
-
-<span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold <%= color_classes %>"><%= text %></span>
+<span class="inline-flex items-center rounded-md  px-1.5 py-0.5 text-xs font-medium  ring-1 ring-inset "><%= text %></span>
