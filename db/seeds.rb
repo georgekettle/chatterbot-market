@@ -30,8 +30,17 @@ CHATTERBOT_OPENAI_CLIENT.models.list["data"].select{|obj| obj["owned_by"] == 'op
 end
 
 puts "Creating chatbots..."
-Chatbot.create!(name: 'Bohemian wisdom', base_model: BaseModel.first, description: 'A chatbot for users to find the bohemian wisdom of George Harrison', account: george_h.personal_account, status: :published)
-Chatbot.create!(name: 'Write lyrics like George', base_model: BaseModel.second, description: 'Generate song lyrics like George Harrison', account: george_h.personal_account)
+Chatbot.create!(name: 'JSON API',
+  base_model: BaseModel.first,
+  description: 'A chatbot that only speaks JSON.',
+  account: george_h.personal_account,
+  status: :published,
+  system_prompt: "You are an assistant that only speaks JSON. Do not write normal text.")
+Chatbot.create!(name: 'Ruby on Rails Code Assistant',
+  base_model: BaseModel.second,
+  description: 'Be guided through creating a Ruby on Rails application with this chatbot.',
+  account: george_h.personal_account,
+  system_prompt: "Welcome to the Ruby on Rails Code Assistant! How can I help you today with your coding needs? Whether you're looking for guidance on specific methods, syntax, or best practices, feel free to ask any questions or share your code snippet to receive personalized support and recommendations for optimizing your Ruby on Rails project.")
 
 puts "Creating conversations..."
 Chatbot.all.each do |cb|
