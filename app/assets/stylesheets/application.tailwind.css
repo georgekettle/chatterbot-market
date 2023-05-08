@@ -33,9 +33,9 @@
     @apply block w-full rounded border-0 py-1.5 text-tertiary-900 shadow-sm ring-1 ring-inset ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-1 focus:ring-inset focus:ring-tertiary-900 sm:text-sm sm:leading-6
   }
 
-  [type='file'] {
+  /* [type='file'] {
     @apply file:bg-tertiary-900 file:text-white max-w-xl shadow-sm bg-white file:rounded-none block w-full text-sm text-tertiary-900 border border-tertiary-300 rounded cursor-pointer focus:outline-none;
-  }
+  } */
 
   input[type=button],
   input[type=submit],

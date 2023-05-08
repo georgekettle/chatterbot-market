@@ -1,0 +1,50 @@
+<% size ||= :sm %>
+
+<% if chatbot.avatar.attached? %>
+  <% case size %>
+  <% when :xs %>
+    <div class="inline-block h-6 w-6 rounded-md shrink-0 bg-cover bg-center border border-tertiary-200" style="background-image: url('<%= cl_image_path chatbot.avatar.key %>')"></div>
+  <% when :sm %>
+    <div class="inline-block h-8 w-8 rounded-md shrink-0 bg-cover bg-center border border-tertiary-200" style="background-image: url('<%= cl_image_path chatbot.avatar.key %>')"></div>
+  <% when :md %>
+    <div class="inline-block h-10 w-10 rounded-md shrink-0 bg-cover bg-center border border-tertiary-200" style="background-image: url('<%= cl_image_path chatbot.avatar.key %>')"></div>
+  <% when :lg %>
+    <div class="inline-block h-12 w-12 rounded-md shrink-0 bg-cover bg-center border border-tertiary-200" style="background-image: url('<%= cl_image_path chatbot.avatar.key %>')"></div>
+  <% when :xl %>
+    <div class="inline-block h-14 w-14 rounded-md shrink-0 bg-cover bg-center border border-tertiary-200" style="background-image: url('<%= cl_image_path chatbot.avatar.key %>')"></div>
+  <% end %>
+<% else %>
+  <% case size %>
+  <% when :xs %>
+    <span class="inline-block h-6 w-6 overflow-hidden rounded-md bg-tertiary-100 flex-shrink-0 border border-tertiary-300">
+      <svg class="h-full w-full text-tertiary-300" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    </span>
+  <% when :sm %>
+    <span class="inline-block h-8 w-8 overflow-hidden rounded-md bg-tertiary-100 flex-shrink-0 border border-tertiary-300">
+      <svg class="h-full w-full text-tertiary-300" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    </span>
+  <% when :md %>
+    <span class="inline-block h-10 w-10 overflow-hidden rounded-md bg-tertiary-100 flex-shrink-0 border border-tertiary-300">
+      <svg class="h-full w-full text-tertiary-300" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    </span>
+  <% when :lg %>
+    <span class="inline-block h-12 w-12 overflow-hidden rounded-md bg-tertiary-100 flex-shrink-0 border border-tertiary-300">
+      <svg class="h-full w-full text-tertiary-300" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    </span>
+  <% when :xl %>
+    <span class="inline-block h-14 w-14 overflow-hidden rounded-md bg-tertiary-100 flex-shrink-0 border border-tertiary-300">
+      <svg class="h-full w-full text-tertiary-300" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    </span>
+  <% end %>
+<% end %>
+
