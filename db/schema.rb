@@ -76,7 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_193226) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
     t.text "description"
-    t.boolean "autopilot", default: false
     t.bigint "base_model_id"
     t.index ["account_id"], name: "index_chatbots_on_account_id"
     t.index ["base_model_id"], name: "index_chatbots_on_base_model_id"
@@ -89,12 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_193226) do
     t.datetime "updated_at", null: false
     t.index ["chatbot_id"], name: "index_conversations_on_chatbot_id"
     t.index ["creator_id"], name: "index_conversations_on_creator_id"
-  end
-
-  create_table "csv_fine_tunes", force: :cascade do |t|
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "feedbacks", force: :cascade do |t|

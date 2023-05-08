@@ -57,21 +57,6 @@
     <% end %>
   <% end %>
 
-  <%= render 'dashboard/chatbots/settings/section', title: "Autopilot", subtitle: "Allows your chatbot to answer user queries automatically once you've provided enough CSV Uploads as example responses, freeing you from having to reply manually" do %>
-    <%= form_with model: @chatbot do |f| %>
-      <div class="input-spacer">
-        <div>
-          <%# Toggle to switch autopilot %>
-          <%= render 'components/forms/toggle', f: f, field_name: :autopilot, label_text: "Toggle autopilot" %>
-        </div>
-
-        <div class="flex justify-end">
-          <%= f.submit 'Save' %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-
   <%= render 'dashboard/chatbots/settings/section', title: "Base model", subtitle: "Choose a base model from OpenAI for your chatbot to be built on top of" do %>
     <%= form_with model: @chatbot do |f| %>
       <div class="input-spacer">
