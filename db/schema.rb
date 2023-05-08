@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_193226) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_182039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_193226) do
     t.integer "status", default: 0, null: false
     t.text "description"
     t.bigint "base_model_id"
+    t.text "system_prompt"
     t.index ["account_id"], name: "index_chatbots_on_account_id"
     t.index ["base_model_id"], name: "index_chatbots_on_base_model_id"
   end
