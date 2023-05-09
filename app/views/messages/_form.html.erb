@@ -1,19 +1,9 @@
-<%= turbo_frame_tag dom_id(conversation, :message_form) do %>
-  <%= form_with(model: message, url: conversation_messages_path(conversation), data: { turbo_target: '_top' }) do |form| %>
-    <% if message.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being sent:</h2>
-
-        <ul>
-          <% message.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+<%= turbo_frame_tag dom_id(chat, :message_form) do %>
+  <%= form_with(model: message, url: chat_messages_path(chat), data: { turbo_target: '_top' }) do |form| %>
+    <%= render 'components/forms/errors', form: form %>
 
     <div class="ring-1 ring-tertiary-300 rounded shadow flex items-center focus-within:ring-primary-500 focus-within:ring-2 overflow-hidden">
-      <%= form.text_field :content, placeholder: "Write a message for #{conversation.chatbot.name}...", autofocus: true, class: 'border-0 ring-0 focus:ring-0 focus:outline-none' %>
+      <%= form.text_field :content, placeholder: "Write a message for #{chat.chatbot.name}...", autofocus: true, class: 'border-0 ring-0 focus:ring-0 focus:outline-none' %>
       <div class="p-0.5">
         <%= form.button type: :submit, class: 'btn btn-primary p-2 bg-primary-600 hover:bg-primary-700' do %>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">

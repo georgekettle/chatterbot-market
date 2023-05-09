@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_08_182039) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_230117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,13 +82,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_182039) do
     t.index ["base_model_id"], name: "index_chatbots_on_base_model_id"
   end
 
-  create_table "conversations", force: :cascade do |t|
+  create_table "chats", force: :cascade do |t|
     t.bigint "chatbot_id", null: false
     t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chatbot_id"], name: "index_conversations_on_chatbot_id"
-    t.index ["creator_id"], name: "index_conversations_on_creator_id"
+    t.index ["chatbot_id"], name: "index_chats_on_chatbot_id"
+    t.index ["creator_id"], name: "index_chats_on_creator_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -105,13 +105,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_182039) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.bigint "conversation_id", null: false
-    t.bigint "sender_id"
-    t.boolean "ai_generated", default: false, null: false
+    t.bigint "chat_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-    t.index ["sender_id"], name: "index_messages_on_sender_id"
+    t.integer "role", default: 0, null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -136,10 +134,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_182039) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chatbots", "accounts"
   add_foreign_key "chatbots", "base_models"
-  add_foreign_key "conversations", "chatbots"
-  add_foreign_key "conversations", "users", column: "creator_id"
+  add_foreign_key "chats", "chatbots"
+  add_foreign_key "chats", "users", column: "creator_id"
   add_foreign_key "feedbacks", "messages"
   add_foreign_key "feedbacks", "users"
-  add_foreign_key "messages", "conversations"
-  add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "messages", "chats"
 end

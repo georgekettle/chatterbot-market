@@ -23,6 +23,8 @@ module Timeline
       html_tag
     }
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.generators do |generate|
       generate.assets false # create assets when generating a scaffold
       # generate.force_plural false # allow pluralized model names

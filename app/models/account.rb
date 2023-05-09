@@ -3,7 +3,7 @@ class Account < ApplicationRecord
   has_many :account_users, dependent: :destroy
   has_many :users, through: :account_users
   has_many :chatbots, dependent: :destroy
-  has_many :conversations, through: :chatbots
+  has_many :chats, through: :chatbots
 
   scope :personal, -> { where(personal: true) }
   scope :impersonal, -> { where(personal: false) }

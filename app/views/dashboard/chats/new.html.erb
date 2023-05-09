@@ -6,21 +6,21 @@
   <div class="space-y-4 w-full max-w-xs flex-shrink-0 h-full flex flex-col pl-6 pt-6">
     <div class="flex items-center justify-between w-full shrink-0">
       <h1 class="h1">Messages</h1>
-      <%= link_to new_dashboard_chatbot_conversation_path(@chatbot), class: 'rounded-full p-2 -mr-2 text-tertiary-900 hover:bg-tertiary-50' do %>
+      <%= link_to new_dashboard_chatbot_chat_path(@chatbot), class: 'rounded-full p-2 -mr-2 text-tertiary-900 hover:bg-tertiary-50' do %>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
         </svg>
       <% end %>
     </div>
     <div class="w-full h-full grow-1 overflow-y-scroll pb-6">
-      <% if @conversations.any? %>
-        <%= render 'conversations', conversations: @conversations, selected_conversation: @selected_conversation %>
+      <% if @chats.any? %>
+        <%= render 'chats', chats: @chats, selected_chat: @selected_chat %>
       <% else %>
-        <%= render 'conversations_empty_state', chatbot: @chatbot %>
+        <%= render 'chats_empty_state', chatbot: @chatbot %>
       <% end %>
     </div>
   </div>
   <div class="p-6 pt-0 w-full flex flex-col justify-end">
-    <%= render 'form', conversation: @conversation, chatbot: @chatbot %>
+    <%= render 'form', chat: @chat, chatbot: @chatbot %>
   </div>
 </div>

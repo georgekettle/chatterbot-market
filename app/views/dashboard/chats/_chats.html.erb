@@ -1,0 +1,7 @@
+<% selected_chat ||= nil %>
+
+<div class="card">
+  <% chats.each do |convo| %>
+    <%= render 'dashboard/chats/chat', chat: convo, selected: convo == selected_chat %>
+  <% end %>
+</div>

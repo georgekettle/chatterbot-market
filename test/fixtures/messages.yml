@@ -2,12 +2,12 @@
 
 one:
   content: MyText
-  conversation: one
+  chat: one
   account: one
   ai_generated: false
 
 two:
   content: MyText
-  conversation: two
+  chat: two
   account: two
   ai_generated: false

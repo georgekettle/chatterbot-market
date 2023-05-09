@@ -10,10 +10,10 @@ class FeedbackController < ApplicationController
     # respond to the request as html and turbostreams
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @message.conversation, notice: "Thank you for your feedback" }
+        format.html { redirect_to @message.chat, notice: "Thank you for your feedback" }
         format.turbo_stream
       else
-        format.html { redirect_to @message.conversation, alert: "Something went wrong when creating your feedback" }
+        format.html { redirect_to @message.chat, alert: "Something went wrong when creating your feedback" }
         format.turbo_stream
       end
     end
@@ -25,10 +25,10 @@ class FeedbackController < ApplicationController
     authorize @feedback
     respond_to do |format|
       if @feedback.update(feedback_params)
-        format.html { redirect_to @feedback.message.conversation, notice: "Feedback was successfully updated" }
+        format.html { redirect_to @feedback.message.chat, notice: "Feedback was successfully updated" }
         format.turbo_stream
       else
-        format.html { redirect_to @feedback.message.conversation, notice: "Something went wrong when creating your feedback" }
+        format.html { redirect_to @feedback.message.chat, notice: "Something went wrong when creating your feedback" }
         format.turbo_stream
       end
     end

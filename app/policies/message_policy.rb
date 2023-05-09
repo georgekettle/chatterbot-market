@@ -8,6 +8,6 @@ class MessagePolicy < ApplicationPolicy
 
   def create?
     # NOTE: Be explicit about which records you allow access to!
-    record.sender == user.user
+    record.creator == user.user
   end
 end

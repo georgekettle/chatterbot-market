@@ -1,6 +1,6 @@
 <div class="h-screen flex flex-col">
   <div class="shrink-0">
-    <%= render 'conversations/header', conversation: @conversation %>
+    <%= render 'chats/header', chat: @chat %>
   </div>
   <div class="grow-1 h-full overflow-y-scroll">
     <%= render 'shared/container', classes: 'max-w-3xl' do %>
@@ -9,7 +9,7 @@
   </div>
   <div class="shrink-0 py-4 sm:py-6">
     <%= render 'shared/container', classes: 'max-w-3xl' do %>
-      <%= render 'conversations/form', conversation: @conversation, chatbot: @chatbot %>
+      <%= render 'chats/form', chat: @chat, chatbot: @chatbot %>
     <% end %>
   </div>
 </div>

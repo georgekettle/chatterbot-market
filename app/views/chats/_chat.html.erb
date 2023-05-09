@@ -1,0 +1,6 @@
+<%= render 'shared/container', classes: 'max-w-3xl h-full flex flex-col' do %>
+  <%= render 'chats/messages', chat: chat %>
+  <div class="shrink-0 pb-6">
+    <%= render 'messages/form', chat: chat, message: message %>
+  </div>
+<% end %>

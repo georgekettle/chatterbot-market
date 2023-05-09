@@ -1,14 +1,17 @@
-<%= turbo_frame_tag dom_id(message) do %>
-  <%= content_tag :div, id: dom_id(message), class: 'group py-4' do %>
+<%= turbo_frame_tag dom_id(message), data: { chat_scroll_target: 'message' } do %>
+  <%= content_tag :div, class: 'group py-4' do %>
     <div class="flex">
       <div class="mr-4 shrink-0">
-        <%= render 'components/avatar', size: :xs %>
+        <% if message.user? %>
+          <%= render 'components/avatar', size: :xs %>
+        <% else %>
+          <%= render 'chatbots/avatar', size: :xs, chatbot: message.chatbot %>
+        <% end %>
       </div>
       <div class="space-y-2 grow-1 w-full">
         <div class="flex justify-between items-baseline">
           <div class="font-medium text-sm text-tertiary-900 flex items-center">
             <%= message_sender(message) %>
-            <span class="text-xs text-tertiary-500 font-normal ml-1"><%= message_timestamp(message, current_user.time_zone) %></span>
           </div>
         </div>
         
@@ -16,7 +19,7 @@
           <%= message.content %>
         </div>
       </div>
-      <% if (message.sent_by_account?(current_account) || message.ai_generated?) && message.feedback.nil? %>
+      <% if message.feedback.nil? %>
         <div class="ml-2 shrink-0 invisible group-hover:visible">
           <%= render 'feedback/feedback', message: message %>
         </div>

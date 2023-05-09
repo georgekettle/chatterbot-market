@@ -1,18 +1,31 @@
 class Message < ApplicationRecord
-  belongs_to :conversation
-  belongs_to :sender, class_name: "User", optional: true
-  has_one :chatbot, through: :conversation
+  include ActionView::RecordIdentifier
+
+  belongs_to :chat
+  has_one :chatbot, through: :chat
+  has_one :creator, through: :chat, class_name: "User", source: :creator
   has_one :feedback, dependent: :destroy
 
-  validates :content, presence: true
+  enum role: { system: 0, assistant: 1, user: 2 }
 
-  # Method to check if message from owner
-  def sent_by_account?(account)
-    account.users.include?(sender)
+  after_create_commit -> { broadcast_created }
+  after_update_commit -> { broadcast_updated }
+
+  def broadcast_created
+    broadcast_append_to(
+      dom_id(chat, :messages),
+      partial: "messages/message",
+      locals: { message: self },
+      target: dom_id(chat, :messages)
+    )
   end
 
-  # Method to find previous message from conversation
-  def previous_message
-    conversation.messages.where("id < ?", id).last
+  def broadcast_updated
+    broadcast_append_to(
+      dom_id(chat, :messages),
+      partial: "messages/message",
+      locals: { message: self },
+      target: dom_id(chat, :messages)
+    )
   end
 end

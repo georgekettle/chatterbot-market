@@ -5,8 +5,8 @@ if Rails.env == 'development'
   Chatbot.destroy_all
   puts "Destroying all Users..."
   User.destroy_all
-  puts "Destroying all Conversations..."
-  Conversation.destroy_all
+  puts "Destroying all Chats..."
+  Chat.destroy_all
   puts "Destroying all Accounts..."
   Account.destroy_all
   puts "Destroying all Messages..."
@@ -43,17 +43,17 @@ Chatbot.create!(name: 'Ruby on Rails Code Assistant',
   account: george_h.personal_account,
   system_prompt: "Welcome to the Ruby on Rails Code Assistant! How can I help you today with your coding needs? Whether you're looking for guidance on specific methods, syntax, or best practices, feel free to ask any questions or share your code snippet to receive personalized support and recommendations for optimizing your Ruby on Rails project.")
 
-puts "Creating conversations..."
+puts "Creating chats..."
 Chatbot.all.each do |cb|
   25.times do
-    Conversation.create!(chatbot: cb, creator: john_smith)
-    Conversation.create!(chatbot: cb, creator: mary_jane)
-    Conversation.create!(chatbot: cb, creator: george_h)
+    Chat.create!(chatbot: cb, creator: john_smith)
+    Chat.create!(chatbot: cb, creator: mary_jane)
+    Chat.create!(chatbot: cb, creator: george_h)
   end
 end
 
 puts "Creating messages... (this may take a while)"
-Conversation.all.each do |conv|
+Chat.all.each do |conv|
   20.times do
     conv.messages.create!(content: Faker::GreekPhilosophers.quote, sender: conv.creator, ai_generated: false)
     conv.messages.create!(content: Faker::GreekPhilosophers.quote, sender: conv.chatbot.account.owner)
@@ -62,11 +62,11 @@ end
 
 puts "Creating Feedback for messages... (created by chatbot or chatbot account users)"
 Message.all.each do |message|
-  if message.sender != message.conversation.creator
+  if message.sender != message.chat.creator
     if rand(1..10) > 2
-      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.conversation.creator, message: message, rating: :negative)
+      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.chat.creator, message: message, rating: :negative)
     else
-      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.conversation.creator, message: message, rating: :positive)
+      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.chat.creator, message: message, rating: :positive)
     end
   end
 end
