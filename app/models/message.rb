@@ -15,7 +15,7 @@ class Message < ApplicationRecord
     broadcast_append_to(
       dom_id(chat, :messages),
       partial: "messages/message",
-      locals: { message: self, scroll_to: true },
+      locals: { message: self },
       target: dom_id(chat, :messages)
     )
   end
@@ -24,7 +24,7 @@ class Message < ApplicationRecord
     broadcast_append_to(
       dom_id(chat, :messages),
       partial: "messages/message",
-      locals: { message: self, scroll_to: true },
+      locals: { message: self },
       target: dom_id(chat, :messages)
     )
   end

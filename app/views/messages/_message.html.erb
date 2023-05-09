@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(message) do %>
+<%= turbo_frame_tag dom_id(message), data: { chat_scroll_target: 'message' } do %>
   <%= content_tag :div, class: 'group py-4' do %>
     <div class="flex">
       <div class="mr-4 shrink-0">

@@ -1,8 +1,6 @@
 <%= turbo_stream_from dom_id(chat, :messages) %>
-<%= content_tag :div, id: dom_id(chat, :messages), class: 'relative h-full grow-1 overflow-y-scroll' do %>
+<%= content_tag :div, id: dom_id(chat, :messages), class: 'relative h-full grow-1 overflow-y-scroll', data: { controller: 'chat-scroll' } do %>
   <% chat.messages.each do |message| %>
-    <div class="max-w-3xl mx-auto">
-      <%= render 'messages/message', message: message %>
-    </div>
+    <%= render 'messages/message', message: message %>
   <% end %>
 <% end %>
