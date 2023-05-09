@@ -20,19 +20,13 @@ class ChatsController < ApplicationController
     authorize @chat
   end
 
-  # POST /chatbots/:chatbot_id/chats
   def create
-    # Accepts nested attributes for messages
-    @chat = Chat.new(chat_params)
-    # Add sender to messages
-    @chat.messages.each do |message|
-      message.sender = current_user
-    end
     @chatbot = Chatbot.find(params[:chatbot_id])
-    @chat.chatbot = @chatbot
-    @chat.creator = current_user
+    @chat = Chat.new(chat_params.merge(chatbot: @chatbot, creator: current_user))
+    @chat.messages.each { |message| message.role = "user" }
     authorize @chat
     if @chat.save
+      GetAiResponseJob.perform_later(@chat)
       redirect_to chat_path(@chat), status: :see_other
     else
       render :new, status: :unprocessable_entity

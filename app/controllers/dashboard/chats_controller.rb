@@ -23,15 +23,12 @@ class Dashboard::ChatsController < ApplicationController
   # POST /dashboard/chatbots/:chatbot_id/chats
   def create
     # Accepts nested attributes for messages
-    @chat = Chat.new(chat_params)
-    # Add sender to messages
-    @chat.messages.each do |message|
-      message.sender = current_user
-    end
-    @chat.chatbot = @chatbot
-    @chat.creator = current_user
+    @chat = Chat.new(chat_params.merge(chatbot: @chatbot, creator: current_user))
+    # Set default for all messages to role: "user"
+    @chat.messages.each { |message| message.role = "user" }
     authorize @chat
     if @chat.save
+      GetAiResponseJob.perform_later(@chat)
       redirect_to dashboard_chatbot_chats_path(@chatbot), status: :see_other
     else
       render :new, status: :unprocessable_entity

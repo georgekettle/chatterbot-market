@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        GetAiResponseJob.perform_later(@chat)
         format.turbo_stream
         format.html { redirect_to chat_path(@chat) }
       else
