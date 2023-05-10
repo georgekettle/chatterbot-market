@@ -4,10 +4,10 @@
 <%= form_with url: search_chatbots_path, method: :get do |form| %>
   <%= form.label :query, "Search", class: "mb-2 text-sm font-medium text-tertiary-900 sr-only" %>
   <div class="relative">
-    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-      <svg aria-hidden="true" class="w-5 h-5 text-tertiary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    <%= form.text_field :query, value: value, autofocus: true, id: "default-search", class: "shadow-lg peer block w-full p-4 pl-10 text-sm text-tertiary-900 rounded-md bg-white ring-1 ring-tertiary-300 focus:ring-tertiary-900 focus:ring-1", placeholder: placeholder, required: true, onfocus: "this.select()" %>
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-tertiary-400 peer-focus:text-tertiary-900">
+      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
     </div>
-    <%= form.text_field :query, value: value, autofocus: true, id: "default-search", class: "shadow-lg block w-full p-4 pl-10 text-sm text-tertiary-900 rounded-md bg-white ring-1 ring-tertiary-300 focus:ring-tertiary-900 focus:ring-1", placeholder: placeholder, required: true, onfocus: "this.select()" %>
     <%= form.submit "Search", class: "text-white absolute right-2 bottom-2 bg-primary-700 ring-offset-2 hover:bg-primary-800 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
   </div>
 <% end %>
