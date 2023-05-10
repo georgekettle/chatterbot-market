@@ -12,10 +12,16 @@ Rails.application.routes.draw do
 
   resources :chatbots, except: [:edit] do
     resources :chats, only: [:new, :create]
+    resources :favorites, only: [:create], module: :chatbots do
+      collection do
+        delete :destroy
+      end
+    end
     # collection route for trending
     collection do
       get :trending
       get :search
+      get :favorites, to: 'chatbots/favorites#index'
     end
   end
   resources :chats, only: [:show] do
