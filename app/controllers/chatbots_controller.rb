@@ -1,6 +1,8 @@
 class ChatbotsController < ApplicationController
   layout 'dashboard_chatbot', only: [:update]
   before_action :set_chatbot, only: %i[ show edit update destroy ]
+  skip_after_action :verify_authorized, only: [:trending]
+  after_action :verify_policy_scoped, only: [:trending]
 
   # GET /chatbots
   def index
@@ -59,6 +61,19 @@ class ChatbotsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to chatbots_url, notice: "Chatbot was successfully destroyed." }
     end
+  end
+  
+
+  def trending
+    # chatbots with most chats in the last 7 days
+    @pagy, @chatbots = pagy(
+      policy_scope(Chatbot)
+        .where(status: :marketplace)
+        .joins(:chats)
+        .where("chats.created_at > ?", 7.days.ago)
+        .group(:id)
+        .order("COUNT(chats.id) DESC")
+    )
   end
 
   private
