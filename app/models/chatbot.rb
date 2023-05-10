@@ -1,4 +1,15 @@
 class Chatbot < ApplicationRecord
+  include PgSearch::Model
+  # Write a search functionality with pg_search gem to search by name and description and message content
+  pg_search_scope :search_by_name_description_and_message_content,
+    against: [ :name, :description ],
+    associated_against: {
+      messages: [ :content ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
+
   STATUS_DESCRIPTIONS = {
     draft: "Your chatbot will be accessible only to you",
     published: "Your chatbot will be accessible to anyone with the link",
