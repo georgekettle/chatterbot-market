@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     collection do
       get :trending
       get :search
+      get :favorites, to: 'chatbots/favorites#index'
     end
   end
   resources :chats, only: [:show] do

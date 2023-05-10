@@ -14,6 +14,7 @@
 
       <div class="flex items-center space-x-4">
         <% if user_signed_in? %>
+          <%= link_to "My Saves", favorites_chatbots_path, class: "btn" %>
           <% if current_account.chatbots.any? %>
             <%= link_to "My Chatbots", dashboard_chatbots_path, class: "btn" %>
           <% else %>

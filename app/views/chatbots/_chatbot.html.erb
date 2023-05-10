@@ -7,7 +7,7 @@
       <div class="space-y-2">
         <div class="flex items-center justify-between space-x-2">
           <p class="font-medium text-md tracking-tight"><%= chatbot.name %></p>
-          <%= render 'favorite_btn', chatbot: chatbot %>
+          <%= render 'chatbots/favorite_btn', chatbot: chatbot %>
         </div>
         <p class="text-base tracking-tight text-gray-500 line-clamp-2 pr-12"><%= chatbot.description %></p>
       </div>

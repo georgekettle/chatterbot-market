@@ -1,9 +1,9 @@
 class Chatbot::FavoritePolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def resolve
+      user.user.favorited_by_type('Chatbot')
+    end
   end
 
   def create?
