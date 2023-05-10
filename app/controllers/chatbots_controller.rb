@@ -1,8 +1,8 @@
 class ChatbotsController < ApplicationController
   layout 'dashboard_chatbot', only: [:update]
   before_action :set_chatbot, only: %i[ show edit update destroy ]
-  skip_after_action :verify_authorized, only: [:trending]
-  after_action :verify_policy_scoped, only: [:trending]
+  skip_after_action :verify_authorized, only: [:trending, :search]
+  after_action :verify_policy_scoped, only: [:trending, :search]
 
   # GET /chatbots
   def index
@@ -68,11 +68,17 @@ class ChatbotsController < ApplicationController
     # chatbots with most chats in the last 7 days
     @pagy, @chatbots = pagy(
       policy_scope(Chatbot)
-        .where(status: :marketplace)
         .joins(:chats)
         .where("chats.created_at > ?", 7.days.ago)
         .group(:id)
         .order("COUNT(chats.id) DESC")
+    )
+  end
+
+  def search
+    @query = params[:query] || ""
+    @pagy, @chatbots = pagy(
+      policy_scope(Chatbot).search_by_chatbot_and_messages(@query)
     )
   end
 

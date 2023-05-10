@@ -14,7 +14,7 @@
         <%= render 'components/navigation/breadcrumbs' %>
       </div>
     <% end %>
-    <h1 class="h1"><%= title %></h1>
+    <h1 class="h1"><%= sanitize title %></h1>
     <% if subtitle %>
       <p class="text-tertiary-500 mt-2"><%= subtitle %></p>
     <% end %>
