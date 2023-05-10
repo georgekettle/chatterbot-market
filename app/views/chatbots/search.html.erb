@@ -1,0 +1,25 @@
+<div class="bg-gradient-to-r from-info-100 to-primary-600 text-white py-24">
+  <div class="px-4 space-y-8">
+    <div class="text-center space-y-4 max-w-lg mx-auto">
+      <h1 class="h1 text-4xl">Get More Done in Less Time. Find Personalized Chatbots for Your Business</h1>
+      <p class="text-normal mb-4 text-white/80">Transform your business with custom chatbots trained by experts</p>
+    </div>
+    <div class="max-w-md mx-auto">
+      <%= render 'chatbots/search_bar', value: @query %>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/container' do %>
+  <div class="pt-16 pb-4">
+    <%= render 'components/headers/page_header', title: "<span class=\"text-tertiary-500 text-lg\">#{@pagy.count} results for</span> \"#{@query}\"" %>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <% @chatbots.each do |chatbot| %>
+      <%= render chatbot %>
+    <% end %>
+  </div>
+  <div class="py-10 flex justify-center">
+    <%= render 'pagy/pagination', pagy: @pagy %>
+  </div>
+<% end %>

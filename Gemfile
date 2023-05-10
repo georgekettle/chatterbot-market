@@ -59,6 +59,7 @@ gem "ruby-openai"
 gem 'dotenv-rails', groups: [:development, :test]
 gem "loaf"
 gem 'cloudinary'
+gem 'pg_search'
 
 # Simple, efficient background processing using Redis.
 # https://github.com/sidekiq/sidekiq

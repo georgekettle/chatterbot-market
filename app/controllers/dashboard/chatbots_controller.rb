@@ -3,7 +3,7 @@ class Dashboard::ChatbotsController < ApplicationController
 
   # GET /dashboard/chatbots
   def index
-    @chatbots = policy_scope(Chatbot).where(account: current_account)
+    @chatbots = policy_scope([:dashboard, Chatbot]).where(account: current_account)
   end
 
   # GET /dashboard/chatbots/1

@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 
   resources :chatbots, except: [:edit] do
     resources :chats, only: [:new, :create]
+    # collection route for trending
+    collection do
+      get :trending
+      get :search
+    end
   end
   resources :chats, only: [:show] do
     resources :messages, only: [:create]
