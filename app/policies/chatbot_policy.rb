@@ -2,7 +2,7 @@ class ChatbotPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.where(account: user)
+      scope.where(status: :marketplace)
     end
   end
 
