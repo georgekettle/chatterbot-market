@@ -4,7 +4,7 @@ class ChatbotsController < ApplicationController
 
   # GET /chatbots
   def index
-    @chatbots = policy_scope(Chatbot).where(status: :live)
+    @chatbots = policy_scope(Chatbot).where(status: :marketplace)
   end
 
   # GET /chatbots/1

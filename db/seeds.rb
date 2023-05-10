@@ -30,6 +30,33 @@ openai_gpt_models.each do |model|
   BaseModel.create!(name: model["id"], company: model["owned_by"])
 end
 
+# Create Chatbot seeds
+puts "Creating chatbots..."
+messages = [
+  { role: "system", content: "You are an assistant that only speaks JSON. Do not write normal text." },
+  { role: "user", content: "Write an array of 10 custom chatbots for specific tasks with the following fields: name, description, system_prompt. The system prompt should describe the personality of the bot and it's goals" }
+]
+response = CHATTERBOT_OPENAI_CLIENT.chat(
+  parameters: {
+    model: "gpt-3.5-turbo",
+    messages: messages,
+    temperature: 0.5
+  }
+)
+puts "Response: "
+puts response
+
+chatbots_examples = JSON.parse(response.dig("choices", 0, "message", "content"), {:symbolize_names => true})
+
+chatbots_examples.each do |cb|
+  Chatbot.create!(name: cb[:name],
+    base_model: BaseModel.first,
+    description: cb[:description],
+    account: Account.all.sample,
+    status: :marketplace,
+    system_prompt: cb[:system_prompt])
+end
+
 puts "Creating chatbots..."
 Chatbot.create!(name: 'JSON API',
   base_model: BaseModel.first,
@@ -45,7 +72,7 @@ Chatbot.create!(name: 'Ruby on Rails Code Assistant',
 
 puts "Creating chats..."
 Chatbot.all.each do |cb|
-  25.times do
+  10.times do
     Chat.create!(chatbot: cb, creator: john_smith)
     Chat.create!(chatbot: cb, creator: mary_jane)
     Chat.create!(chatbot: cb, creator: george_h)
@@ -53,21 +80,10 @@ Chatbot.all.each do |cb|
 end
 
 puts "Creating messages... (this may take a while)"
-Chat.all.each do |conv|
-  20.times do
-    conv.messages.create!(content: Faker::GreekPhilosophers.quote, sender: conv.creator, ai_generated: false)
-    conv.messages.create!(content: Faker::GreekPhilosophers.quote, sender: conv.chatbot.account.owner)
-  end
-end
-
-puts "Creating Feedback for messages... (created by chatbot or chatbot account users)"
-Message.all.each do |message|
-  if message.sender != message.chat.creator
-    if rand(1..10) > 2
-      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.chat.creator, message: message, rating: :negative)
-    else
-      Feedback.create!(content: Faker::GreekPhilosophers.quote, user: message.chat.creator, message: message, rating: :positive)
-    end
+Chat.all.each do |chat|
+  10.times do
+    chat.messages.create!(content: Faker::GreekPhilosophers.quote, role: :user)
+    chat.messages.create!(content: Faker::GreekPhilosophers.quote, role: :assistant)
   end
 end
 
