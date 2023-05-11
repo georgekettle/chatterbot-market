@@ -26,13 +26,13 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 mr-0.5">
                   <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
                 </svg>
-                <%= @chatbot.avg_rating %>
+                <%= round_to_nearest_half(@chatbot.avg_rating) %>
                 <span class="text-tertiary-500 font-normal ml-1">(<%= @chatbot.reviews.count %> reviews)</span>
               </span>
             </div>
           </div>
           <div class="flex space-x-4 mt-8">
-            <%= link_to new_chatbot_chat_path(@chatbot), class: "btn btn-primary group" do %>
+            <%= link_to new_chatbot_chat_path(@chatbot), class: "btn btn-primary group w-56" do %>
               Chat now
 
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mr-0 w-0 h-0 group-hover:w-4 group-hover:h-4 group-hover:ml-2 group-hover:-rotate-45 transition-all duration-200 ease-in-out">
@@ -44,10 +44,20 @@
       </div>
     </div>
     <%# Reviews %>
-    <div class="py-16">
-      <%= render 'components/headers/page_header_2', title: "Reviews", subtitle: "#{@chatbot.reviews.count} reviews" %>
-      <div class="mt-8">
-        <%= render 'chatbots/reviews/review', collection: @chatbot.reviews %>
+    <div class="py-16 pl-40 grid grid-cols-3 gap-8">
+      <div class="col-span-1">
+        <%= render 'components/headers/page_header_2', title: "Ratings & Reviews", subtitle: "#{round_to_nearest_half(@chatbot.avg_rating)} based on #{@chatbot.reviews.count} reviews" %>
+      </div>
+      <div class="col-span-2 space-y-4">
+        <%= render partial: 'chatbots/reviews/review', collection: @chatbot.reviews %>
+        <%# button to see all reviews %>
+        <%= link_to '#', class: 'btn btn-secondary w-full' do %>
+          See all reviews
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-2 shrink-0">
+            <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
       </div>
     </div>
   </div>
