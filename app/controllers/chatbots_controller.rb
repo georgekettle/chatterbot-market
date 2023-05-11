@@ -11,11 +11,7 @@ class ChatbotsController < ApplicationController
 
   # GET /chatbots/1
   def show
-    @chats = @chatbot.chats.where("created_at > ?", 7.days.ago).order(created_at: :desc).first(5)
     @reviews = @chatbot.reviews.order(created_at: :desc).first(5)
-
-    breadcrumb "Marketplace", chatbots_path
-    breadcrumb @chatbot.name, request.path
   end
 
   # GET /chatbots/new

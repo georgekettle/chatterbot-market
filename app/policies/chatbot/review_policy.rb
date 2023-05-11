@@ -5,4 +5,9 @@ class Chatbot::ReviewPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def create?
+    # record is chatbot. As long as user has chats with chatbot, they can create a review
+    user.user.chats.where(chatbot: record).any?
+  end
 end
