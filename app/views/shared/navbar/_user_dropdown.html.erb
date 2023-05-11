@@ -4,13 +4,14 @@
 </button>
 
 <!-- Dropdown menu -->
-<div id="accountDropdown" class="elevated-card hidden w-44">
+<div id="accountDropdown" class="elevated-card hidden w-44 divide-y divide-tertiary-100">
   <div class="px-4 py-3 text-sm text-tertiary-900 dark:text-white">
     <div class="text-tertiary-500">Signed in as</div>
     <div class="truncate font-medium"><%= current_user.email %></div>
   </div>
   <div class="py-2">
     <%= link_to "My Chatbots", dashboard_chatbots_path, class: "block px-4 py-2 text-sm text-tertiary-700 hover:bg-tertiary-100 dark:hover:bg-tertiary-600 dark:text-tertiary-200 dark:hover:text-white" %>
+    <%= link_to "Saves", favorites_chatbots_path, class: "block px-4 py-2 text-sm text-tertiary-700 hover:bg-tertiary-100 dark:hover:bg-tertiary-600 dark:text-tertiary-200 dark:hover:text-white" %>
     <%= link_to "Account settings", account_settings_path, class: "block px-4 py-2 text-sm text-tertiary-700 hover:bg-tertiary-100 dark:hover:bg-tertiary-600 dark:text-tertiary-200 dark:hover:text-white" %>
   </div>
   <div class="py-2">
