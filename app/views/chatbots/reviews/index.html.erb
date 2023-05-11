@@ -1,0 +1,26 @@
+<%= render 'shared/container' do %>
+  <div class="divide-y divide-tertiary-300">
+    <%# Info about bot %>
+    <div class="py-16">
+      <div class="-ml-6 mb-4">
+        <%= render 'components/navigation/back_btn' %>
+      </div>
+      <div class="flex">
+        <%# Chatbot info %>
+        <div class="w-96 shrink-0 mr-8">
+          <%= render 'components/headers/page_header_2', title: "Ratings & Reviews", subtitle: "#{round_to_nearest_half(@chatbot.avg_rating)} based on #{@chatbot.reviews.count} reviews" %>
+        </div>
+        <%# Reviews %>
+        <div>
+          <div class="space-y-4">
+            <%= render partial: 'chatbots/reviews/review', collection: @chatbot.reviews %>
+          </div>
+          <div class="py-10 flex justify-center">
+            <%= render 'pagy/pagination', pagy: @pagy %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+ 

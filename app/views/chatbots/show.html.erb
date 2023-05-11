@@ -51,7 +51,7 @@
       <div class="col-span-2 space-y-4">
         <%= render partial: 'chatbots/reviews/review', collection: @chatbot.reviews %>
         <%# button to see all reviews %>
-        <%= link_to '#', class: 'btn btn-secondary w-full' do %>
+        <%= link_to chatbot_reviews_path(@chatbot), class: 'btn btn-secondary w-full' do %>
           See all reviews
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-2 shrink-0">
