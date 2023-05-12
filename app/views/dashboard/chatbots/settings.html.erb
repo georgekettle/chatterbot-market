@@ -39,7 +39,7 @@
           <%= f.text_area :description %>
         </div>
 
-        <div class="flex justify-end">
+        <div class="form-actions flex justify-end">
           <%= f.submit 'Save' %>
         </div>
       </div>
@@ -54,7 +54,7 @@
           <%= f.text_area :system_prompt, data: { controller: "textarea-autogrow" } %>
         </div>
 
-        <div class="flex justify-end">
+        <div class="form-actions flex justify-end">
           <%= f.submit 'Save' %>
         </div>
       </div>
@@ -80,7 +80,7 @@
           </div>
         </div>
 
-        <div class="flex justify-end">
+        <div class="form-actions flex justify-end">
           <%= f.submit 'Save' %>
         </div>
       </div>
@@ -96,7 +96,7 @@
           <%= f.collection_select :base_model_id, BaseModel.all.order(:name), :id, :name %>
         </div>
 
-        <div class="flex justify-end">
+        <div class="form-actions flex justify-end">
           <%= f.submit 'Save' %>
         </div>
       </div>

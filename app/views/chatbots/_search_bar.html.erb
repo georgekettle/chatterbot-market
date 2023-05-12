@@ -8,7 +8,9 @@
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-tertiary-400 peer-focus:text-tertiary-900">
       <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
     </div>
-    <%= form.submit "Search", class: "text-white absolute right-2 bottom-2 bg-primary-700 ring-offset-2 hover:bg-primary-800 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+    <div class="form-actions">
+      <%= form.submit "Search", class: "text-white absolute right-2 bottom-2 bg-primary-700 ring-offset-2 hover:bg-primary-800 focus:ring-2 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+    </div>
   </div>
 <% end %>
 
