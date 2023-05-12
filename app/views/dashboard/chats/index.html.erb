@@ -22,7 +22,7 @@
   </div>
   <div class="p-16 pb-6 pt-0 w-full">
     <% if @selected_chat %>
-      <%= render 'chats/chat', chat: @selected_chat, message: Message.new %>
+      <%= render 'chats/conversation', chat: @selected_chat, message: Message.new %>
     <% end %>
   </div>
 </div>

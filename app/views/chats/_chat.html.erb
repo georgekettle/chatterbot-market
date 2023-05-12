@@ -1,6 +1,20 @@
-<%= render 'shared/container', classes: 'max-w-3xl h-full flex flex-col' do %>
-  <%= render 'chats/messages', chat: chat %>
-  <div class="shrink-0 pb-6">
-    <%= render 'messages/form', chat: chat, message: message %>
+<% selected ||= false %>
+
+<li class="relative p-4 text-sm rounded overflow-hidden flex hover:bg-black/5 <%= selected ? 'card' : '' %>">
+  <div class="mr-4 shrink-0">
+    <%= render 'chatbots/avatar', size: :xs, chatbot: chat.chatbot %>
   </div>
-<% end %>
+
+  <div>
+    <div class="flex items-center justify-between">
+      <h3 class="text-sm font-semibold text-tertiary-900 line-clamp-1">
+        <%= link_to chat_path(chat), class: 'focus:outline-none', data: { turbo_frame: "_top" } do %>
+          <!-- Extend touch target to entire panel -->
+          <span class="absolute inset-0" aria-hidden="true"></span>
+          <%= chat.chatbot.name %>
+        <% end %>
+      </h3>
+    </div>
+    <p class="mt-1 text-sm w-full text-tertiary-500 line-clamp-1"><%= chat.messages.last.content %></p>
+  </div>
+</li>

@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :chats, only: [:new, :create] # change this to only: [:new, :create] without nested routes (use params to decide which chatbot/model to use)
   resources :chatbots, except: [:edit] do
-    resources :chats, only: [:new, :create]
     resources :reviews, only: [:index, :new, :create], module: :chatbots
     resources :favorites, only: [:create], module: :chatbots do
       collection do

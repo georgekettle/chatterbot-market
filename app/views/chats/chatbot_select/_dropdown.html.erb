@@ -1,0 +1,25 @@
+<div class="relative">
+  <button class="card p-4 flex items-center justify-between hover:bg-tertiary-50 w-full" id="chatbotSelectButton" data-dropdown-toggle="chatbotSelect" data-dropdown-placement="bottom-start" type="button">
+    <div class="flex items-center space-x-4">
+      <%= render 'chatbots/avatar', chatbot: selected_chatbot, size: :sm %>
+      <div>
+        <p class="text-left text-xs text-tertiary-500">Chatbot</p>
+        <p class="font-medium text-sm text-left line-clamp-1"><%= selected_chatbot.name %></p>
+      </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-tertiary-500 shrink-0 ml-2">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+    </svg>
+  </button>
+
+  <!-- Dropdown menu -->
+  <div id="chatbotSelect" class="elevated-card hidden w-full relative h-96">
+    <% chatbots_count = chatbots.count %>
+    <% if chatbots_count.zero? %>
+      <%# Empty state %>
+      <%= render 'chats/chatbot_select/empty_state' %>
+    <% else %>
+      <%= render 'chats/chatbot_select/options', chatbots: chatbots, selected_chatbot: selected_chatbot %>
+    <% end %>
+  </div>
+</div>

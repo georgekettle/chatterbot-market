@@ -8,6 +8,8 @@ class Message < ApplicationRecord
 
   enum role: { system: 0, assistant: 1, user: 2 }
 
+  validates :content, presence: true
+
   after_create_commit -> { broadcast_created }
   after_update_commit -> { broadcast_updated }
 

@@ -1,0 +1,20 @@
+<div class="py-4 sm:py-10 h-full relative flex flex-col">
+  <div class="px-4 sm:px-10">
+    <%= link_to chat_path_for_side_nav, class: 'btn btn-primary w-full shrink-0 sticky-top z-10' do %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-2 shrink-0">
+        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+      </svg>
+
+      New Chat
+    <% end %>
+  </div>
+  <div class="h-full grow-1 relative">
+    <div class="h-full overflow-y-auto py-6 px-4 sm:px-10">
+      <% @chat_history.each do |chat| %>
+        <%= render 'chats/chat', chat: chat, selected: @chat == chat %>
+      <% end %>
+    </div>
+    <%# Fade effect at bottom %>
+    <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-tertiary-50 pointer-events-none"></div>
+  </div>
+</div>
