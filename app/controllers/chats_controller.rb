@@ -4,6 +4,7 @@ class ChatsController < ApplicationController
   before_action :set_chat, only: %i[ show ]
   before_action :set_chatbot, only: %i[ new create ]
   before_action :set_chat_history, only: %i[ show new create ]
+  before_action :set_favorite_chatbots, only: %i[ new create ]
   
   # GET /chats/1
   def show
@@ -18,7 +19,6 @@ class ChatsController < ApplicationController
     @chat.chatbot = @chatbot
     @chat.creator = current_user
     @chat.messages.build
-    @favorited_chatbots = current_user.favorited_by_type('Chatbot')
     
     authorize @chat
   end
@@ -44,6 +44,10 @@ class ChatsController < ApplicationController
 
     def set_chatbot
       @chatbot = Chatbot.find_by(id: params[:chatbot_id]) || Chatbot.default || Chatbot.first
+    end
+
+    def set_favorite_chatbots
+      @favorited_chatbots = current_user.favorited_by_type('Chatbot')
     end
 
     # Only allow a list of trusted parameters through.
