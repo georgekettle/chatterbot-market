@@ -59,7 +59,7 @@
         <% end %>
       </div>
       <div class="col-span-2 space-y-4">
-        <%= render partial: 'chatbots/reviews/review', collection: @chatbot.reviews %>
+        <%= render partial: 'chatbots/reviews/review', collection: @reviews %>
         <%# button to see all reviews %>
         <%= link_to chatbot_reviews_path(@chatbot), class: 'btn btn-secondary w-full' do %>
           See all reviews
