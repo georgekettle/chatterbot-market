@@ -6,7 +6,7 @@
         Invite people to use your chatbot with this link
       </p>
     </div>
-    <%= link_to new_chatbot_chat_path(chatbot), class: "btn btn-primary" do %>
+    <%= link_to new_chat_path(chatbot_id: chatbot.id), class: "btn btn-primary" do %>
       Chat link
     <% end %>
   </div>

@@ -1,7 +1,6 @@
-class ChatsController < ApplicationController
-  layout 'without_navbar', only: %i[ show new create ]
-  
+class ChatsController < ApplicationController  
   before_action :set_chat, only: %i[ show ]
+  before_action :set_chatbot, only: %i[ new create ]
   
   # GET /chats/1
   def show
@@ -10,9 +9,8 @@ class ChatsController < ApplicationController
     @message = Message.new
   end
 
-  # GET /chatbots/:chatbot_id/chats/new
+  # GET /chats/new?chatbot_id=1
   def new
-    @chatbot = Chatbot.find(params[:chatbot_id])
     @chat = Chat.new
     @chat.chatbot = @chatbot
     @chat.creator = current_user
@@ -21,7 +19,6 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chatbot = Chatbot.find(params[:chatbot_id])
     @chat = Chat.new(chat_params.merge(chatbot: @chatbot, creator: current_user))
     @chat.messages.each { |message| message.role = "user" }
     authorize @chat
@@ -38,6 +35,11 @@ class ChatsController < ApplicationController
     def set_chat
       @chat = Chat.find(params[:id])
       authorize @chat
+    end
+
+    def set_chatbot
+      return Chatbot.default || Chatbot.first if params[:chatbot_id].blank?
+      @chatbot = Chatbot.find(params[:chatbot_id])
     end
 
     # Only allow a list of trusted parameters through.
