@@ -1,6 +1,9 @@
-class ChatsController < ApplicationController  
+class ChatsController < ApplicationController
+  layout 'chat', only: %i[ show new create ]
+
   before_action :set_chat, only: %i[ show ]
   before_action :set_chatbot, only: %i[ new create ]
+  before_action :set_chat_history, only: %i[ show new create ]
   
   # GET /chats/1
   def show
@@ -46,5 +49,10 @@ class ChatsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def chat_params
       params.require(:chat).permit(:title, messages_attributes: [:content])
+    end
+
+    def set_chat_history
+      # find all chats that the user has participated in ordered by latest messages
+      @chat_history = Chat.joins(:messages).where(creator: current_user).order('messages.created_at DESC').uniq
     end
 end
