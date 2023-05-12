@@ -37,10 +37,11 @@
     @apply file:bg-tertiary-900 file:text-white max-w-xl shadow-sm bg-white file:rounded-none block w-full text-sm text-tertiary-900 border border-tertiary-300 rounded cursor-pointer focus:outline-none;
   } */
 
-  input[type=button],
-  input[type=submit],
-  button[type=submit],
-  input[type=reset] {
+  
+  .form-actions input[type=button],
+  .form-actions input[type=submit],
+  .form-actions button[type=submit],
+  .form-actions input[type=reset] {
     @apply btn btn-primary;
   }
 
