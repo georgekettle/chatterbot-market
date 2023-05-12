@@ -24,6 +24,7 @@ class Chatbot < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :messages, through: :chats
   has_many :feedback, through: :messages
+  has_many :reviews, as: :reviewable, dependent: :destroy
   
   has_one_attached :avatar
 
@@ -36,5 +37,9 @@ class Chatbot < ApplicationRecord
 
   def ensure_base_model
     self.base_model ||= BaseModel.first
+  end
+
+  def avg_rating
+    reviews.average(:rating).to_f.round(1)
   end
 end
