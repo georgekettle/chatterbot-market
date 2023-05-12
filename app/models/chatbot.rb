@@ -32,14 +32,33 @@ class Chatbot < ApplicationRecord
   validates :description, presence: true, length: { minimum: 10 }
 
   before_validation :ensure_base_model
+  before_save :update_default_flag
 
   enum status: { draft: 0, published: 1, marketplace: 2 }
+  
+  def avg_rating
+    reviews.average(:rating).to_f.round(1)
+  end
 
+  def self.default
+    Chatbot.find_by(default: true)
+  end
+  
+  private
+  
   def ensure_base_model
     self.base_model ||= BaseModel.first
   end
 
-  def avg_rating
-    reviews.average(:rating).to_f.round(1)
+  def validate_single_default_chatbot
+    if default? && Chatbot.where(default: true).where.not(id: id).exists?
+      errors.add(:default, "Only one chatbot can be set as default")
+    end
+  end
+
+  def update_default_flag
+    if default_changed? && default?
+      Chatbot.where.not(id: id).update_all(default: false)
+    end
   end
 end
