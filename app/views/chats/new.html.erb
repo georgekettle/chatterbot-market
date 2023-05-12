@@ -1,10 +1,10 @@
 <div class="h-[calc(100vh-theme(space.20))] flex flex-col">
   <div class="grow-1 h-full overflow-y-scroll">
-    <%= render 'shared/container', classes: 'max-w-3xl' do %>
-      <p>Render a message about chatbot here</p>
+    <%= render 'shared/container', classes: 'max-w-sm pt-8' do %>
+      <%= render 'chats/chatbot_select/dropdown', selected_chatbot: @chatbot, chatbots: @favorited_chatbots %>
     <% end %>
   </div>
-  <div class="shrink-0 py-4 sm:py-6">
+  <div class="shrink-0 pb-10">
     <%= render 'shared/container', classes: 'max-w-3xl' do %>
       <%= render 'chats/form', chat: @chat, chatbot: @chatbot %>
     <% end %>

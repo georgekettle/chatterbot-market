@@ -15,6 +15,8 @@ class ChatsController < ApplicationController
     @chat.chatbot = @chatbot
     @chat.creator = current_user
     @chat.messages.build
+    @favorited_chatbots = current_user.favorited_by_type('Chatbot')
+    
     authorize @chat
   end
 
