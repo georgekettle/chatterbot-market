@@ -38,8 +38,7 @@ class ChatsController < ApplicationController
     end
 
     def set_chatbot
-      return Chatbot.default || Chatbot.first if params[:chatbot_id].blank?
-      @chatbot = Chatbot.find(params[:chatbot_id])
+      @chatbot = Chatbot.find_by(id: params[:chatbot_id]) || Chatbot.default || Chatbot.first
     end
 
     # Only allow a list of trusted parameters through.
