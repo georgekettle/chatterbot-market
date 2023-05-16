@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
   end
   get '/account_settings', to: 'accounts#account_settings', as: :account_settings
-  resources :accounts, only: [:update]
+  resources :accounts, only: [:show, :update]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

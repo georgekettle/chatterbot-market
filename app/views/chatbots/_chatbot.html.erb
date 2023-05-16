@@ -13,7 +13,7 @@
       </div>
       <div class="flex items-center space-x-6">
         <div class="flex items-center space-x-2">
-          <p class="text-sm link-underline"><%= chatbot.account.name %></p>
+          <%= link_to chatbot.account.name, chatbot.account, class: 'text-sm link-underline' %>
         </div>
         <span class="text-sm font-medium flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 mr-0.5">

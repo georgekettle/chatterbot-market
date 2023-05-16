@@ -1,0 +1,32 @@
+<%= render 'shared/container' do %>
+  <div class="divide-y divide-tertiary-300">
+    <%# Info about account %>
+    <div class="py-16">
+      <div class="-ml-6 mb-4">
+        <%= render 'components/navigation/back_btn' %>
+      </div>
+      <div class="flex space-x-8 relative">
+        <%= render 'components/avatar', size: :xl %>
+        <div>
+          <%# Account name %>
+          <h1 class="h1"><%= @account.name %></h1>
+          <p class="mt-2 text-tertiary-500">Short bio of account</p>
+          <%= link_to 'websiteofaccount.com', '#', class: 'text-tertiary-500 hover:text-tertiary-900 link-underline mt-4 inline-block' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# Public chatbots %>
+  <div class="pt-16 pb-4">
+    <%= render 'components/headers/page_header_2', title: "Chatbots" %>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <% @chatbots.each do |chatbot| %>
+      <%= render chatbot %>
+    <% end %>
+  </div>
+  <div class="py-10 flex justify-center">
+    <%= render 'pagy/pagination', pagy: @pagy %>
+  </div>
+<% end %>

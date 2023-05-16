@@ -10,6 +10,10 @@ class AccountPolicy < ApplicationPolicy
     record == account
   end
 
+  def show?
+    true
+  end
+
   def update?
     record == account
   end

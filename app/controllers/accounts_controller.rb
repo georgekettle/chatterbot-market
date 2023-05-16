@@ -5,6 +5,16 @@ class AccountsController < ApplicationController
     authorize @account
   end
 
+  # GET /accounts/:id
+  def show
+    @account = Account.find(params[:id])
+    @pagy, @chatbots = pagy(
+      policy_scope(@account.chatbots)
+        .where(status: :marketplace))
+
+    authorize @account
+  end
+
   def update
     @account = current_account
     authorize @account
