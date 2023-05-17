@@ -110,4 +110,9 @@
   .header-xs {
     @apply text-sm font-medium tracking-tight;
   }
+
+  /* GRADIENT */
+  .brand-gradient {
+    @apply bg-gradient-to-r from-info-100 to-primary-600;
+  }
 }

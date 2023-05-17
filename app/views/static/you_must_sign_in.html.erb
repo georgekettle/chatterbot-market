@@ -1,0 +1,10 @@
+<%= turbo_frame_tag :modal do %>
+  <div class="h-1 brand-gradient"></div>
+  <div class="p-6 sm:p-10">
+    <%= render 'components/headers/page_header_2', title: 'You must Log in', subtitle: 'To use this functionality, please log in or sign up' %>
+    <div class="grid grid-cols-2 gap-4">
+      <%= link_to 'Log in', new_user_session_path, data: { turbo_frame: :_top }, class: 'btn btn-primary' %>
+      <%= link_to "or Sign up", new_user_registration_path, data: { turbo_frame: :_top }, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>
