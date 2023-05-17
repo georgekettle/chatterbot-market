@@ -1,4 +1,7 @@
 class AccountsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
+  skip_after_action :verify_authorized, only: [:show]
+
   # GET /account_settings
   def account_settings
     @account = current_account
@@ -8,11 +11,7 @@ class AccountsController < ApplicationController
   # GET /accounts/:id
   def show
     @account = Account.find(params[:id])
-    @pagy, @chatbots = pagy(
-      policy_scope(@account.chatbots)
-        .where(status: :marketplace))
-
-    authorize @account
+    @pagy, @chatbots = pagy(@account.chatbots.where(status: :marketplace))
   end
 
   def update
