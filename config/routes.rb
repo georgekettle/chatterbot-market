@@ -39,8 +39,10 @@ Rails.application.routes.draw do
   get '/account_settings', to: 'accounts#account_settings', as: :account_settings
   resources :accounts, only: [:show, :update]
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # static pages
+  get '/you_must_sign_in', to: 'static#you_must_sign_in', as: :you_must_sign_in
 
   # Defines the root path route ("/")
-  root "static#home"
+  root "chatbots#trending"
 end

@@ -41,4 +41,16 @@ export default class extends Controller {
   toggle() {
     this.modal.toggle();
   }
+
+  showOnFrameLoad() {
+    if (!this.modal.isOpened) {
+      this.show()
+    }
+  }
+
+  hideOnSubmitEnd(event) {
+    if (event.detail.success) {
+      this.hide()
+    }
+  }
 }
