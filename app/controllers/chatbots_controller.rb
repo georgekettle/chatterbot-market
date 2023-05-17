@@ -1,8 +1,8 @@
 class ChatbotsController < ApplicationController
   layout 'dashboard_chatbot', only: [:update]
-  before_action :set_chatbot, only: %i[ show edit update destroy ]
-  skip_before_action :authenticate_user!, only: [:trending, :search]
-  skip_after_action :verify_authorized, only: [:trending, :search]
+  before_action :set_chatbot, only: %i[ edit update destroy ]
+  skip_before_action :authenticate_user!, only: [:show, :trending, :search]
+  skip_after_action :verify_authorized, only: [:show, :trending, :search]
   after_action :verify_policy_scoped, only: [:trending, :search]
 
   # GET /chatbots
@@ -12,6 +12,7 @@ class ChatbotsController < ApplicationController
 
   # GET /chatbots/1
   def show
+    @chatbot = Chatbot.find(params[:id])
     @reviews = @chatbot.reviews.order(created_at: :desc).first(5)
   end
 
