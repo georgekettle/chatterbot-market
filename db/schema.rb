@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_133206) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_101740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_133206) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "api_key_openai"
+    t.string "url"
+    t.text "description"
     t.index ["owner_id"], name: "index_accounts_on_owner_id"
   end
 
