@@ -38,7 +38,10 @@ Rails.application.routes.draw do
   end
   get '/account_settings', to: 'accounts#account_settings', as: :account_settings
   resources :accounts, only: [:show, :update]
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   # static pages
   get '/you_must_sign_in', to: 'static#you_must_sign_in', as: :you_must_sign_in
