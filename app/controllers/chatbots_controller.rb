@@ -1,6 +1,7 @@
 class ChatbotsController < ApplicationController
   layout 'dashboard_chatbot', only: [:update]
   before_action :set_chatbot, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: [:trending, :search]
   skip_after_action :verify_authorized, only: [:trending, :search]
   after_action :verify_policy_scoped, only: [:trending, :search]
 
