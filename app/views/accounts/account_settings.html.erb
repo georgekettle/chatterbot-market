@@ -14,6 +14,15 @@
                 <%= f.label :name %>
                 <%= f.text_field :name %>
               </div>
+              <div>
+                <%= f.label :description %>
+                <%= f.text_area :description, placeholder: "Write a description for this account...", data: { controller: 'textarea-autogrow' } %>
+              </div>
+              <div>
+                <%= f.label :url %>
+                <%# Add no rel and open in new tab %>
+                <%= f.text_field :url %>
+              </div>
               <div class="form-actions flex justify-end">
                 <%= f.submit 'Save' %>
               </div>

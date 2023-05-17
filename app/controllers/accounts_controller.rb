@@ -28,6 +28,6 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:name, :api_key_openai)
+    params.require(:account).permit(:name, :description, :url, :api_key_openai)
   end
 end
