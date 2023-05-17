@@ -48,6 +48,10 @@
   input[type="radio"] {
     @apply rounded text-tertiary-900 border-gray-300 shadow-sm focus:border-tertiary-900 focus:ring-tertiary-900;
   }
+
+  .hint {
+    @apply text-sm block text-tertiary-500 mt-2;
+  }
 }
 
 @layer components {
