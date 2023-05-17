@@ -17,12 +17,7 @@
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div class="field">
-          </div>
-          <div class="field flex items-center space-y-0">
-            <%= f.check_box :remember_me, class: 'w-4 h-4 text-tertiary-900 bg-tertiary-100 border-tertiary-300 rounded focus:ring-tertiary-900 focus:ring-1' %>
-            <%= f.label :remember_me, class: 'ml-2' %>
-          </div>
+          <%= render 'components/forms/checkbox', form: f, name: :remember_me %>
         <% end %>
 
         <div class="form-actions">
