@@ -1,9 +1,11 @@
 class Chatbots::ReviewsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+  skip_after_action :verify_policy_scoped, only: [:index]
+
   # GET /chatbots/1/reviews
   def index
     @chatbot = Chatbot.find(params[:chatbot_id])
-    @pagy, @reviews = pagy(policy_scope(@chatbot.reviews, policy_scope_class: Chatbot::ReviewPolicy::Scope).order(created_at: :desc))
-    authorize @chatbot, :show?
+    @pagy, @reviews = pagy(@chatbot.reviews.order(created_at: :desc))
   end
 
   # GET /chatbots/1/reviews/new
