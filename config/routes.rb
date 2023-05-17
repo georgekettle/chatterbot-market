@@ -40,7 +40,8 @@ Rails.application.routes.draw do
   resources :accounts, only: [:show, :update]
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
   }
 
   # static pages
